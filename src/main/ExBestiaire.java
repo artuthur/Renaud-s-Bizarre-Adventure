@@ -21,6 +21,7 @@ public class ExBestiaire{
             System.err.println();
             System.out.println("Veuiller entrer le chiffre corréspondant");
             choix = read();
+            if(choix == null) continue;
             if (choix.equals("1")) {
                 System.out.println("CRS (Chevalier Republicain Sécuritair)");
                 System.out.println("ARS (Archer Republicain Séuritair)");
@@ -31,7 +32,7 @@ public class ExBestiaire{
                 System.out.println("Ce bestiere n'est pas fini !");
             }
 
-        } while (choix.equals("0"));
+        } while (choix == null);
 
 
     }
