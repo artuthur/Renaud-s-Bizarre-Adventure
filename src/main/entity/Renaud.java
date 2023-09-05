@@ -19,8 +19,8 @@ public class Renaud extends Entity{
     private List<Bonus> bonusList;
     private List<Bonus> bonusDrawList;
     private List<Spell> learnedSpells;
-    private int currentHP;
 
+    private int atk;
     private int level;
     private int expNeeded;
     private int expCurrent;
@@ -28,24 +28,16 @@ public class Renaud extends Entity{
     private int room;
 
     public Renaud() {
-        super(BASE_HP, BASE_ATK, BASE_DEF, "Renaud");
+        super(BASE_HP, BASE_HP, BASE_DEF, "Renaud");
         this.bonusList = new ArrayList<Bonus>();
         this.bonusDrawList = new ArrayList<Bonus>();
         this.learnedSpells = new ArrayList<Spell>();
-        this.currentHP = BASE_HP;
+        this.atk = BASE_ATK;
         this.level = BASE_LEVEL;
         this.expNeeded = BASE_NEEDED_EXP;
         this.expCurrent = BASE_EXP;
         this.stage = BASE_STAGE;
         this.room = BASE_ROOM;
-    }
-
-    public int getCurrentHP() {
-        return currentHP;
-    }
-
-    public void setCurrentHP(int currentHP) {
-        this.currentHP = currentHP;
     }
 
     public List<Bonus> getBonusList() {
