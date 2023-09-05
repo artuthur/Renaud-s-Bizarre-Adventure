@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.effect.Bonus;
+import main.effect.BonusType;
 import main.effect.Spell;
 
 public class Renaud extends Entity{
@@ -18,7 +19,7 @@ public class Renaud extends Entity{
 
     private List<Bonus> bonusList;
     private List<Bonus> bonusDrawList;
-    private List<Spell> learnedSpells;
+    private List<Bonus> learnedSpells;
 
     private int atk;
     private int level;
@@ -30,8 +31,8 @@ public class Renaud extends Entity{
     public Renaud() {
         super(BASE_HP, BASE_HP, BASE_DEF, "Renaud");
         this.bonusList = new ArrayList<Bonus>();
-        this.bonusDrawList = new ArrayList<Bonus>();
-        this.learnedSpells = new ArrayList<Spell>();
+        this.bonusDrawList = getBonusList();
+        this.learnedSpells = new ArrayList<Bonus>();
         this.atk = BASE_ATK;
         this.level = BASE_LEVEL;
         this.expNeeded = BASE_NEEDED_EXP;
@@ -44,35 +45,24 @@ public class Renaud extends Entity{
         return bonusList;
     }
 
-    public void setBonusList(List<Bonus> bonusList) {
-        this.bonusList = bonusList;
-    }
-
     public void addBonusToRenaud(Bonus bonus) {
         bonusList.add(bonus);
+        if (!bonus.getBonusType().equals(BonusType.BUFF)) {
+            bonusDrawList.remove(bonus);
+            learnedSpells.add(bonus);
+        } 
+        bonus.calcBuffOrValue(this);
     }
 
     public List<Bonus> getBonusDrawList() {
         return bonusDrawList;
     }
 
-    public void setBonusDrawList(List<Bonus> bonusDrawList) {
-        this.bonusDrawList = bonusDrawList;
-    }
-
-    public void addBonusToList(Bonus bonus) {
-        bonusDrawList.add(bonus);
-    }
-
-    public List<Spell> getLearnedSpells() {
+    public List<Bonus> getLearnedSpells() {
         return learnedSpells;
     }
 
-    public void setLearnedSpells(List<Spell> learnedSpells) {
-        this.learnedSpells = learnedSpells;
-    }
-
-    public boolean addLearnedSpells(Spell spell) {
+    public boolean addLearnedSpells(Bonus spell) {
         return learnedSpells.add(spell);
     }
 

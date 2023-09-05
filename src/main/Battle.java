@@ -6,8 +6,12 @@ import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
 import main.bestiary.Bestiary;
+import main.effect.Bonus;
+import main.effect.Spell;
 import main.entity.Monster;
 import main.entity.Renaud;
+import main.entity.Boss;
+import main.entity.Entity;
 
 public class Battle {
 
@@ -44,66 +48,69 @@ public class Battle {
     }
 
     public void foeTurn() {
+        Game.clearScreen();
+        System.out.println("\nPlayer : " + player.getCurrentHp() + " | Foe : " + foe.getCurrentHp());
+        Spell spellUse;
+        if (this.mob.isBoss()) {
+            if (Mathf.random(0, 1) <= 0.6) {
+                spellUse = this.mob.getFirstSpell();
+            }
+            else {
+                spellUse = this.mob.getSecondSpell();
+            }
+        }
+        else {
+            spellUse = this.mob.getFirstSpell();
+        }
         StringBuilder sb = new StringBuilder();
-        sb.append(this.mob.name());
+        int damage = calculatePhysicalDamage(spellUse.getAmount(), player.getDef());
+        sb.append(this.mob.getName());
         sb.append(" vous attaque avec ");
-        sb.append(foe.getSpell().name());
+        sb.append(spellUse.getName());
         sb.append(".\nVous perdez ");
-        int damage = (int) (foe.getSpell().getAmount() - (this.player.getDef() * DAMAGE_REDUCE));
         sb.append(damage);
         sb.append(" points de vie.");
-        player.setCurrentHp(player.getCurrentHp() - damage);
-        System.out.println(sb.toString());
-    }
-
-    public void bossTurn() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.mob.name());
-        sb.append(" vous attaque avec ");
-        sb.append(foe.getSpell().name());
-        sb.append(".\nVous perdez ");
-        int damage = calculateDamage(foe.getSpell().getAmount(), player.getDef());
-        sb.append(damage);
-        sb.append(" points de vie.");
-        player.setCurrentHp(player.getCurrentHp() - damage);
+        applyDamage(player, damage);
         System.out.println(sb.toString());
     }
 
     public void renaudTurn() {
+        Game.clearScreen();
+        System.out.println("\nPlayer : " + player.getCurrentHp() + " | Foe : " + foe.getCurrentHp());
         StringBuilder sb = new StringBuilder();
         System.out.println("C'est votre tour.\nQue souhaitez-vous faire ?\n1. Attaque de base.\n2. Sorts.\n: ");
         String choix = Game.readStringNotNull();
         if (choix.equals("1")) {
-            int damage = calculateDamage(player.getAtk(), foe.getDef());
+            int damage = calculatePhysicalDamage(player.getAtk(), foe.getDef());
             sb.append("Vous utilisez une attaque normale et infligez ");
             sb.append(damage);
             sb.append(" dégât à ");
-            sb.append(this.mob.name());
+            sb.append(this.mob.getName());
+            applyDamage(foe, damage);
             System.out.println(sb.toString());
-            foe.setCurrentHp(foe.getCurrentHp() - damage);
+        }
+        else if (choix.equals("2")) {
+            if (player.getLearnedSpells().isEmpty()) {
+                renaudTurn();
+            }
+        }
+        else {
+            renaudTurn();
         }
 
 
     }
 
-    public int calculateDamage(int amount, int def) {
+    public int calculatePhysicalDamage(int amount, int def) {
         int damage = (int) (amount - (def * DAMAGE_REDUCE));
         if (damage <= 0 ) damage = 1;
         return damage;
     }
 
-    public void applyDamage(int amount, int def) {
-        int newHp;
-        if (isRenaudTurn) {
-            newHp = foe.getCurrentHp() - calculateDamage(amount, def);
-            if (newHp < 0) newHp = 0;
-            foe.setHp(newHp);
-        }
-        else {
-            newHp = player.getCurrentHp() - calculateDamage(amount, def);
-            if (newHp < 0) newHp = 0;
-            player.setHp(newHp);
-        }
+    public void applyDamage(Entity defender, int damage) {
+        int newHp = defender.getCurrentHp() - damage;
+        if (newHp < 0) newHp = 0;
+        defender.setCurrentHp(newHp);
     }
 
     public static void main(String[] args) {
@@ -119,8 +126,13 @@ public class Battle {
                 Game.readStringNotNull();
             }
             bt.changeTurn();
-            Game.clearScreen();
-            System.out.println("Foe : " + bt.foe.getCurrentHp() + " | Player : " + bt.player.getCurrentHp());
+        }
+        if (!bt.isRenaudTurn) {
+            System.out.println("Vous avez gagné ggez!");
+            bt.player.giveExp(40);
+        }
+        else {
+            System.out.println("Il est sad le héros un peu.");
         }
     }
 }

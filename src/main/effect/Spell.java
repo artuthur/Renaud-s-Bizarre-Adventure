@@ -26,7 +26,7 @@ public enum Spell {
     DRAINAGE_SANGUIN("Drainage sanguin", SpellType.ATTACK, 35),
     CHARGE_INERTE("Charge inerte", SpellType.ATTACK, 1),
     MORNING_STAR("Morning Star", SpellType.ATTACK, 66),
-    CONFINEMENT("Confinement", SpellType.ATTACK, 20);
+    CONFINEMENT("Confinement", SpellType.ATTACK, 93);
 
     private String name;
     private SpellType type;
