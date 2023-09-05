@@ -3,11 +3,14 @@ package main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import main.bestiary.Bestiary;
 import main.effect.Bonus;
 import main.effect.Spell;
+import main.effect.SpellType;
 import main.entity.Monster;
 import main.entity.Renaud;
 import main.entity.Boss;
@@ -17,6 +20,8 @@ public class Battle {
 
     private final static double BASE_CHANCE = 0.5;
     private final static double DAMAGE_REDUCE = 0.1;
+
+    private Map<Bonus, Integer> spellInCooldown;
 
     private Renaud player;
     private Bestiary mob;
@@ -28,6 +33,7 @@ public class Battle {
         this.player = player;
         this.mob = mob;
         this.foe = new Monster(mob);
+        this.spellInCooldown = new HashMap<Bonus, Integer>();
     }
     
     public void speedtie() {
@@ -93,6 +99,19 @@ public class Battle {
             if (player.getLearnedSpells().isEmpty()) {
                 renaudTurn();
             }
+            else {
+                Bonus b = choiceSpell();
+                if (!spellInCooldown.containsKey(b)) {
+                    sb.append("Vous utilisez une ");
+                    sb.append(b.getName());
+                    sb.append(" et infligez ");
+                    sb.append(b.calcBuffOrValue(player));
+                    sb.append(" dégât à ");
+                    sb.append(this.mob.getName());
+                    applyDamage(foe, b.calcBuffOrValue(player));
+                    System.out.println(sb.toString());
+                }
+            }
         }
         else {
             renaudTurn();
@@ -113,9 +132,25 @@ public class Battle {
         defender.setCurrentHp(newHp);
     }
 
+    public Bonus choiceSpell() {
+        int i = 1;
+        for (Bonus b : player.getLearnedSpells()) {
+            System.out.println(i + ". " + b.getName());
+            i++;
+        }
+        int choix = Integer.parseInt(Game.readStringNotNull());
+        try {
+            return player.getLearnedSpells().get(choix-1);
+        }
+        catch (Exception e) {
+            return choiceSpell();
+        }
+    }
+
     public static void main(String[] args) {
         Battle bt = new Battle(new Renaud(), Bestiary.CRS);
         bt.speedtie();
+        bt.player.addBonusToRenaud(Bonus.LANCE_DE_BRIQUE);
         while (bt.player.getCurrentHp() > 0 && bt.foe.getCurrentHp() > 0) {
             if (bt.isRenaudTurn) {
                 bt.renaudTurn();
