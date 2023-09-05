@@ -76,6 +76,15 @@ public class Renaud extends Entity{
         return learnedSpells.add(spell);
     }
 
+    public int getAtk() {
+        return atk;
+    }
+
+    public void setAtk(int atk) {
+        this.atk = atk;
+    }
+
+
     public int getExpNeeded() {
         return expNeeded;
     }
