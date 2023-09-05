@@ -32,6 +32,31 @@ public enum Bonus {
         this(name, rarity, type, spellType, 0, value);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getRarity() {
+        return rarity;
+    }
+
+    public BonusType getType() {
+        return type;
+    }
+
+    public SpellType getSpellType() {
+        return spellType;
+    }
+
+    public int getCooldown() {
+        return cooldown;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+
     public List<Bonus> getBonusList() {
         ArrayList<Bonus> res = new ArrayList<Bonus>();
         for(Bonus b : values()) {
