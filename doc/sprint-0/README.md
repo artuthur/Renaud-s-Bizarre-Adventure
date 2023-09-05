@@ -1,36 +1,22 @@
-# Sprint X
+# Sprint 0
 
 ## Démo + Planification du sprint suivant
 
 ### Ce que nous avons fait durant ce sprint
-Donnez ici la liste des histoires utilisateurs que vous avez livrées durant ce sprint.
-Vous pouvez utiliser cette liste pour préparer votre démo.
+- Choix du thème et du slogan
+- Choix du nom du jeu
+- Séparation des backlog
 
 ### Ce que nous allons faire durant le prochain sprint
-Donnez ici la liste des histoires utilisateurs que vous vous engagez à terminer durant le prochain sprint.
+- Ecran d'accueil 
+- Bestiaire numéro 1
+- L'architecture git
 
 ## Rétrospective
 
 ### Sur quoi avons nous butté ?
-Lister ici tout ce qui était un peut moins bien que parfait.
-* Avez-vous terminé tout ce que vous vous étiez engagé à faire ?
-* Étiez -vous prêts au moment de la démo ?
-* ...
+Découpage des backlog un peu fastidieux
+Débat et choix un peu long
 
 ### PDCA
-* De tous ces éléments quel est celui que vous voulez améliorer ?
-* Comment pouvez-vous mesurer qu'il s'améliore ?
-* Quelles sont toutes les options possible pour l'améliorer ?
-* Qu'allez-vous tester pour l'améliorer ?
-
-# Mémo
-N’oubliez pas d’ajouter une photo du radiateur d’information au moment de la rétrospective.
-
-Salles de TD
-Salle 	 Groupes 	Enseignant
-0AA04 	20 - 5 - 10 - 15 	Clavier
-0AA06 	1 - 6 - 11 - 16 	Kasmi
-0AA12 	4 - 9 - 14 - 19 	Carlier
-0A51 	2 - 7 - 12 - 17 	Dussart
-0A53 	3 - 8 - 13 - 18 	Hendryck
-README.md # Sprint X ## Démo + Planification du sprint suivant ### Ce que nous avons fait durant ce sprint Donnez ici la liste des histoires utilisateurs que vous avez livrées durant ce sprint. Vous pouvez utiliser cette liste pour préparer votre démo. ### Ce que nous allons faire durant le prochain sprint Donnez ici la liste des histoires utilisateurs que vous vous engagez à terminer durant le prochain sprint. ## Rétrospective ### Sur quoi avons nous butté ? Lister ici tout ce qui était un peut moins bien que parfait. * Avez-vous terminé tout ce que vous vous étiez engagé à faire ? * Étiez -vous prêts au moment de la démo ? * ... ### PDCA * De tous ces éléments quel est celui que vous voulez améliorer ? * Comment pouvez-vous mesurer qu'il s'améliore ? * Quelles sont toutes les options possible pour l'améliorer ? * Qu'allez-vous tester pour l'améliorer ? # Mémo N’oubliez pas d’ajouter une photo du radiateur d’information au moment de la rétrospective. 
+Amélioration : Faire un vote romain
