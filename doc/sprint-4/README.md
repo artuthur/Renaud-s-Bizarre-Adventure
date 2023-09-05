@@ -19,7 +19,7 @@
 ## Rétrospective
 
 ### Sur quoi avons nous butté ?
-
+- Rien pour ce sprint
 
 ### PDCA
 
