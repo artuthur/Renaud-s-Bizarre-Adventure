@@ -18,15 +18,13 @@ public enum Bestiary{
     CASSEUR(Theme.OPPOSITION, "Casseur", "casseur.txt", 30, 30, Spell.PILLAGE),
     CHAOSSOS(Theme.OPPOSITION, "Chaossos", "chaossos.txt", 10, 99, Spell.HARCELEMENT_CIBLER),
     REVOLUTIONNAIR(Theme.OPPOSITION, "Révolutionnair", "revolutionary.txt", 20, 60, Spell.GUILLOTINE),
-    JL_ANARCHON(Theme.OPPOSITION, "JL l'Anarchon", "jl_larnarchon.txt", 60, 80, Spell.BARRAGE, Spell.FRAPPE_INSOUMISE),
+    JL_ANARCHON(Theme.OPPOSITION, "JL l'Anarchon", "jl_larnarchon.txt", 60, 80, Spell.FRAPPE_INSOUMISE, Spell.BARRAGE),
     SUCCUBUS(Theme.CULTURE, "Succubus <3", "succubus.txt", 169, 0, Spell.ENLACEMENT_EROTIQUE),
     PLAYGIRL(Theme.CULTURE, "PlayGirl", "playgirl.txt", 142, 15, Spell.DEUX_BON_ARGUMENT),
     VAMPIRETTE(Theme.CULTURE, "Vampirette", "vampirette.txt", 166, 0, Spell.DRAINAGE_SANGUIN),
     ESCLAVE_GOLEM(Theme.CULTURE, "Esclave Golem", "golem.txt", 666, 0, Spell.CHARGE_INERTE),
-    MARLENNE_LILITHIA(Theme.CULTURE, "Marlène Lilithia", "marlenne_lilithia.txt", 250, 0, Spell.ASMODEUS, Spell.ETREINTE_VAMPIRIQUE),
-    ARDIEJM(Theme.FINALE, "Archi roi démon immortel Emanuelle Jupiter Macrongue", "archi_roi_demon_immortel_emmanuel_jupiter_macrongue.txt", 1493, 49, Spell.MORNING_STAR, Spell.CONFINEMENT)
-
-    ;
+    MARLENNE_LILITHIA(Theme.CULTURE, "Marlène Lilithia", "marlenne_lilithia.txt", 250, 0, Spell.ETREINTE_VAMPIRIQUE, Spell.ASMODEUS),
+    ARDIEJM(Theme.FINALE, "Archi roi démon immortel Emanuelle Jupiter Macrongue", "archi_roi_demon_immortel_emmanuel_jupiter_macrongue.txt", 1493, 49, Spell.MORNING_STAR, Spell.CONFINEMENT);
 
     private Theme theme;
     private String name;
@@ -83,6 +81,6 @@ public enum Bestiary{
     }
     
     public String toString(){
-        return getClass().getSimpleName() + "[theme:" + theme + ", fileName:" + fileName + ", health:" + health + ", defense:" + defense + ", firstSpell:" + firstSpell + ", secondSpell:" + secondSpell + "]";
+        return getClass().getSimpleName() + "[theme:" + theme + ", name:" + name + ", fileName:" + fileName + ", health:" + health + ", defense:" + defense + ", firstSpell:" + firstSpell + ", secondSpell:" + secondSpell + "]";
     }
 }
