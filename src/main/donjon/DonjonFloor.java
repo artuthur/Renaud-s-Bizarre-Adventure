@@ -1,7 +1,6 @@
 package main.donjon;
 
 import main.Game;
-import main.Theme;
 
 public class DonjonFloor {
     public final static int ROOMS_MAX = 5;
