@@ -19,7 +19,7 @@ public class Renaud extends Entity{
 
     private List<Bonus> bonusList;
     private List<Bonus> bonusDrawList;
-    private List<Spell> learnedSpells;
+    private List<Bonus> learnedSpells;
 
     private int atk;
     private int level;
@@ -32,7 +32,7 @@ public class Renaud extends Entity{
         super(BASE_HP, BASE_HP, BASE_DEF, "Renaud");
         this.bonusList = new ArrayList<Bonus>();
         this.bonusDrawList = getBonusList();
-        this.learnedSpells = new ArrayList<Spell>();
+        this.learnedSpells = new ArrayList<Bonus>();
         this.atk = BASE_ATK;
         this.level = BASE_LEVEL;
         this.expNeeded = BASE_NEEDED_EXP;
@@ -49,6 +49,7 @@ public class Renaud extends Entity{
         bonusList.add(bonus);
         if (!bonus.getBonusType().equals(BonusType.BUFF)) {
             bonusDrawList.remove(bonus);
+            learnedSpells.add(bonus);
         } 
         bonus.calcBuffOrValue(this);
     }
@@ -57,11 +58,11 @@ public class Renaud extends Entity{
         return bonusDrawList;
     }
 
-    public List<Spell> getLearnedSpells() {
+    public List<Bonus> getLearnedSpells() {
         return learnedSpells;
     }
 
-    public boolean addLearnedSpells(Spell spell) {
+    public boolean addLearnedSpells(Bonus spell) {
         return learnedSpells.add(spell);
     }
 
