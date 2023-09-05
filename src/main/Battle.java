@@ -1,24 +1,16 @@
 package main;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.TimeUnit;
 
 import main.bestiary.Bestiary;
 import main.effect.Bonus;
 import main.effect.BonusType;
 import main.effect.Spell;
-import main.effect.SpellType;
 import main.effect.UseType;
 import main.entity.Monster;
 import main.entity.Renaud;
-import main.entity.Boss;
 import main.entity.Entity;
 
 public class Battle {
@@ -198,13 +190,13 @@ public class Battle {
     }
 
     public void updateCooldown() {
-        for (Entry e : spellInCooldown.entrySet()) {
+        for (Entry<Bonus, Integer> e : spellInCooldown.entrySet()) {
             spellInCooldown.put((Bonus) e.getKey(), (Integer.valueOf(((Integer) e.getValue()).intValue() - 1)));
         }
     }
 
     public void clearCooldown() {
-        for (Entry e : spellInCooldown.entrySet()) {
+        for (Entry<Bonus, Integer> e : spellInCooldown.entrySet()) {
             if (((Integer) e.getValue()).intValue() == 0) {
                 spellInCooldown.remove((Bonus) e.getKey());
             }
