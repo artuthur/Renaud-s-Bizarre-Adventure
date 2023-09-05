@@ -17,20 +17,18 @@ public enum Bestiary{
     LIVRE_SCOLAIRE_MAGIC(Theme.EDUCATION, "Livre scolaire magic", "magic_book.txt", 20, 10, Spell.DEVOIR_MAISON),
     PROFESSEUR_DEPS(Theme.EDUCATION, "Professeur d'EPS", "prof_eps.txt", 100, 20, Spell.ESSOUFFLEMENT),
     ARAIGNEE_DE_BIBLIOTHEQUE(Theme.EDUCATION, "Araignée de bibliothèque", "araignee_biblio.txt", 50, 30, Spell.TOILE_ETHERIQUE),
-    JEAN_MERLIN_BLANQUER(Theme.EDUCATION, "Jean_Merlin_Blanquer", "JeanMerlinBlancker.txt", 70, 20, Spell.DEGRADATION_MENTAL, Spell.BURNOUT),
+    JEAN_MERLIN_BLANQUER(Theme.EDUCATION, "Jean Merlin Blanquer", "JeanMerlinBlancker.txt", 70, 20, Spell.DEGRADATION_MENTAL, Spell.BURNOUT),
     ROBE_JAUNE(Theme.OPPOSITION, "Robe Jaune", "robe_jaune.txt", 20, 50, Spell.EXPLOSION_MARCANIQUE),
     CASSEUR(Theme.OPPOSITION, "Casseur", "casseur.txt", 30, 30, Spell.PILLAGE),
     CHAOSSOS(Theme.OPPOSITION, "Chaossos", "chaossos.txt", 10, 99, Spell.HARCELEMENT_CIBLER),
-    REVOLUTIONNAIR(Theme.OPPOSITION, "Révolutionnair", "revolutionary.txt", 20, 60, Spell.GUILLOTINE),
-    JL_ANARCHON(Theme.OPPOSITION, "JL l'Anarchon", "jl_larnarchon.txt", 60, 80, Spell.BARRAGE, Spell.FRAPPE_INSOUMISE),
+    REVOLUTIONNAIR(Theme.OPPOSITION, "Révolutionnaire", "revolutionary.txt", 20, 60, Spell.GUILLOTINE),
+    JL_ANARCHON(Theme.OPPOSITION, "JL l'Anarchon", "jl_larnarchon.txt", 60, 80, Spell.FRAPPE_INSOUMISE, Spell.BARRAGE),
     SUCCUBUS(Theme.CULTURE, "Succubus <3", "succubus.txt", 169, 0, Spell.ENLACEMENT_EROTIQUE),
     PLAYGIRL(Theme.CULTURE, "PlayGirl", "playgirl.txt", 142, 15, Spell.DEUX_BON_ARGUMENT),
     VAMPIRETTE(Theme.CULTURE, "Vampirette", "vampirette.txt", 166, 0, Spell.DRAINAGE_SANGUIN),
     ESCLAVE_GOLEM(Theme.CULTURE, "Esclave Golem", "golem.txt", 666, 0, Spell.CHARGE_INERTE),
-    MARLENNE_LILITHIA(Theme.CULTURE, "Marlène Lilithia", "marlenne_lilithia.txt", 250, 0, Spell.ASMODEUS, Spell.ETREINTE_VAMPIRIQUE),
-    ARDIEJM(Theme.FINALE, "Archi roi démon immortel Emanuelle Jupiter Macrongue", "archi_roi_demon_immortel_emmanuel_jupiter_macrongue.txt", 1493, 49, Spell.MORNING_STAR, Spell.CONFINEMENT)
-
-    ;
+    MARLENNE_LILITHIA(Theme.CULTURE, "Marlène Lilithia", "marlenne_lilithia.txt", 250, 0, Spell.ETREINTE_VAMPIRIQUE, Spell.ASMODEUS),
+    ARDIEJM(Theme.FINALE, "Archi roi démon immortel Emanuelle Jupiter Macrongue", "archi_roi_demon_immortel_emmanuel_jupiter_macrongue.txt", 1493, 49, Spell.MORNING_STAR, Spell.CONFINEMENT);
 
     private Theme theme;
     private String name;
@@ -106,6 +104,6 @@ public enum Bestiary{
     }
     
     public String toString(){
-        return getClass().getSimpleName() + "[theme:" + theme + ", fileName:" + fileName + ", health:" + health + ", defense:" + defense + ", firstSpell:" + firstSpell + ", secondSpell:" + secondSpell + "]";
+        return getClass().getSimpleName() + "[theme:" + theme + ", name:" + name + ", fileName:" + fileName + ", health:" + health + ", defense:" + defense + ", firstSpell:" + firstSpell + ", secondSpell:" + secondSpell + "]";
     }
 }
