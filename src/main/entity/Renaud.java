@@ -3,6 +3,8 @@ package main.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.Game;
+import main.donjon.Donjon;
 import main.effect.Bonus;
 import main.effect.BonusType;
 
@@ -104,6 +106,21 @@ public class Renaud extends Entity{
 
     public void setRoom(int room) {
         this.room = room;
+    }
+
+    public void nextRoom(int a){
+        Donjon donjon = Game.DONJON_GENERATOR.getDonjon();
+        int roomMax = donjon.getRoomsCount(stage);
+        room += a;
+        while(room >= roomMax){
+            roomMax = donjon.getRoomsCount(stage);
+            room -= roomMax;
+            nextLevel();
+        }
+    }
+
+    public void nextStage(){
+        stage += 1;
     }
 
     public int getLevel() {

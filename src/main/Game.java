@@ -10,6 +10,8 @@ import main.entity.Renaud;
 
 public class Game {
     public final static String FILENAME_TEST = "Titlescreen.txt";
+    public final static Renaud PLAYER = new Renaud();
+    public final static DonjonGenerator DONJON_GENERATOR = new DonjonGenerator(new Donjon(), PLAYER);
 
     public static void main(String[] args) {
         /*
@@ -19,10 +21,7 @@ public class Game {
             BestiaryLoader.load();
         }
         */
-        Donjon donjon = new Donjon();
-        Renaud player = new Renaud();
-        DonjonGenerator donjonGenerator = new DonjonGenerator(donjon, player);
-        donjonGenerator.drawDonjon();
+        DONJON_GENERATOR.drawDonjon();
     }
 
     public static String readStringNotNull(){

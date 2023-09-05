@@ -1,5 +1,6 @@
 package main.donjon;
 
+import main.Game;
 import main.entity.Renaud;
 
 public class DonjonGenerator {
@@ -41,7 +42,7 @@ public class DonjonGenerator {
     }
 
     public void generateStage(int stage){
-        int roomsCount = donjon.getNumberOfRooms(stage);
+        int roomsCount = donjon.getRoomsCount(stage);
 
         int width = roomsCount * ROOM_WIDTH + (roomsCount - 1) * ROOM_BETWEEN_WAY;
         int height = ROOM_HEIGHT;
@@ -99,12 +100,10 @@ public class DonjonGenerator {
 
     public void drawDonjon(){
         //Game.clearScreen();
-        //donjon.print();
-        while(player.getRoom() < donjon.getNumberOfRooms(player.getStage())){
-            drawRooms();
-            drawPlayer();
-            player.setRoom(player.getRoom() + 1);
-        }
+        System.out.println(player.getStage());
+        loadCurrentStage();
+        drawRooms();
+        drawPlayer();
     }
 
     public void drawRooms(){

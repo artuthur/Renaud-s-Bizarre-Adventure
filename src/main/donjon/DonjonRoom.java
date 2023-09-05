@@ -2,7 +2,6 @@ package main.donjon;
 
 import java.util.List;
 
-import main.Advice;
 import main.bestiary.Bestiary;
 
 public class DonjonRoom {

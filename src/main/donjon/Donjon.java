@@ -20,11 +20,10 @@ public class Donjon {
         return floors.length;
     }
 
-    public int getNumberOfRooms(int stage){
-        if(stage >= 0 && stage < floors.length){
+    public int getRoomsCount(int stage){
+        if(stage >= 0 && stage < floors.length)
             return floors[stage].getRoomsCount();
-        }
-        return 0;
+        return -1;
     }
 
     public DonjonFloor getFloor(int stage){

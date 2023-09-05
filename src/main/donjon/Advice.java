@@ -1,4 +1,6 @@
-package main;
+package main.donjon;
+
+import main.Mathf;
 
 public enum Advice {
     CONSEIL_1("Je sais pas");
