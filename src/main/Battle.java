@@ -26,7 +26,8 @@ public class Battle {
 
     public Battle(Renaud player, Bestiary mob) {
         this.player = player;
-        this.foe = new Monster(this.mob);
+        this.mob = mob;
+        this.foe = new Monster(mob);
         this.chance = Battle.BASE_CHANCE + (player.getLevel() * 0.1);
     }
     
