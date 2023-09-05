@@ -50,6 +50,8 @@ public class DonjonGenerator {
                 int valueX = x % (ROOM_SIZE + ROOM_BETWEEN_WAY);
 
                 if(valueX >= 0 && valueX <= ROOM_SIZE - 1){
+                    if(valueX % (ROOM_SIZE - 1) == 0) c = CHAR_VERTICAL;
+                    if(y % (ROOM_SIZE - 1) == 0) c = CHAR_HORIZONTAL;
                     // if(y == 0){
                     //     if(valueX == 0) c = CHAR_DOWN_LEFT;
                     //     else if(valueX == ROOM_SIZE - 1) c = CHAR_DOWN_RIGHT;
@@ -58,14 +60,16 @@ public class DonjonGenerator {
                     //     if(valueX == 0) c = CHAR_DOWN_LEFT;
                     //     else if(valueX == ROOM_SIZE - 1) c = CHAR_DOWN_RIGHT;
                     // }
-
-                    if(valueX % (ROOM_SIZE - 1) == 0 && y % (ROOM_SIZE - 1) == 0){
-                        c = CHAR_DOWN_RIGHT;
-                    }else if(valueX % (ROOM_SIZE - 1) == 0){
-                        c = CHAR_VERTICAL;
-                    }else if(y % (ROOM_SIZE - 1) == 0){
-                        c = CHAR_HORIZONTAL;
+                    if(y == 0){
+                        if(valueX == 0) c = CHAR_DOWN_LEFT;
+                        if(valueX == ROOM_SIZE - 1) c = CHAR_DOWN_LEFT;
+                    }else if(y == ROOM_SIZE - 1){
+                        if(valueX == 0) c = CHAR_UP_LEFT;
+                        if(valueX == ROOM_SIZE - 1) c = CHAR_UP_RIGHT;
                     }
+
+                    // if(valueX % (ROOM_SIZE - 1) == 0 && y % (ROOM_SIZE - 1) == 0){
+                    //     c = CHAR_DOWN_RIGHT;
                 }else if(valueX >= ROOM_SIZE && y == ROOM_SIZE / 2){
                     c = CHAR_WAY;
                 }
