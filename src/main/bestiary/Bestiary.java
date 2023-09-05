@@ -50,6 +50,10 @@ public enum Bestiary{
     public Spell getSecondSpell(){
         return secondSpell;
     }
+
+    public boolean isBoss(){
+        return secondSpell == null ? true : false;
+    }
     
     public String toString(){
         return getClass().getSimpleName() + "[theme:" + theme + ", fileName:" + fileName + ", health:" + health + ", defense:" + defense + ", firstSpell:" + firstSpell + ", secondSpell:" + secondSpell + "]";
