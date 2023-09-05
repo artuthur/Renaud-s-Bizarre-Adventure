@@ -57,7 +57,7 @@ public class Battle {
     public void changeTurn() {
         this.isRenaudTurn = !isRenaudTurn;
     }
-
+    0 
     public void foeTurn() {
         Game.clearScreen();
         System.out.println("\nPlayer : " + player.getCurrentHp() + " | Foe : " + foe.getCurrentHp());
@@ -146,7 +146,6 @@ public class Battle {
                         spellCast = true;
                     }
                     else {
-                        System.out.println("Le sort " + b.getName() + " est en cooldown, il reste " + spellInCooldown.get(b) + " tours.");
                         renaudTurn();
                     }
                 } while (!spellCast);       
@@ -178,8 +177,16 @@ public class Battle {
     public Bonus choiceSpell() {
         int i = 1;
         for (Bonus b : player.getLearnedSpells()) {
-            System.out.println(i + ". " + b.getName());
+            System.out.print(i + ". " + b.getName() + " (");
+            if (spellInCooldown.containsKey(b)) {
+                System.out.print(spellInCooldown.get(b) + " tours");
+            }
+            else {
+                System.out.print("Disponible");
+            }
+            System.out.println(")");
             i++;
+            
         }
         int choix = Integer.parseInt(Game.readStringNotNull());
         try {
@@ -204,11 +211,24 @@ public class Battle {
         }
     }
 
+    public Renaud getPlayer() {
+        return player;
+    }
+
+    public Bestiary getMob() {
+        return mob;
+    }
+
+    public Monster getFoe() {
+        return foe;
+    }
+
     public static void main(String[] args) {
         Battle bt = new Battle(new Renaud(), Bestiary.CRS);
         bt.speedtie();
         bt.player.addBonusToRenaud(Bonus.LANCE_DE_BRIQUE);
         bt.player.addBonusToRenaud(Bonus.PTITE_BIERE);
+        bt.player.addBonusToRenaud(Bonus.HARD_METAL);
         while (bt.player.getCurrentHp() > 0 && bt.foe.getCurrentHp() > 0) {
             if (bt.isRenaudTurn) {
                 bt.renaudTurn();
@@ -223,6 +243,7 @@ public class Battle {
         if (!bt.isRenaudTurn) {
             System.out.println("Vous avez gagné ggez!");
             bt.player.giveExp(40);
+            bt.player.setRoom(bt.player.getRoom()+1);
         }
         else {
             System.out.println("Il est sad le héros un peu.");
