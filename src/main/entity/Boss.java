@@ -18,4 +18,8 @@ public class Boss {
         this.secondSpell = secondSpell;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "[secondSpell:" + secondSpell + "]";
+    }
 }

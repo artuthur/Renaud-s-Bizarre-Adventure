@@ -22,4 +22,9 @@ public class Monster extends Entity{
     public void setSpell(Spell spell) {
         this.spell = spell;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "[firstSpell:" + spell + "]";
+    }
 }
