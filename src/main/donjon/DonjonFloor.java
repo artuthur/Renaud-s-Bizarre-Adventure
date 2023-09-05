@@ -5,7 +5,7 @@ import main.Mathf;
 public class DonjonFloor {
     public final static int ROOMS_MAX = 5;
     public final static int ROOMS_MIN = 3;
-    public final static int ADVICE_CHANCE = 30; /* percentage */
+    public final static int ADVICE_CHANCE = 100/3; /* percentage */
 
     private Theme theme;
     private DonjonRoom[] rooms;
@@ -33,12 +33,12 @@ public class DonjonFloor {
         return null;
     }
 
-    public void generateRooms(){
+    private void generateRooms(){
         int numberOfRooms = Mathf.random(ROOMS_MIN, ROOMS_MAX);
         rooms = new DonjonRoom[numberOfRooms];
 
         int advice = -1;
-        if(Mathf.random(0, 100) < ADVICE_CHANCE) advice = Mathf.random(0, rooms.length - 2);
+        if(Mathf.random(0, 100) < ADVICE_CHANCE) advice = Mathf.random(rooms.length - 2);
 
         for(int i = 0; i < rooms.length; i++){
             RoomType type;
@@ -47,8 +47,18 @@ public class DonjonFloor {
             else if(i == advice) type = RoomType.ADVICE;
             else type = RoomType.ENEMY;
 
-            rooms[i] = new DonjonRoom(type);
+            rooms[i] = new DonjonRoom(type, theme);
         }
+    }
+
+    public void print(){
+        print(0);
+    }
+
+    protected void print(int distance){
+        for(int i = 0; i < distance; i++) System.out.print("\t");
+        System.out.println(this);
+        for(DonjonRoom dr : rooms) dr.print(distance + 1);
     }
 
     public String toString(){

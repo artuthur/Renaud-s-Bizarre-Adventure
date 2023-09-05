@@ -98,11 +98,16 @@ public class DonjonGenerator {
     }
 
     public void drawDonjon(){
-        //BestiaryLoader.clearScreen();
-        draw();
+        //Game.clearScreen();
+        //donjon.print();
+        while(player.getRoom() < donjon.getNumberOfRooms(player.getStage())){
+            drawRooms();
+            drawPlayer();
+            player.setRoom(player.getRoom() + 1);
+        }
     }
 
-    public void draw(){
+    public void drawRooms(){
         StringBuilder sb = new StringBuilder();
         for(int y = 0; y < map.length; y++){
             for(int x = 0; x < map[y].length; x++){
@@ -112,6 +117,27 @@ public class DonjonGenerator {
             sb.append("\n");
         }
         System.out.println(sb);
+    }
+
+    public void drawPlayer(){
+        StringBuilder sb = new StringBuilder();
+        int room = player.getRoom();
+        int width = ROOM_WIDTH / 2 + ROOM_WIDTH * room + ROOM_BETWEEN_WAY * room;
+        for(int y = 0; y < 3; y++){
+            for(int x = 0; x < width; x++){
+                sb.append(" ");
+            }
+            if(y == 0) sb.append('ᐱ');
+            if(y == 1) sb.append('|');
+            if(y == 2) sb.append('o');
+            sb.append("\n");
+        }
+        System.out.println(sb);
+    }
+
+    public void print(){
+        if(donjon == null) return;
+        donjon.print();
     }
 
     public String toString(){

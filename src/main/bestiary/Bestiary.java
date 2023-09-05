@@ -1,5 +1,9 @@
 package main.bestiary;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import main.Mathf;
 import main.donjon.Theme;
 import main.effect.Spell;
 
@@ -79,7 +83,26 @@ public enum Bestiary{
     }
 
     public boolean isBoss(){
-        return secondSpell == null ? false : true;
+        if(secondSpell != null) return true;
+        return false;
+    }
+
+    public static List<Bestiary> getMobs(Theme theme){
+        List<Bestiary> mobs = new ArrayList<>();
+        for(Bestiary m : values()) if(m.getTheme() == theme) mobs.add(m);
+        return mobs;
+    }
+
+    public static Bestiary getMobs(List<Bestiary> list, boolean isBoss){
+        List<Bestiary> mobs = new ArrayList<>();
+        List<Bestiary> boss = new ArrayList<>();
+        for(Bestiary m : list){
+            if(m.isBoss()) boss.add(m);
+            else mobs.add(m);
+        }
+        if(isBoss && boss.size() != 0) return Mathf.random(boss);
+        else if(mobs.size() != 0) return Mathf.random(mobs);
+        return null;
     }
     
     public String toString(){

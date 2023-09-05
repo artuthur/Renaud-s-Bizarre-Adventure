@@ -56,21 +56,16 @@ public class Donjon {
             if(i == themes.length - 1){
                 theme = Theme.FINALE;
             }else{
-                theme = currentThemes.get(Mathf.random(0, currentThemes.size() - 1));
+                theme = currentThemes.get(Mathf.random(currentThemes.size() - 1));
                 currentThemes.remove(theme);
             }
             floors[i] = new DonjonFloor(theme);
         }
     }
 
-    public void print(){
+    protected void print(){
         System.out.println(this);
-        for(DonjonFloor df : floors){
-            System.out.println("\t" + df);
-            for(DonjonRoom dr : df.getRooms()){
-                System.out.println("\t\t" + dr);
-            }
-        }
+        for(DonjonFloor df : floors) df.print(1);
     }
     
     public String toString(){
