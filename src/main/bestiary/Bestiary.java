@@ -4,18 +4,20 @@ import main.donjon.Theme;
 import main.effect.Spell;
 
 public enum Bestiary{
-    CRS(Theme.INTERIEUR, "crs.txt", 40, 40, Spell.SPELLTEST),
-    BOSS_TEST(Theme.INTERIEUR, "crs.txt", 40, 40, Spell.SPELLTEST, Spell.SPELLTEST);
+    CRS(Theme.INTERIEUR, "CRS", "crs.txt", 40, 40, Spell.SPELLTEST),
+    BOSS_TEST(Theme.INTERIEUR, "Boss", "crs.txt", 40, 40, Spell.SPELLTEST, Spell.SPELLTEST);
 
     private Theme theme;
+    private String name;
     private String fileName;
     private int health;
     private int defense;
     private Spell firstSpell;
     private Spell secondSpell;
 
-    private Bestiary(Theme theme, String fileName, int health, int defense, Spell firstSpell, Spell secondSpell){
+    private Bestiary(Theme theme, String name, String fileName, int health, int defense, Spell firstSpell, Spell secondSpell){
         this.theme = theme;
+        this.name = name;
         this.fileName = fileName;
         this.health = health;
         this.defense = defense;
@@ -23,12 +25,16 @@ public enum Bestiary{
         this.secondSpell = secondSpell;
     }
 
-    private Bestiary(Theme theme, String fileName, int health, int defense, Spell firstSpell){
-        this(theme, fileName, health, defense, firstSpell, null);
+    private Bestiary(Theme theme, String name, String fileName, int health, int defense, Spell firstSpell){
+        this(theme, name, fileName, health, defense, firstSpell, null);
     }
 
     public Theme getTheme(){
         return theme;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public String getFileName(){
@@ -49,6 +55,10 @@ public enum Bestiary{
 
     public Spell getSecondSpell(){
         return secondSpell;
+    }
+
+    public boolean isBoss(){
+        return secondSpell == null ? true : false;
     }
     
     public String toString(){
