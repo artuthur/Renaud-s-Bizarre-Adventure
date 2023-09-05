@@ -3,10 +3,11 @@ package main.bestiary;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import main.Game;
 
 public class BestiaryLoader{
     public static void load() {
-        clearScreen();
+        Game.clearScreen();
         String choix;
 
         System.out.println("Bienvenue dans le bestiaire");
@@ -20,7 +21,7 @@ public class BestiaryLoader{
             System.out.println("Theme 5 : FINALE");
             System.err.println();
             System.out.println("Veuiller entrer le chiffre corréspondant");
-            choix = read();
+            choix = Game.readStringNotNull();
             if (choix.equals("1")) {
                 System.out.println("CRS (Chevalier Republicain Sécuritair)");
                 System.out.println("ARS (Archer Republicain Séuritair)");
@@ -54,21 +55,5 @@ public class BestiaryLoader{
             }
 
         } while (choix.equals("0"));
-
-
-    }
-    
-    public static String read(){
-        try(BufferedReader br = new BufferedReader(new InputStreamReader(System.in))){
-            return br.readLine();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
-
-    public static void clearScreen(){
-        System.out.println("\033[H\033[2J");
-        System.out.flush();
     }
 }

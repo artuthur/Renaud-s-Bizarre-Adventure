@@ -17,7 +17,7 @@
 ## Rétrospective
 
 ### Sur quoi avons nous butté ?
-
+- 
 
 ### PDCA
 

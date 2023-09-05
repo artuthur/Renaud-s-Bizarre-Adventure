@@ -3,7 +3,7 @@ package main.donjon;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.Game;
+import main.Mathf;
 
 public class Donjon {
     private DonjonFloor[] floors;
@@ -38,7 +38,7 @@ public class Donjon {
         for(int i = 0; i < themes.length; i++){
             Theme theme;
             if(i != themes.length - 1){
-                theme = currentThemes.get(Game.random(0, currentThemes.size() - 1));
+                theme = currentThemes.get(Mathf.random(0, currentThemes.size() - 1));
                 currentThemes.remove(theme);
             }else{
                 theme = Theme.FINALE;

@@ -1,6 +1,6 @@
 package main.donjon;
 
-import main.Game;
+import main.Mathf;
 
 public class DonjonFloor {
     public final static int ROOMS_MAX = 5;
@@ -27,7 +27,7 @@ public class DonjonFloor {
     }
 
     public void generateRooms(){
-        int numberOfRooms = Game.random(ROOMS_MIN, ROOMS_MAX);
+        int numberOfRooms = Mathf.random(ROOMS_MIN, ROOMS_MAX);
         rooms = new DonjonRoom[numberOfRooms];
 
         for(int i = 0; i < rooms.length; i++){
