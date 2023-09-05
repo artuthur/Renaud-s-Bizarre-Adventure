@@ -4,17 +4,24 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import main.file.FileLoader;
+import main.donjon.Donjon;
+import main.donjon.DonjonGenerator;
 
 public class Game {
     public final static String FILENAME_TEST = "Titlescreen.txt";
 
     public static void main(String[] args) {
+        /*
         System.out.println(FileLoader.load(FILENAME_TEST));
         String choice = readStringNotNull();
         if (choice.charAt(0) == 'b') {
             BestiaryLoader.load();
         }
+        */
+        Donjon donjon = new Donjon();
+        donjon.print();
+        // DonjonGenerator donjonGenerator = new DonjonGenerator(donjon);
+        // donjonGenerator.loadCurrentRoom();
     }
 
     public static String readStringNotNull(){
