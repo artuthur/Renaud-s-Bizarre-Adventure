@@ -12,15 +12,31 @@ public class Donjon {
         generateFloors();
     }
 
+    public DonjonFloor[] getFloors(){
+        return floors;
+    }
+
     public int getFloorsCount(){
         return floors.length;
     }
-    
+
     public int getNumberOfRooms(int stage){
         if(stage >= 0 && stage < floors.length){
             return floors[stage].getRoomsCount();
         }
         return 0;
+    }
+
+    public DonjonFloor getFloor(int stage){
+        if(stage >= 0 && stage < floors.length)
+            return floors[stage];
+        return null;
+    }
+
+    public DonjonRoom getRoom(int stage, int room){
+        DonjonFloor floor = getFloor(stage);
+        if(floor != null) return floor.getRoom(room);
+        return null;
     }
 
     public void generateFloors(){
@@ -37,11 +53,11 @@ public class Donjon {
 
         for(int i = 0; i < themes.length; i++){
             Theme theme;
-            if(i != themes.length - 1){
+            if(i == themes.length - 1){
+                theme = Theme.FINALE;
+            }else{
                 theme = currentThemes.get(Mathf.random(0, currentThemes.size() - 1));
                 currentThemes.remove(theme);
-            }else{
-                theme = Theme.FINALE;
             }
             floors[i] = new DonjonFloor(theme);
         }
