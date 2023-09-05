@@ -1,7 +1,10 @@
-package main;
+package main.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import main.effect.Bonus;
+import main.effect.Spell;
 
 public class Renaud extends Entity{
     public final static int BASE_HP = 100;

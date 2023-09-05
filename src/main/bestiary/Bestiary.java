@@ -1,4 +1,7 @@
-package main;
+package main.bestiary;
+
+import main.donjon.Theme;
+import main.effect.Spell;
 
 public enum Bestiary{
     CRS(Theme.INTERIEUR, "crs.txt", 40, 40, Spell.SPELLTEST),

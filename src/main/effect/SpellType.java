@@ -1,4 +1,4 @@
-package main;
+package main.effect;
 
 public enum SpellType {
     HEALTH,
