@@ -3,10 +3,6 @@ package main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Random;
-import java.util.random.RandomGenerator;
-
-import javax.swing.text.html.parser.Entity;
 
 import main.bestiary.Bestiary;
 import main.entity.Monster;
@@ -15,7 +11,7 @@ import main.entity.Renaud;
 public class Battle {
 
     private final static double BASE_CHANCE = 0.5;
-    private final static double DOMAGE_REDUCE = 0.1;
+    private final static double DAMAGE_REDUCE = 0.1;
 
     private Renaud player;
     private Bestiary mob;
@@ -32,9 +28,8 @@ public class Battle {
     }
     
     public void speedtie() {
-        RandomGenerator rg = new Random();
         double chance = BASE_CHANCE + (this.player.getLevel() * 0.1);
-        double randomNum = rg.nextDouble(0, 1);
+        double randomNum = Mathf.random(0, 1);
         if (randomNum <= chance) {
             this.isRenaudTurn = true;
             System.out.println("Renaud commence en premier.");
@@ -51,7 +46,7 @@ public class Battle {
         sb.append(" attaque Renaud avec ");
         sb.append(foe.getSpell().name());
         sb.append(".\nIl perd ");
-        int damage = (int) (foe.getSpell().getAmount() - (this.player.getDef() * DOMAGE_REDUCE));
+        int damage = (int) (foe.getSpell().getAmount() - (this.player.getDef() * DAMAGE_REDUCE));
         sb.append(damage);
         sb.append(" points de vie.");
         player.setHp(player.getHp() - damage);
@@ -64,7 +59,7 @@ public class Battle {
         sb.append(" vous attaque avec ");
         sb.append(foe.getSpell().name());
         sb.append(".\nVous perdez ");
-        int damage = (int) (foe.getSpell().getAmount() - (this.player.getDef() * DOMAGE_REDUCE));
+        int damage = (int) (foe.getSpell().getAmount() - (this.player.getDef() * DAMAGE_REDUCE));
         sb.append(damage);
         sb.append(" points de vie.");
         player.setHp(player.getHp() - damage);
