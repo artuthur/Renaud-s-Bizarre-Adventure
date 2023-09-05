@@ -4,8 +4,9 @@ import main.donjon.Theme;
 import main.effect.Spell;
 
 public enum Bestiary{
-    CRS(Theme.INTERIEUR, "CRS", "crs.txt", 40, 40, Spell.SPELLTEST),
-    BOSS_TEST(Theme.INTERIEUR, "Boss", "crs.txt", 40, 40, Spell.SPELLTEST, Spell.SPELLTEST);
+    CRS(Theme.INTERIEUR, "CRS", "crs.txt", 40, 40, Spell.COUP_DE_MATRAQUE)
+    
+    ;
 
     private Theme theme;
     private String name;
