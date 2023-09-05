@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
 import main.bestiary.Bestiary;
+import main.effect.Bonus;
 import main.effect.Spell;
 import main.entity.Monster;
 import main.entity.Renaud;
@@ -113,7 +114,7 @@ public class Battle {
     }
 
     public static void main(String[] args) {
-        Battle bt = new Battle(new Renaud(), Bestiary.JEAN_MERLIN_BLANQUER);
+        Battle bt = new Battle(new Renaud(), Bestiary.CRS);
         bt.speedtie();
         while (bt.player.getCurrentHp() > 0 && bt.foe.getCurrentHp() > 0) {
             if (bt.isRenaudTurn) {
