@@ -8,6 +8,7 @@ import javax.swing.text.html.parser.Entity;
 
 import main.donjon.Donjon;
 import main.donjon.DonjonGenerator;
+import main.entity.Renaud;
 
 public class Game {
     public final static String FILENAME_TEST = "Titlescreen.txt";
@@ -21,9 +22,9 @@ public class Game {
         }
         */
         Donjon donjon = new Donjon();
-        donjon.print();
-        // DonjonGenerator donjonGenerator = new DonjonGenerator(donjon);
-        // donjonGenerator.loadCurrentRoom();
+        Renaud player = new Renaud();
+        DonjonGenerator donjonGenerator = new DonjonGenerator(donjon, player);
+        donjonGenerator.drawDonjon();
     }
 
     public static String readStringNotNull(){
