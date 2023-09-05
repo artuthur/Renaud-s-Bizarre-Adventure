@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import javax.swing.text.html.parser.Entity;
+
 import main.donjon.Donjon;
 import main.donjon.DonjonGenerator;
 
@@ -43,5 +45,9 @@ public class Game {
 
     public static int random(int min, int max){
         return min + (int)((max - min + 1) * Math.random());
+    }
+
+    public static void fight() {
+
     }
 }

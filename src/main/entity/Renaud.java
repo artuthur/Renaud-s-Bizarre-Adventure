@@ -9,7 +9,7 @@ import main.effect.Spell;
 public class Renaud extends Entity{
     public final static int BASE_HP = 100;
     public final static int BASE_ATK = 20;
-    public final static int BASE_DEF = 50;
+    public final static int BASE_DEF = 20;
     public final static int BASE_LEVEL = 1;
     public final static int BASE_EXP = 0;
     public final static int BASE_NEEDED_EXP = 100;
@@ -19,8 +19,8 @@ public class Renaud extends Entity{
     private List<Bonus> bonusList;
     private List<Bonus> bonusDrawList;
     private List<Spell> learnedSpells;
-    private int currentHP;
 
+    private int atk;
     private int level;
     private int expNeeded;
     private int expCurrent;
@@ -28,24 +28,16 @@ public class Renaud extends Entity{
     private int room;
 
     public Renaud() {
-        super(BASE_HP, BASE_ATK, BASE_DEF, "Renaud");
+        super(BASE_HP, BASE_HP, BASE_DEF, "Renaud");
         this.bonusList = new ArrayList<Bonus>();
         this.bonusDrawList = new ArrayList<Bonus>();
         this.learnedSpells = new ArrayList<Spell>();
-        this.currentHP = BASE_HP;
+        this.atk = BASE_ATK;
         this.level = BASE_LEVEL;
         this.expNeeded = BASE_NEEDED_EXP;
         this.expCurrent = BASE_EXP;
         this.stage = BASE_STAGE;
         this.room = BASE_ROOM;
-    }
-
-    public int getCurrentHP() {
-        return currentHP;
-    }
-
-    public void setCurrentHP(int currentHP) {
-        this.currentHP = currentHP;
     }
 
     public List<Bonus> getBonusList() {
@@ -83,6 +75,15 @@ public class Renaud extends Entity{
     public boolean addLearnedSpells(Spell spell) {
         return learnedSpells.add(spell);
     }
+
+    public int getAtk() {
+        return atk;
+    }
+
+    public void setAtk(int atk) {
+        this.atk = atk;
+    }
+
 
     public int getExpNeeded() {
         return expNeeded;
@@ -131,5 +132,12 @@ public class Renaud extends Entity{
     public void nextLevel() {
         level++;
         expNeeded *= 1.2;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + super.toString() + "[atk:" + atk + ", level:" + level + ", expNeeded:" + expNeeded
+        + ", expCurrent:" + expCurrent + ", stage:" + stage + ", room:" + room + ", bonusList:" + bonusList.toString() 
+        + ", bonusDrawList:" + bonusDrawList.toString() + ", learnedSpells:" + learnedSpells + "]";
     }
 }
