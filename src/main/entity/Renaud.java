@@ -5,7 +5,6 @@ import java.util.List;
 
 import main.effect.Bonus;
 import main.effect.BonusType;
-import main.effect.Spell;
 
 public class Renaud extends Entity{
     public final static int BASE_HP = 100;
