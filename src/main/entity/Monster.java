@@ -1,18 +1,25 @@
 package main.entity;
 
-/**
- * Monster
- */
-public class Monster extends Entity{
+import main.bestiary.Bestiary;
+import main.effect.Spell;
 
-    /**
-     * 
-     * @param pv
-     * @param atq
-     * @param def
-     * @param name
-     */
-    public Monster(int pv, int atq, int def, String name){
-        super(pv, atq, def, name);
+public class Monster extends Entity{
+    private Spell spell;
+
+    public Monster(Bestiary mob) {
+        super(mob.getHealth(), mob.getHealth(), mob.getDefense(), mob.getName());
+        this.spell = mob.getFirstSpell();
+    }
+
+    public void stageScale(int stage) {
+        setHp((int)(this.getHp()*(1+0.2*stage)));
+    }
+
+    public Spell getSpell() {
+        return spell;
+    }
+
+    public void setSpell(Spell spell) {
+        this.spell = spell;
     }
 }

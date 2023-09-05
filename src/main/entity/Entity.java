@@ -1,82 +1,40 @@
 package main.entity;
-/**
- * Entity
- */
-public class Entity {
 
-    private int pv;
-    private int atq;
+public class Entity {
+    private int hp;
+    private int currentHp;
     private int def;
     private final String NAME;
+
     
-
-    /**
-     * 
-     * @param pv
-     * @param atq
-     * @param def
-     * @param name
-     */
-    public Entity(int pv, int atq, int def, String name){
-        this.atq=atq;
-        this.def=def;
-        this.pv=pv;
-        this.NAME=name;
-    }
-    
-    /**
-     * 
-     * @return
-     */
-    public int getPv() {
-        return pv;
+    public Entity(int hp, int currentHp, int def, String name) {
+        this.hp = hp;
+        this.currentHp = currentHp;
+        this.def = def;
+        NAME = name;
     }
 
-    /**
-     * 
-     * @param pv
-     */
-    public void setPv(int pv) {
-        this.pv = pv;
+    public int getHp() {
+        return hp;
+    }
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+    public int getCurrentHp() {
+        return currentHp;
+    }
+    public void setCurrentHp(int currentHp) {
+        this.currentHp = currentHp;
     }
 
-    /**
-     * 
-     * @return
-     */
-    public int getAtq() {
-        return atq;
-    }
-
-    /**
-     * 
-     * @param atq
-     */
-    public void setAtq(int atq) {
-        this.atq = atq;
-    }
-
-    /**
-     * 
-     * @return
-     */
     public int getDef() {
         return def;
     }
-
-    /**
-     * 
-     * @param def
-     */
     public void setDef(int def) {
         this.def = def;
     }
 
-    /**
-     * 
-     * @return
-     */
-    public String getNAME() {
-        return NAME;
+    public String toString() {
+        return NAME + "[hp=" + hp + ";currentHp=" + currentHp + "def=" + def + "]";
     }
 }
