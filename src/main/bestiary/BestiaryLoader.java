@@ -27,8 +27,30 @@ public class BestiaryLoader{
                 System.out.println("BRAVE-M");
                 System.out.println("Chien de garde");
                 System.out.println("!BOSS! Gérald Gardemin");
-            }else{
-                System.out.println("Ce bestiere n'est pas fini !");
+            }else if (choix.equals("2")){
+                System.out.println("Araignée de bibliothèque");
+                System.out.println("Professeur de magie");
+                System.out.println("Professeur d'EPS");
+                System.out.println("Livre scolaire magique");
+                System.out.println("!BOSS! Jean Merlin Blanquer");
+            }else if (choix.equals("3")){
+                System.out.println("Robe Jaune");
+                System.out.println("Chaosos");
+                System.out.println("Révolutionnaire");
+                System.out.println("Casseur");
+                System.out.println("!BOSS! Jean Luc l'Anarchon");
+            }else if (choix.equals("4")){
+                System.out.println("Succube");
+                System.out.println("Playgirl");
+                System.out.println("Vampirette");
+                System.out.println("Esclave Golem");
+                System.out.println("!BOSS! Marlène Lilithia");
+            }else if (choix.equals("4")){
+                System.out.println("Gérald Gardemin");
+                System.out.println("Jean Merlin Blanquer");
+                System.out.println("Jean Luc l'Anarchon");
+                System.out.println("Marlène Lilithia");
+                System.out.println("!BOSS! Archi Roi Démon Immortel Emanuelle Jupiter Macrongue");
             }
 
         } while (choix.equals("0"));
