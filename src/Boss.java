@@ -1,6 +1,0 @@
-/**
- * Boss
- */
-public class Boss {
-    
-}
