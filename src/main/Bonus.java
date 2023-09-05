@@ -1,5 +1,5 @@
 package main;
 /* à modifier */
-public class Bonus {
+public enum Bonus {
     
 }

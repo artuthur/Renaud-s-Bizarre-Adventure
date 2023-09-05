@@ -1,20 +1,27 @@
 package main;
 
 public enum Bestiary{
-    CRS(Theme.INTERIEUR, "crs.txt", 100 /* vie */, 20 /* atq */, 50 /* def */);
+    CRS(Theme.INTERIEUR, "crs.txt", 40, 40, Spell.SPELLTEST),
+    BOSS_TEST(Theme.INTERIEUR, "crs.txt", 40, 40, Spell.SPELLTEST, Spell.SPELLTEST);
 
     private Theme theme;
     private String fileName;
     private int health;
-    private int attack;
     private int defense;
+    private Spell firstSpell;
+    private Spell secondSpell;
 
-    private Bestiary(Theme theme, String fileName, int health, int attack, int defense){
+    private Bestiary(Theme theme, String fileName, int health, int defense, Spell firstSpell, Spell secondSpell){
         this.theme = theme;
         this.fileName = fileName;
         this.health = health;
-        this.attack = attack;
         this.defense = defense;
+        this.firstSpell = firstSpell;
+        this.secondSpell = secondSpell;
+    }
+
+    private Bestiary(Theme theme, String fileName, int health, int defense, Spell firstSpell){
+        this(theme, fileName, health, defense, firstSpell, null);
     }
 
     public Theme getTheme(){
@@ -28,16 +35,20 @@ public enum Bestiary{
     public int getHealth(){
         return health;
     }
-    
-    public int getAttack(){
-        return attack;
-    }
 
     public int getDefense(){
         return defense;
     }
+
+    public Spell getFirstSpell(){
+        return firstSpell;
+    }
+
+    public Spell getSecondSpell(){
+        return secondSpell;
+    }
     
     public String toString(){
-        return getClass().getSimpleName() + "[theme:" + theme + ", fileName:" + fileName + ", health:" + health + ", attack:" + attack + ", defense:" + defense + "]";
+        return getClass().getSimpleName() + "[theme:" + theme + ", fileName:" + fileName + ", health:" + health + ", defense:" + defense + ", firstSpell:" + firstSpell + ", secondSpell:" + secondSpell + "]";
     }
 }
