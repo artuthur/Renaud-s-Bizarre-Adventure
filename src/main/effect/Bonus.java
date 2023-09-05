@@ -35,8 +35,16 @@ public enum Bonus {
     MAYRUS_WISDOM("Mayru's wisdom", 2, BonusType.SPELL_SCALING, SpellType.HEALTH, UseType.HEAL, 2, 25),
     MEGIDO("Megido", 0, BonusType.SPELL_SCALING, SpellType.HEALTH, UseType.DAMAGE, 3, 10),
     FREEDOM("Freedom", 0, BonusType.SPELL_SCALING, SpellType.DEFENSE, UseType.DAMAGE, 3, 15),
+    AGILAON("Agilaon", 0, BonusType.SPELL_SCALING, SpellType.ATTACK, UseType.DAMAGE, 3, 10),
+    DIA("Dia", 0, BonusType.SPELL_SCALING, SpellType.HEALTH, UseType.DAMAGE, 3, 10),
 
     /* Buffs constants (value est un pourcentage en int) */
+    VIOLENCE("Violence", 0, BonusType.BUFF, SpellType.ATTACK, 10),
+    VIOLENCE_FAROUCHE("Violence", 0, BonusType.BUFF, SpellType.ATTACK, 30),
+    VIOLENCE_DE_SES_MORTS("Violence de ses morts", 0, BonusType.BUFF, SpellType.ATTACK, 50),
+    SANTE("Santé", 0, BonusType.BUFF, SpellType.HEALTH, 10),
+    SANTE_PAS_CREVE("Santé, pas crevé", 0, BonusType.BUFF, SpellType.HEALTH, 30),
+    SANTE_TOUJOURS_DEBOUT("Santé, toujours debout", 0, BonusType.BUFF, SpellType.HEALTH, 50),
     ROBUSTESSE("Robustesse", 0, BonusType.BUFF, SpellType.DEFENSE, 10),
     ROBUSTESSE_IVROGNE("Robustesse ivrogne", 1, BonusType.BUFF, SpellType.DEFENSE, 30),
     ROBUSTESSE_COCKASS("Robustesse cockass", 2, BonusType.BUFF, SpellType.DEFENSE, 50);
