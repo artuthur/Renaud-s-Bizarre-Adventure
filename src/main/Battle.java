@@ -63,9 +63,9 @@ public class Battle {
         }
         StringBuilder sb = new StringBuilder();
         int damage = calculatePhysicalDamage(spellUse.getAmount(), player.getDef());
-        sb.append(this.mob.name());
+        sb.append(this.mob.getName());
         sb.append(" vous attaque avec ");
-        sb.append(foe.getSpell().name());
+        sb.append(spellUse.getName());
         sb.append(".\nVous perdez ");
         sb.append(damage);
         sb.append(" points de vie.");
@@ -84,7 +84,7 @@ public class Battle {
             sb.append("Vous utilisez une attaque normale et infligez ");
             sb.append(damage);
             sb.append(" dégât à ");
-            sb.append(this.mob.name());
+            sb.append(this.mob.getName());
             applyDamage(foe, damage);
             System.out.println(sb.toString());
         }
@@ -113,7 +113,7 @@ public class Battle {
     }
 
     public static void main(String[] args) {
-        Battle bt = new Battle(new Renaud(), Bestiary.
+        Battle bt = new Battle(new Renaud(), Bestiary.JEAN_MERLIN_BLANQUER);
         bt.speedtie();
         while (bt.player.getCurrentHp() > 0 && bt.foe.getCurrentHp() > 0) {
             if (bt.isRenaudTurn) {
@@ -128,6 +128,7 @@ public class Battle {
         }
         if (!bt.isRenaudTurn) {
             System.out.println("Vous avez gagné ggez!");
+            bt.player.giveExp(40);
         }
         else {
             System.out.println("Il est sad le héros un peu.");

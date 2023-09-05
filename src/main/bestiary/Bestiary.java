@@ -79,7 +79,7 @@ public enum Bestiary{
     }
 
     public boolean isBoss(){
-        return secondSpell == null ? true : false;
+        return secondSpell == null ? false : true;
     }
     
     public String toString(){
