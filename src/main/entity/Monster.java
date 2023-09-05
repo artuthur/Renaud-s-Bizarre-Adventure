@@ -4,7 +4,6 @@ import main.bestiary.Bestiary;
 import main.effect.Spell;
 
 public class Monster extends Entity{
-    private Bestiary mob;
     private Spell spell;
 
     public Monster(Bestiary mob) {
@@ -24,5 +23,8 @@ public class Monster extends Entity{
         this.spell = spell;
     }
 
-
+    @Override
+    public String toString() {
+        return super.toString() + "[firstSpell:" + spell + "]";
+    }
 }

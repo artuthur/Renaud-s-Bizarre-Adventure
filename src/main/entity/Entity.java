@@ -35,6 +35,6 @@ public class Entity {
     }
 
     public String toString() {
-        return NAME + "[hp=" + hp + ";currentHp=" + currentHp + "def=" + def + "]";
+        return getClass().getSimpleName() + "[name:" + NAME + ", hp:" + hp + ", currentHp:" + currentHp + ", def:" + def + "]";
     }
 }
