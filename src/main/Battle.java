@@ -57,7 +57,7 @@ public class Battle {
     public void changeTurn() {
         this.isRenaudTurn = !isRenaudTurn;
     }
-    0 
+    
     public void foeTurn() {
         Game.clearScreen();
         System.out.println("\nPlayer : " + player.getCurrentHp() + " | Foe : " + foe.getCurrentHp());
