@@ -3,14 +3,19 @@ package main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
 import main.bestiary.Bestiary;
 import main.effect.Bonus;
+import main.effect.BonusType;
 import main.effect.Spell;
 import main.effect.SpellType;
+import main.effect.UseType;
 import main.entity.Monster;
 import main.entity.Renaud;
 import main.entity.Boss;
@@ -84,10 +89,12 @@ public class Battle {
         Game.clearScreen();
         System.out.println("\nPlayer : " + player.getCurrentHp() + " | Foe : " + foe.getCurrentHp());
         StringBuilder sb = new StringBuilder();
+        int damage = 0;
+        Bonus b = null;
         System.out.println("C'est votre tour.\nQue souhaitez-vous faire ?\n1. Attaque de base.\n2. Sorts.\n: ");
         String choix = Game.readStringNotNull();
         if (choix.equals("1")) {
-            int damage = calculatePhysicalDamage(player.getAtk(), foe.getDef());
+            damage = calculatePhysicalDamage(player.getAtk(), foe.getDef());
             sb.append("Vous utilisez une attaque normale et infligez ");
             sb.append(damage);
             sb.append(" dégât à ");
@@ -100,23 +107,59 @@ public class Battle {
                 renaudTurn();
             }
             else {
-                Bonus b = choiceSpell();
-                if (!spellInCooldown.containsKey(b)) {
-                    sb.append("Vous utilisez une ");
-                    sb.append(b.getName());
-                    sb.append(" et infligez ");
-                    sb.append(b.calcBuffOrValue(player));
-                    sb.append(" dégât à ");
-                    sb.append(this.mob.getName());
-                    applyDamage(foe, b.calcBuffOrValue(player));
-                    System.out.println(sb.toString());
-                }
+                boolean spellCast = false;
+                do {
+                    b = choiceSpell();
+                    if (!spellInCooldown.containsKey(b)) {
+                        if (b.getUseType() == UseType.DAMAGE) {
+                            if (b.getBonusType() == BonusType.SPELL) {
+                                damage = b.getValue();
+                            }
+                            else if (b.getBonusType() == BonusType.SPELL_SCALING) {
+                                damage = b.calcBuffOrValue(player);
+                            }
+                            sb.append("Vous utilisez ");
+                            sb.append(b.getName());
+                            sb.append(" et infligez ");
+                            sb.append(damage);
+                            sb.append(" dégât à ");
+                            sb.append(this.mob.getName());
+                            applyDamage(foe, damage);
+                            System.out.println(sb.toString());
+                        }
+                        else {
+                            int heal = 0;
+                            if (b.getBonusType() == BonusType.SPELL) {
+                                heal = b.getValue();
+                            }
+                            else if (b.getBonusType() == BonusType.SPELL_SCALING) {
+                                heal = b.calcBuffOrValue(player);
+                            }
+                            sb.append("Vous utilisez ");
+                            sb.append(b.getName());
+                            sb.append(" et récupérez ");
+                            sb.append(heal);
+                            sb.append(" points de vie.");
+                            player.setCurrentHp(player.getCurrentHp() + heal);
+                            System.out.println(sb.toString());
+                        }
+                        spellCast = true;
+                    }
+                    else {
+                        System.out.println("Le sort " + b.getName() + " est en cooldown, il reste " + spellInCooldown.get(b) + " tours.");
+                        renaudTurn();
+                    }
+                } while (!spellCast);       
             }
         }
         else {
             renaudTurn();
         }
-
+        updateCooldown();
+        clearCooldown();
+        if (b != null) {
+            spellInCooldown.put(b, Integer.valueOf(b.getCooldown()));
+        }
 
     }
 
@@ -147,10 +190,25 @@ public class Battle {
         }
     }
 
+    public void updateCooldown() {
+        for (Entry e : spellInCooldown.entrySet()) {
+            spellInCooldown.put((Bonus) e.getKey(), (Integer.valueOf(((Integer) e.getValue()).intValue() - 1)));
+        }
+    }
+
+    public void clearCooldown() {
+        for (Entry e : spellInCooldown.entrySet()) {
+            if (((Integer) e.getValue()).intValue() == 0) {
+                spellInCooldown.remove((Bonus) e.getKey());
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Battle bt = new Battle(new Renaud(), Bestiary.CRS);
         bt.speedtie();
         bt.player.addBonusToRenaud(Bonus.LANCE_DE_BRIQUE);
+        bt.player.addBonusToRenaud(Bonus.PTITE_BIERE);
         while (bt.player.getCurrentHp() > 0 && bt.foe.getCurrentHp() > 0) {
             if (bt.isRenaudTurn) {
                 bt.renaudTurn();
