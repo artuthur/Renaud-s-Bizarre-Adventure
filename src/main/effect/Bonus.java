@@ -40,19 +40,27 @@ public enum Bonus {
         return res;
     }
 
-    public int calcValue(Renaud renaud) {
-        int v = value;
-        if (type.equals(BonusType.SPELL)) {
+    public int calcBuffOrValue(Renaud renaud) {
+        int v = 0;
+        if (spellType.equals(SpellType.ATTACK)) {
+            v = (int) (value*(renaud.getAtk()*0.01));
+            if (type.equals(BonusType.BUFF)) {
+                renaud.setAtk(v);
+            }
             return v;
         }
-        if (spellType.equals(SpellType.ATTACK)) {
-            
-            return (int) (value*(renaud.getAtk()*0.01));
-        }
         if (spellType.equals(SpellType.DEFENSE)) {
-            return (int) (value*(renaud.getDef()*0.01));
+            v = (int) (value*(renaud.getDef()*0.01));
+            if (type.equals(BonusType.BUFF)) {
+                renaud.setDef(v);
+            }
+            return v;
         }
-        return (int) (value*(renaud.getHp()*0.01));
+        v = (int) (value*(renaud.getHp()*0.01));
+            if (type.equals(BonusType.BUFF)) {
+                renaud.setHp(v);
+            }
+        return v;
     }
 
     public BonusType getBonusType() {

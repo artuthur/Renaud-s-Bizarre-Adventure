@@ -45,13 +45,13 @@ public class Renaud extends Entity{
         return bonusList;
     }
 
-    /*public void addBonusToRenaud(Bonus bonus) {
+    public void addBonusToRenaud(Bonus bonus) {
         bonusList.add(bonus);
         if (!bonus.getBonusType().equals(BonusType.BUFF)) {
             bonusDrawList.remove(bonus);
-        } else ()
-        if (bonus.getBonusType().equals(BonusType))
-    }*/
+        } 
+        bonus.calcBuffOrValue(this);
+    }
 
     public List<Bonus> getBonusDrawList() {
         return bonusDrawList;
