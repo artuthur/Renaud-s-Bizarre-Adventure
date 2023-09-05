@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.effect.Bonus;
+import main.effect.BonusType;
 import main.effect.Spell;
 
 public class Renaud extends Entity{
@@ -30,7 +31,7 @@ public class Renaud extends Entity{
     public Renaud() {
         super(BASE_HP, BASE_HP, BASE_DEF, "Renaud");
         this.bonusList = new ArrayList<Bonus>();
-        this.bonusDrawList = new ArrayList<Bonus>();
+        this.bonusDrawList = getBonusList();
         this.learnedSpells = new ArrayList<Spell>();
         this.atk = BASE_ATK;
         this.level = BASE_LEVEL;
@@ -44,32 +45,20 @@ public class Renaud extends Entity{
         return bonusList;
     }
 
-    public void setBonusList(List<Bonus> bonusList) {
-        this.bonusList = bonusList;
-    }
-
-    public void addBonusToRenaud(Bonus bonus) {
+    /*public void addBonusToRenaud(Bonus bonus) {
         bonusList.add(bonus);
-    }
+        if (!bonus.getBonusType().equals(BonusType.BUFF)) {
+            bonusDrawList.remove(bonus);
+        } else ()
+        if (bonus.getBonusType().equals(BonusType))
+    }*/
 
     public List<Bonus> getBonusDrawList() {
         return bonusDrawList;
     }
 
-    public void setBonusDrawList(List<Bonus> bonusDrawList) {
-        this.bonusDrawList = bonusDrawList;
-    }
-
-    public void addBonusToList(Bonus bonus) {
-        bonusDrawList.add(bonus);
-    }
-
     public List<Spell> getLearnedSpells() {
         return learnedSpells;
-    }
-
-    public void setLearnedSpells(List<Spell> learnedSpells) {
-        this.learnedSpells = learnedSpells;
     }
 
     public boolean addLearnedSpells(Spell spell) {
