@@ -1,6 +1,8 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -17,7 +19,7 @@ public class Battle {
     private final static double BASE_CHANCE = 0.5;
     private final static double DAMAGE_REDUCE = 0.1;
 
-    private Map<Bonus, Integer> spellInCooldown;
+    private Map<Bonus, Integer> spellInCD;
 
     private Renaud player;
     private Bestiary mob;
@@ -29,7 +31,7 @@ public class Battle {
         this.player = player;
         this.mob = mob;
         this.foe = new Monster(mob);
-        this.spellInCooldown = new HashMap<Bonus, Integer>();
+        this.spellInCD = new HashMap<Bonus, Integer>();
     }
     
     public void speedtie() {
@@ -51,7 +53,7 @@ public class Battle {
     
     public void foeTurn() {
         Game.clearScreen();
-        System.out.println("\nPlayer : " + player.getCurrentHp() + " | Foe : " + foe.getCurrentHp());
+        System.out.println("\nPlayer : " + player.getCurrentHp() + " | " + foe.getMob().getName() + " : " + foe.getCurrentHp());
         Spell spellUse;
         if (this.mob.isBoss()) {
             if (Mathf.random(0, 1) <= 0.6) {
@@ -78,7 +80,7 @@ public class Battle {
 
     public void renaudTurn() {
         Game.clearScreen();
-        System.out.println("\nPlayer : " + player.getCurrentHp() + " | " + foe.getMob().getName() + " : " + foe.getCurrentHp());
+        System.out.println("\nRenaud : " + player.getCurrentHp() + " | " + foe.getMob().getName() + " : " + foe.getCurrentHp());
         StringBuilder sb = new StringBuilder();
         int damage = 0;
         Bonus b = null;
@@ -98,10 +100,11 @@ public class Battle {
                 renaudTurn();
             }
             else {
-                boolean spellCast = false;
+                sb = new StringBuilder();
+                boolean spellWasCast = false;
                 do {
                     b = choiceSpell();
-                    if (!spellInCooldown.containsKey(b)) {
+                    if (!spellIsInCD(b)) {
                         if (b.getUseType() == UseType.DAMAGE) {
                             if (b.getBonusType() == BonusType.SPELL) {
                                 damage = b.getValue();
@@ -134,21 +137,20 @@ public class Battle {
                             player.setCurrentHp(player.getCurrentHp() + heal);
                             System.out.println(sb.toString());
                         }
-                        spellCast = true;
+                        spellWasCast = true;
                     }
                     else {
                         renaudTurn();
                     }
-                } while (!spellCast);       
+                } while (!spellWasCast);       
             }
         }
         else {
             renaudTurn();
         }
         updateCooldown();
-        clearCooldown();
         if (b != null) {
-            spellInCooldown.put(b, Integer.valueOf(b.getCooldown()));
+            spellInCD.put(b, Integer.valueOf(b.getCooldown()));
         }
 
     }
@@ -169,8 +171,8 @@ public class Battle {
         int i = 1;
         for (Bonus b : player.getLearnedSpells()) {
             System.out.print(i + ". " + b.getName() + " (");
-            if (spellInCooldown.containsKey(b)) {
-                System.out.print(spellInCooldown.get(b) + " tours");
+            if (spellIsInCD(b)) {
+                System.out.print(spellInCD.get(b) + " tours");
             }
             else {
                 System.out.print("Disponible");
@@ -189,17 +191,22 @@ public class Battle {
     }
 
     public void updateCooldown() {
-        for (Entry<Bonus, Integer> e : spellInCooldown.entrySet()) {
-            spellInCooldown.put((Bonus) e.getKey(), (Integer.valueOf(((Integer) e.getValue()).intValue() - 1)));
+        List<Bonus> finishedCD = new ArrayList<Bonus>();
+        for (Entry<Bonus, Integer> e : spellInCD.entrySet()) {
+            Bonus b = (Bonus) e.getKey();
+            Integer i = (Integer) e.getValue();
+            spellInCD.put(b, (i-1));
+            if ((i-1) == 0) {
+                finishedCD.add(b);
+            }
+        }
+        for (Bonus b : finishedCD) {
+            spellInCD.remove(b);
         }
     }
 
-    public void clearCooldown() {
-        for (Entry<Bonus, Integer> e : spellInCooldown.entrySet()) {
-            if (((Integer) e.getValue()).intValue() == 0) {
-                spellInCooldown.remove((Bonus) e.getKey());
-            }
-        }
+    public boolean spellIsInCD(Bonus b) {
+        return spellInCD.containsKey(b);
     }
 
     public Renaud getPlayer() {
