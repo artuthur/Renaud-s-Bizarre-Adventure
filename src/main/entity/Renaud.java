@@ -40,6 +40,7 @@ public class Renaud extends Entity{
         this.expCurrent = BASE_EXP;
         this.stage = BASE_STAGE;
         this.room = BASE_ROOM;
+        addBonusToRenaud(Bonus.LANCE_DE_BRIQUE);
     }
 
     public List<Bonus> getBonusList() {

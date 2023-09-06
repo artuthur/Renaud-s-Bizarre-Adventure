@@ -94,7 +94,7 @@ public class Battle {
             sb.append("Vous utilisez une attaque normale et infligez ");
             sb.append(damage);
             sb.append(" dégât à ");
-            sb.append(this.mob.getName());
+            sb.append(foe.getMob().getName());
             applyDamage(foe, damage);
             System.out.println(sb.toString());
             Game.pressToContinue();
@@ -108,9 +108,9 @@ public class Battle {
             else {
                 sb = new StringBuilder();
                 boolean spellWasCast = false;
-                do {
+                while (!spellWasCast) { 
                     b = choiceSpell();
-                    if (!spellIsInCD(b)) {
+                    if (b != null && !spellIsInCD(b)) {
                         if (b.getUseType() == UseType.DAMAGE) {
                             spellWasCast = applyDamageSpell(b);
                         }
@@ -121,7 +121,7 @@ public class Battle {
                     else {
                         renaudTurn();
                     }
-                } while (!spellWasCast);       
+                }    
             }
         }
         else {
@@ -147,6 +147,8 @@ public class Battle {
     }
 
     public Bonus choiceSpell() {
+        Game.clearScreen();
+        BattleView.afficheSprites(this);
         int i = 1;
         System.out.println("0. Retour");
         for (Bonus b : player.getLearnedSpells()) {
@@ -158,18 +160,17 @@ public class Battle {
                 System.out.print("Disponible");
             }
             System.out.println(")");
-            i++;
-            
+            i++; 
         }
-        int choix = Integer.parseInt(Game.readStringNotNull());
         try {
+            int choix = Integer.parseInt(Game.readStringNotNull());
             if (choix == 0) {
-                renaudTurn();
+                return null;
             }
             return player.getLearnedSpells().get(choix-1);
         }
         catch (Exception e) {
-            return choiceSpell();
+            return null;
         }
     }
 
