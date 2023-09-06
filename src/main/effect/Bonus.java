@@ -33,7 +33,7 @@ public enum Bonus {
     MEGIDOLAON("Megidolaon", 2, BonusType.SPELL_SCALING, SpellType.HEALTH, UseType.DAMAGE, 2, 25),
     FARORS_WIND("Faror's wind", 2, BonusType.SPELL_SCALING, SpellType.DEFENSE, UseType.DAMAGE, 2,35),
     DINS_FIRE("Din's fire", 2, BonusType.SPELL_SCALING, SpellType.ATTACK, UseType.DAMAGE, 2, 50),
-    MAYRUS_WISDOM("Mayru's wisdom", 2, BonusType.SPELL_SCALING, SpellType.HEALTH, UseType.HEAL, 2, 25),
+    NAYRUS_WISDOM("Mayru's wisdom", 2, BonusType.SPELL_SCALING, SpellType.HEALTH, UseType.HEAL, 2, 25),
     MEGIDO("Megido", 0, BonusType.SPELL_SCALING, SpellType.HEALTH, UseType.DAMAGE, 3, 10),
     FREEDOM("Freedom", 0, BonusType.SPELL_SCALING, SpellType.DEFENSE, UseType.DAMAGE, 3, 15),
     AGILAON("Agilaon", 0, BonusType.SPELL_SCALING, SpellType.ATTACK, UseType.DAMAGE, 3, 10),

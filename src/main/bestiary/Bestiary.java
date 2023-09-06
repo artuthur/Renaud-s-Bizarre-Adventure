@@ -22,7 +22,7 @@ public enum Bestiary{
     CASSEUR(Theme.OPPOSITION, "Casseur", "casseur.txt", 25, 30, Spell.PILLAGE),
     CHAOSSOS(Theme.OPPOSITION, "Chaossos", "chaossos.txt", 10, 99, Spell.HARCELEMENT_CIBLER),
     REVOLUTIONNAIRE(Theme.OPPOSITION, "Révolutionnaire", "revolutionary.txt", 20, 60, Spell.GUILLOTINE),
-    JL_ANARCHON(Theme.OPPOSITION, "JL l'Anarchon", "jl_larnarchon.txt", 40, 80, Spell.FRAPPE_INSOUMISE, Spell.BARRAGE),
+    JL_ANARCHON(Theme.OPPOSITION, "JL l'Anarchon", "jl_larnarchon.txt", 70, 80, Spell.FRAPPE_INSOUMISE, Spell.BARRAGE),
     SUCCUBUS(Theme.CULTURE, "Succubus <3", "succubus.txt", 69, 15, Spell.ENLACEMENT_EROTIQUE),
     PLAYGIRL(Theme.CULTURE, "PlayGirl", "playgirl.txt", 50, 0, Spell.DEUX_BON_ARGUMENT),
     VAMPIRETTE(Theme.CULTURE, "Vampirette", "vampirette.txt", 66, 0, Spell.DRAINAGE_SANGUIN),

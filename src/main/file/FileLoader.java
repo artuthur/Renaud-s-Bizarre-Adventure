@@ -10,6 +10,10 @@ public class FileLoader {
     public final static String PATH = "res" + SEPARATOR;
 
     public static String load(String fileName){
+        return load(PATH, fileName);
+    }
+
+    public static String load(String path, String fileName){
         File file = FileFinder.find(fileName);
         if(file == null) return null;
         
@@ -25,6 +29,10 @@ public class FileLoader {
     }
 
     public static void print(String fileName){
-        System.out.println(load(fileName));
+        print(PATH, fileName);
+    }
+
+    public static void print(String path, String fileName){
+        System.out.println(load(path, fileName));
     }
 }

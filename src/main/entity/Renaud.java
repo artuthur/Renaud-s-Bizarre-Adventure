@@ -123,9 +123,28 @@ public class Renaud extends Entity{
         }
     }
 
+    /**
+     * Méthode surchargée pour la facilité des tests
+     */
+    public void nextRoomTest(){
+        int roomMax = 5; // on considère le max des room a 5 pour les test
+        room++;
+        while(room >= roomMax){
+            room -= roomMax;
+            nextStageTest();
+        }
+    }
+
     public void nextStage(){
         stage++;
-        DialogueView.nextStage(stage);
+        DialogueView.nextStage(currentDonjon.getTheme(stage));
+    }
+
+    /**
+     * Méthode surchargée pour la facilité des tests
+     */
+    public void nextStageTest(){
+        stage++;
     }
 
     public int getLevel() {
@@ -137,6 +156,17 @@ public class Renaud extends Entity{
         while(expCurrent >= expNeeded){
             expCurrent -= expNeeded;
             nextLevel();
+        }
+    }
+
+    /**
+     * Méthode surchargée pour la facilité des tests
+     */
+    public void giveExpTest(int exp) {
+        expCurrent += exp;
+        while(expCurrent >= expNeeded){
+            expCurrent -= expNeeded;
+            nextLevelTest();
         }
     }
 
@@ -159,6 +189,14 @@ public class Renaud extends Entity{
 
     public boolean isDead(){
         return this.getCurrentHp() <= 0;
+    }
+
+    /**
+     * Méthode surchargée pour la facilité des tests
+     */
+    private void nextLevelTest() {
+        level++;
+        expNeeded *= 1.2;
     }
 
     @Override
