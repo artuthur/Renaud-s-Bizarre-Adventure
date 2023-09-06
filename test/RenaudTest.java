@@ -7,15 +7,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import main.donjon.Donjon;
 import main.effect.Bonus;
 import main.entity.Renaud;
 
 public class RenaudTest {
     Renaud r;
+    Donjon dj;
     
     @BeforeEach
     void initialisation(){
-        this.r = new Renaud();
+        this.dj = new Donjon();
+        this.r = new Renaud(dj);
     }
 
     @Test
@@ -55,17 +58,17 @@ public class RenaudTest {
 
     @Test
     void testAddBonusToRenaud(){
-        assertEquals(this.r.getBonusList().size(),0);
-        assertEquals(this.r.getLearnedSpells().size(), 0);
+        assertEquals(this.r.getBonusList().size(),1);
+        assertEquals(this.r.getLearnedSpells().size(), 1);
 
         this.r.addBonusToRenaud(Bonus.BALAYETTE);
-        assertEquals(this.r.getBonusList().size(), 1);
+        assertEquals(this.r.getBonusList().size(), 2);
         assertTrue(this.r.getBonusList().contains(Bonus.BALAYETTE));
         assertFalse(this.r.getBonusDrawList().contains(Bonus.BALAYETTE));
         assertTrue(this.r.getLearnedSpells().contains(Bonus.BALAYETTE));
 
         this.r.addBonusToRenaud(Bonus.VIOLENCE);
-        assertEquals(this.r.getBonusList().size(), 2);
+        assertEquals(this.r.getBonusList().size(), 3);
         assertTrue(this.r.getBonusList().contains(Bonus.VIOLENCE));
     }
 }

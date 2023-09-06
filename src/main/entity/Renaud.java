@@ -131,13 +131,20 @@ public class Renaud extends Entity{
         room++;
         while(room >= roomMax){
             room -= roomMax;
-            nextStage();
+            nextStageTest();
         }
     }
 
     public void nextStage(){
         stage++;
         DialogueView.nextStage(stage);
+    }
+
+    /**
+     * Méthode surchargée pour la facilité des tests
+     */
+    public void nextStageTest(){
+        stage++;
     }
 
     public int getLevel() {
