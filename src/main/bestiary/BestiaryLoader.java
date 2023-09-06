@@ -31,7 +31,6 @@ public class BestiaryLoader{
             System.out.println();
             if(choice == BESITARY_SPRITES){
                 MonsterView.load();
-                Game.pressToContinue();
             }
 
             if(choiceThemeIsValid(choice)){

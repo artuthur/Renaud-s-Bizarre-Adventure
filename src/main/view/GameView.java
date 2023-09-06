@@ -8,9 +8,16 @@ import main.donjon.DonjonRoom;
 import main.entity.Renaud;
 
 public class GameView {
+    public final static char CHAR_UP_LEFT = '\u256F';
+    public final static char CHAR_UP_RIGHT = '\u2570';
+    public final static char CHAR_DOWN_LEFT = '\u256D';
+    public final static char CHAR_DOWN_RIGHT = '\u256D';
+    public final static char CHAR_VERTICAL = '\u2502';
+    public final static char CHAR_HORIZONTAL = '\u2500';
+    public final static char CHAR_WAY = '\u2550';
+    
     private DonjonGenerator donjonGenerator;
     private Renaud player;
-    private static RenaudView renaudView;
 
     public GameView(DonjonGenerator donjonGenerator, Renaud player){
         this.donjonGenerator = donjonGenerator;
@@ -30,14 +37,14 @@ public class GameView {
         Renaud player = new Renaud(donjon);
         DonjonGenerator donjonGenerator = new DonjonGenerator(donjon, player);
         GameView gameView = new GameView(donjonGenerator, player);
-        GameView.renaudView = new RenaudView(player);
+        RenaudView.player = player;
         
         DialogueView.startGame();
         DialogueView.startStage(player.getCurrentTheme());
         
         do{
             Game.clearScreen();
-            renaudView.printStats();
+            RenaudView.printPlayerStats();
             donjonGenerator.drawDonjon();
             Game.pressToContinue();
             gameView.checkPlayerCase();
@@ -71,7 +78,7 @@ public class GameView {
             if(donjonRoom.getMob().isBoss()){
                 DialogueView.startBoss(donjonRoom.getMob());
             }
-            Battle bt = new Battle(player, donjonRoom.getMob(), GameView.renaudView);
+            Battle bt = new Battle(player, donjonRoom.getMob());
             bt.battle();
         }
         if(donjonRoom.getAdvice() != null){

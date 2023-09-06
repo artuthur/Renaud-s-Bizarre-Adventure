@@ -23,17 +23,15 @@ public class Battle {
     private Renaud player;
     private Bestiary mob;
     private Monster foe;
-    private RenaudView renaudView;
 
     private boolean isRenaudTurn;
 
-    public Battle(Renaud player, Bestiary mob, RenaudView renaudView) {
+    public Battle(Renaud player, Bestiary mob) {
         this.player = player;
         this.mob = mob;
         this.foe = new Monster(mob);
         foe.stageScale(player.getStage());
         foe.setCurrentHp(foe.getHp());
-        this.renaudView = renaudView;
     }
     
     public void speedtie() {
@@ -56,7 +54,7 @@ public class Battle {
     
     public void foeTurn() {
         Game.clearScreen();
-        renaudView.printBattleStats();
+        RenaudView.printBattleStats();
         BattleView.afficheSprites(this);
         Spell spellUse;
         if (this.mob.isBoss()) {
@@ -86,7 +84,7 @@ public class Battle {
 
     public void renaudTurn() {
         Game.clearScreen();
-        renaudView.printBattleStats();
+        RenaudView.printBattleStats();
         BattleView.afficheSprites(this);
         StringBuilder sb = new StringBuilder();
         int damage = 0;
@@ -153,7 +151,7 @@ public class Battle {
 
     public Bonus choiceSpell() {
         Game.clearScreen();
-        renaudView.printBattleStats();
+        RenaudView.printBattleStats();
         BattleView.afficheSprites(this);
         int i = 0;
         System.out.println("0. Retour");
@@ -247,7 +245,7 @@ public class Battle {
 
     public void battle() {
         BattleView.afficheBattle();
-        renaudView.printBattleStats();
+        RenaudView.printBattleStats();
         BattleView.afficheSprites(this);
         speedtie();
         while (player.getCurrentHp() > 0 && foe.getCurrentHp() > 0) {

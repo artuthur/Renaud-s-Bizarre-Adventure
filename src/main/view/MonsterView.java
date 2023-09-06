@@ -4,7 +4,7 @@ import main.Game;
 import main.bestiary.Bestiary;
 import main.file.FileLoader;
 
-public class MonsterView {
+public abstract class MonsterView {
     public static void load() {
         for(Bestiary m : Bestiary.values()){
             System.out.println("Mob : " + m.getName());

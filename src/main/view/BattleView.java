@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class BattleView {
+public abstract class BattleView {
     public final static String FILENAME_BATTLE = "battle.txt";
     private static final String RENAUD = "renaud.txt";
     private static final File FILE_RENAUD = FileFinder.find(RENAUD);

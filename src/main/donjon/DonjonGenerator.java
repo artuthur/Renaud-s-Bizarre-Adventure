@@ -1,21 +1,21 @@
 package main.donjon;
 
 import main.Color;
-import main.Game;
 import main.entity.Renaud;
+import main.view.GameView;
 
 public class DonjonGenerator {
     public final static int FLOOR_COUNT = Theme.getSize();
     public final static int ROOM_WIDTH = 25;
     public final static int ROOM_HEIGHT = 9;
     public final static int ROOM_WAY = 5;
-    public final static char CHAR_UP_LEFT = '╯';
-    public final static char CHAR_UP_RIGHT = '╰';
-    public final static char CHAR_DOWN_LEFT = '╮';
-    public final static char CHAR_DOWN_RIGHT = '╭';
-    public final static char CHAR_VERTICAL = '│';
-    public final static char CHAR_HORIZONTAL = '─';
-    public final static char CHAR_WAY = '═';
+    public final static char CHAR_UP_LEFT = GameView.CHAR_UP_LEFT;
+    public final static char CHAR_UP_RIGHT = GameView.CHAR_UP_RIGHT;
+    public final static char CHAR_DOWN_LEFT = GameView.CHAR_DOWN_LEFT;
+    public final static char CHAR_DOWN_RIGHT = GameView.CHAR_DOWN_RIGHT;
+    public final static char CHAR_VERTICAL = GameView.CHAR_VERTICAL;
+    public final static char CHAR_HORIZONTAL = GameView.CHAR_HORIZONTAL;
+    public final static char CHAR_WAY = GameView.CHAR_WAY;
 
     private Donjon donjon;
     private Renaud player;

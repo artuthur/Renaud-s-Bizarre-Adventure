@@ -8,7 +8,7 @@ import main.donjon.Theme;
 import main.file.FileFinder;
 import main.file.FileLoader;
 
-public class DialogueView {
+public abstract class DialogueView {
     public final static String PATH = FileFinder.PATH + "lore" + File.separator;
     public final static String START_SCREEN = "StartGame.txt";
     public final static String WIN_SCREEN = "WinScreen.txt";

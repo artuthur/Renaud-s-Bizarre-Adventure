@@ -3,70 +3,86 @@ package main.view;
 import main.Color;
 import main.entity.Renaud;
 
-public class RenaudView {
-    private static Renaud player;
+public abstract class RenaudView {
+    public static Renaud player;
 
-    public RenaudView(Renaud player) {
-        RenaudView.player = player;
-    }
-
-    public void printStats() {
-        String txt = '│' + stageRoomString() + '│' + lvlString() + '│' + expString() 
-            + '│' + hpString() + '│' + atkString() + '│' + defString() + '│';
-        System.out.print('╭');
+    public static void printPlayerStats() {
         int lengthColor = Color.stringToColor(Color.FG_RED, "").length() +
             Color.stringToColor(Color.FG_BLUE, "").length() + 
             (Color.stringToColor(Color.FG_YELLOW, "").length()*3) + 
             (Color.stringToColor(Color.FG_GREEN, "").length()*2) +
             (Color.stringToColor(Color.FG_PURPLE, "").length()*2);
-        for (int i = 0; i < txt.length()-(2+lengthColor); i++) {
-            System.out.print('\u2500');
-        }
-        System.out.println('╮');
-        System.out.println(txt);
-        System.out.print('╰');
-        for (int i = 0; i < txt.length()-(2+lengthColor); i++) {
-            System.out.print('\u2500');
-        }
-        System.out.println('╯');
+
+        String txt = "";
+        txt += '│' + stageRoomString() + '│';
+        txt += lvlString() + '│';
+        txt += expString() + '│';
+        txt += hpString() + '│';
+        txt += atkString() + '│';
+        txt += defString() + '│';
+        int width = txt.length()-(2+lengthColor);
+        print(txt, width);
     }
 
-    public void printBattleStats() {
-        String txt = '│' + stageRoomString() + '│' + lvlString() + '│' + expString() 
-            + '│' + atkString() + '│' + defString() + '│';
-        System.out.print('╭');
+    public static void printBattleStats() {
+        String txt = "";
+        txt += '│' + stageRoomString() + '│';
+        txt += lvlString() + '│';
+        txt += expString() + '│';
+        txt += atkString() + '│';
+        txt += defString() + '│';
         int lengthColor = Color.stringToColor(Color.FG_RED, "").length() +
             Color.stringToColor(Color.FG_BLUE, "").length() + 
             (Color.stringToColor(Color.FG_YELLOW, "").length()*3) + 
             (Color.stringToColor(Color.FG_PURPLE, "").length()*2);
-        for (int i = 0; i < txt.length()-(2+lengthColor); i++) {
-            System.out.print('\u2500');
-        }
-        System.out.println('╮');
-        System.out.println(txt);
-        System.out.print('╰');
-        for (int i = 0; i < txt.length()-(2+lengthColor); i++) {
-            System.out.print('\u2500');
-        }
-        System.out.println('╯');
+        int width = txt.length()-(2+lengthColor);
+        print(txt, width);
     }
 
-    public String lvlString() {
+    public static void print(String txt, int width){
+        StringBuilder sb = new StringBuilder();
+        addUpLine(sb, width); sb.append("\n");
+        addMiddleLine(sb, txt); sb.append("\n");
+        addDownLine(sb, width); sb.append("\n");
+        System.out.println(sb);
+    }
+
+    public static void addNewLine(StringBuilder sb){
+        sb.append("\n");
+    }
+
+    private static void addMiddleLine(StringBuilder sb, String line){
+        sb.append(line);
+    }
+
+    private static void addUpLine(StringBuilder sb, int width){
+        sb.append('╰');
+        for (int i = 0; i < width; i++) sb.append('\u2500');
+        sb.append('╯');
+    }
+
+    private static void addDownLine(StringBuilder sb, int width){
+        sb.append('╰');
+        for (int i = 0; i < width; i++) sb.append('\u2500');
+        sb.append('╯');
+    }
+
+    private static String lvlString() {
         return "Niveau:" + Color.stringToColor(Color.FG_YELLOW, "" + player.getLevel());
     }
-    public String expString() {
+    private static String expString() {
         return "Expérience:" + Color.stringToColor(Color.FG_YELLOW, "" + player.getExpCurrent()) + "/" + Color.stringToColor(Color.FG_YELLOW, "" + player.getExpNeeded());
     }
-    public String hpString() {
+    private static String hpString() {
         return "Points de vie:" + Color.stringToColor(Color.FG_GREEN, "" +player.getCurrentHp()) + "/" + Color.stringToColor(Color.FG_GREEN, "" +player.getHp());
     }
-    public String atkString() {
+    private static String atkString() {
         return "Attaque:" + Color.stringToColor(Color.FG_RED, "" + player.getAtk());
     }
-    public String defString() {
+    private static String defString() {
         return "Défense:" + Color.stringToColor(Color.FG_BLUE, "" + player.getDef());
     }
-    public String stageRoomString() {
+    private static String stageRoomString() {
         return "Stage:" + (Color.stringToColor(Color.FG_PURPLE, "" + (player.getStage()+1))) + "-" + (Color.stringToColor(Color.FG_PURPLE, "" + (player.getRoom()+1)));
     }
 }
