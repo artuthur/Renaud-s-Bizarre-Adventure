@@ -46,10 +46,16 @@ public class BattleView {
         }
 
         StringBuilder sb = new StringBuilder();
-        int pv_player = bt.getPlayer().getHp();
-        String phrasePvPlayer = BattleView.phrase_pv + pv_player;
+        int pvPlayer = bt.getPlayer().getHp();
+        int pvMob = bt.getMob().getHealth();
+        String phrasePvPlayer = BattleView.phrase_pv + pvPlayer;
         int setSpaceFirt = (getMaxCarac(BattleView.FILERENAUD) - ( phrasePvPlayer ).length())/2 ;
+        String phrasePvMob = BattleView.phrase_pv + pvMob;
+        int setSpaceMob = (getMaxCarac(file) - ( phrasePvMob ).length())/2 ;
         sb.append(setSpace( setSpaceFirt) + phrasePvPlayer + setSpace(setSpaceFirt));
+        sb.append(setSpaceTemp(BattleView.TAB.length()*7));
+        sb.append(setSpace( setSpaceMob) + phrasePvMob + setSpace(setSpaceMob));
+
         System.out.println(sb.toString());
     }
 
@@ -72,6 +78,14 @@ public class BattleView {
         String s = "";
         for (int i = 0; i < n; i++) {
             s += ".";
+        }
+        return s;
+    }
+
+    private static String setSpaceTemp(int n){
+        String s = "";
+        for (int i = 0; i < n; i++) {
+            s += " ";
         }
         return s;
     }
