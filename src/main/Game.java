@@ -7,14 +7,20 @@ import java.io.InputStreamReader;
 import main.bestiary.BestiaryLoader;
 import main.donjon.Donjon;
 import main.donjon.DonjonGenerator;
+import main.donjon.DonjonView;
 import main.entity.Renaud;
 import main.file.FileLoader;
 
 public class Game {
+    public final static String FILENAME_TEST = "Titlescreen.txt";
+    public final static String PRESS_TO_CONTINUE = "Appuyez sur 'Entrée' pour continuer";
+    public final static String START_GAME = "a";
+    public final static String START_BESTIARY = "b";
+
     public final static Renaud PLAYER = new Renaud();
     public final static Donjon DONJON = new Donjon();
     public final static DonjonGenerator DONJON_GENERATOR = new DonjonGenerator(DONJON, PLAYER);
-    public final static String FILENAME_TEST = "Titlescreen.txt";
+    public final static DonjonView DONJON_VIEW = new DonjonView(DONJON_GENERATOR, PLAYER);
     public static boolean end = false;
 
     public static void main(String[] args) {
@@ -22,18 +28,19 @@ public class Game {
     }
 
     public static void startTitleScreen(){
+        clearScreen();
         FileLoader.print(FILENAME_TEST);
-
-        String choice = readStringNotNull();
-
+        
         do{
-            if(choice.equals("a")){ startGame(); }
-            if(choice.equals("b")) { BestiaryLoader.load(); }
+            String choice = readStringNotNull();
+
+            if(keyEquality(choice, START_GAME)){ DONJON_VIEW.start(); }
+            if(keyEquality(choice, START_BESTIARY)) { BestiaryLoader.load(); }
         }while(!end);
     }
-    
-    public static void startGame(){
-        DONJON_GENERATOR.drawDonjon();
+
+    public static boolean keyEquality(String a, String b){
+        return a.toLowerCase().equals(b.toLowerCase());
     }
 
     public static int readIntNotNull(){
@@ -41,7 +48,7 @@ public class Game {
         try {
             do{
                 s = readString();
-            }while(s == "" || !isNumber(s));
+            }while(s == null || s.isEmpty() || !isNumber(s));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -72,6 +79,12 @@ public class Game {
     public static String readString() throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         return br.readLine();
+    }
+
+    public static void pressToContinue(){
+        System.out.println();
+        System.out.print(PRESS_TO_CONTINUE);
+        Game.readStringNotNull();
     }
 
     public static void clearScreen(){

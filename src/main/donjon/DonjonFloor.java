@@ -47,7 +47,7 @@ public class DonjonFloor {
             else if(i == advice) type = RoomType.ADVICE;
             else type = RoomType.ENEMY;
 
-            rooms[i] = new DonjonRoom(type, theme);
+            rooms[i] = new DonjonRoom(rooms.length - 1, i, type, theme);
         }
     }
 

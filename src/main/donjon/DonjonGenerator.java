@@ -4,6 +4,7 @@ import main.Game;
 import main.entity.Renaud;
 
 public class DonjonGenerator {
+    public final static int FLOOR_COUNT = Theme.getSize();
     public final static int ROOM_WIDTH = 15;
     public final static int ROOM_HEIGHT = 7;
     public final static int ROOM_BETWEEN_WAY = 5;
@@ -33,12 +34,17 @@ public class DonjonGenerator {
         return player;
     }
 
-    public void loadCurrentStage(){
-        generateStage(player.getStage());
-        loadRooms(player.getStage());
+    public DonjonRoom getCurrentRoom(){
+        return donjon.getRoom(player.getStage(), player.getRoom());
     }
 
-    public void generateStage(int stage){
+    private void loadCurrentStage(){
+        int currentStage = player.getStage();
+        generateStage(currentStage);
+        loadRooms(currentStage);
+    }
+
+    private void generateStage(int stage){
         int roomsCount = donjon.getRoomsCount(stage);
 
         int width = roomsCount * ROOM_WIDTH + (roomsCount - 1) * ROOM_BETWEEN_WAY;
@@ -71,7 +77,7 @@ public class DonjonGenerator {
         }
     }
 
-    public void loadRooms(int stage){
+    private void loadRooms(int stage){
         DonjonFloor floor = donjon.getFloor(stage);
         if(floor == null) return;
         DonjonRoom[] rooms = floor.getRooms();
@@ -80,7 +86,7 @@ public class DonjonGenerator {
         }
     }
 
-    public void loadRoom(DonjonRoom dr, int room){
+    private void loadRoom(DonjonRoom dr, int room){
         RoomType type = dr.getType();
         int x = ROOM_WIDTH / 2 + ROOM_WIDTH * room + ROOM_BETWEEN_WAY * room;
         int y = ROOM_HEIGHT / 2;
@@ -96,7 +102,6 @@ public class DonjonGenerator {
     }
 
     public void drawDonjon(){
-        Game.clearScreen();
         if(donjon == null) System.err.println("Le donjon est null");
         else if(player == null) System.err.println("Le joueur est null");
         else{
@@ -106,7 +111,7 @@ public class DonjonGenerator {
         }
     }
 
-    public void drawRooms(){
+    private void drawRooms(){
         StringBuilder sb = new StringBuilder();
         for(int y = 0; y < map.length; y++){
             for(int x = 0; x < map[y].length; x++){
@@ -118,7 +123,7 @@ public class DonjonGenerator {
         System.out.println(sb);
     }
 
-    public void drawPlayer(){
+    private void drawPlayer(){
         StringBuilder sb = new StringBuilder();
         int room = player.getRoom();
         int width = ROOM_WIDTH / 2 + ROOM_WIDTH * room + ROOM_BETWEEN_WAY * room;

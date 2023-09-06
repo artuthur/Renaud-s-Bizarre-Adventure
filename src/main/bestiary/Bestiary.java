@@ -30,6 +30,8 @@ public enum Bestiary{
     MARLENNE_LILITHIA(Theme.CULTURE, "Marlène Lilithia", "marlenne_lilithia.txt", 250, 0, Spell.ETREINTE_VAMPIRIQUE, Spell.ASMODEUS),
     ARDIEJM(Theme.FINALE, "Archi roi démon immortel Emanuelle Jupiter Macrongue", "archi_roi_demon_immortel_emmanuel_jupiter_macrongue.txt", 1493, 49, Spell.MORNING_STAR, Spell.CONFINEMENT);
 
+    public final static Bestiary FINAL_BOSS = Bestiary.ARDIEJM;
+
     private Theme theme;
     private String name;
     private String fileName;
@@ -85,8 +87,16 @@ public enum Bestiary{
         return false;
     }
 
+    public static Bestiary getFinalBoss(){
+        return FINAL_BOSS;
+    }
+
     public static Bestiary random(){
         return Mathf.random(values());
+    }
+
+    public static Bestiary random(List<Bestiary> list){
+        return Mathf.random(list);
     }
 
     public static Bestiary random(List<Bestiary> list, boolean isBoss){
@@ -99,6 +109,12 @@ public enum Bestiary{
         if(isBoss && boss.size() != 0) return Mathf.random(boss);
         else if(mobs.size() != 0) return Mathf.random(mobs);
         return null;
+    }
+
+    public static Bestiary randomBossNotFinal(){
+        List<Bestiary> boss = new ArrayList<>();
+        for(Bestiary m : values()) if(m.isBoss() && m != FINAL_BOSS) boss.add(m);
+        return random(boss);
     }
 
     public static List<Bestiary> getMobs(Theme theme){
