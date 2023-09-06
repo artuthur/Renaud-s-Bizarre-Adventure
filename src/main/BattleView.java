@@ -17,10 +17,11 @@ public class BattleView {
     private static final String RENAUD = "renaud.txt";
     private static final File FILERENAUD = FileFinder.find(RENAUD);
     private static final String TAB = "\t\t\t\t\t";
-    private static final String phrase_pv = " HP : ";
+    private static final String phrase_pv = "HP : ";
 
 
     public static void afficheBattle(){
+        Game.clearScreen();
         System.out.println(FileLoader.load(FILENAME_BATTLE));
         try {
             Thread.sleep(1500);
@@ -29,9 +30,11 @@ public class BattleView {
         }
         Game.clearScreen();
     }
-
+    
     public static void afficheSprites(Battle bt){
         File file = FileFinder.find(bt.getMob().getFileName());
+        StringBuilder sbName = new StringBuilder();
+        StringBuilder sbHp = new StringBuilder();
         
 
         try(BufferedReader br1 = new BufferedReader(new FileReader(BattleView.FILERENAUD))){
@@ -45,18 +48,29 @@ public class BattleView {
             System.err.println(e.getMessage());
         }
 
-        StringBuilder sb = new StringBuilder();
-        int pvPlayer = bt.getPlayer().getHp();
-        int pvMob = bt.getMob().getHealth();
-        String phrasePvPlayer = BattleView.phrase_pv + pvPlayer;
-        int setSpaceFirt = (getMaxCarac(BattleView.FILERENAUD) - ( phrasePvPlayer ).length())/2 ;
-        String phrasePvMob = BattleView.phrase_pv + pvMob;
-        int setSpaceMob = (getMaxCarac(file) - ( phrasePvMob ).length())/2 ;
-        sb.append(setSpace( setSpaceFirt) + phrasePvPlayer + setSpace(setSpaceFirt));
-        sb.append(setSpaceBetween(BattleView.TAB.length()*7));
-        sb.append(setSpace( setSpaceMob) + phrasePvMob + setSpace(setSpaceMob));
 
-        System.out.println(sb.toString());
+        int pvPlayer = bt.getPlayer().getCurrentHp();
+        int pvMob = bt.getFoe().getCurrentHp();
+        String phrasePvPlayer = BattleView.phrase_pv + pvPlayer;
+        int setSpaceRenaudHp = (getMaxCarac(BattleView.FILERENAUD) - ( phrasePvPlayer ).length())/2 ;
+        String phrasePvMob = BattleView.phrase_pv + pvMob;
+        int setSpaceMobHp = (getMaxCarac(file) - ( phrasePvMob ).length())/2 ;
+
+        int setSpaceRenaudName = (getMaxCarac(BattleView.FILERENAUD) - "Renaud".length())/2 ;
+        int setSpaceMobName = (getMaxCarac(file) - ( bt.getMob().getName() ).length())/2 ;
+
+
+        sbName.append(setSpace( setSpaceRenaudName) + "Renaud" + setSpace(setSpaceRenaudName));
+        sbName.append(setSpace(BattleView.TAB.length()*7));
+        sbName.append(setSpace( setSpaceMobName) + bt.getMob().getName() + setSpace(setSpaceMobName));
+
+        sbHp.append(setSpacePoint( setSpaceRenaudHp) + phrasePvPlayer + setSpacePoint(setSpaceRenaudHp));
+        sbHp.append(setSpace(BattleView.TAB.length()*7));
+        sbHp.append(setSpacePoint( setSpaceMobHp) + phrasePvMob + setSpacePoint(setSpaceMobHp));
+
+        System.out.println();
+        System.out.println(sbName.toString());
+        System.out.println(sbHp.toString());
     }
 
     private static int getMaxCarac(File f){
@@ -74,7 +88,7 @@ public class BattleView {
         return max;
     }
 
-    private static String setSpace(int n){
+    private static String setSpacePoint(int n){
         String s = "";
         for (int i = 0; i < n; i++) {
             s += ".";
@@ -82,7 +96,7 @@ public class BattleView {
         return s;
     }
 
-    private static String setSpaceBetween(int n){
+    private static String setSpace(int n){
         String s = "";
         for (int i = 0; i < n; i++) {
             s += " ";
