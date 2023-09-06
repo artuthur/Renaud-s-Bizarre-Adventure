@@ -93,12 +93,13 @@ public class DonjonGenerator {
     }
 
     private RoomType getRoomTypeByWidthValue(int width, int x){
-        int room = width % x;        
-        int valueX = x % (ROOM_WIDTH + ROOM_BETWEEN_WAY);
-        //DonjonRoom dr = donjon.getRoom();
-        //if(dr == null) return null;
+        int room = 0;
         
-        return RoomType.BOSS;
+        DonjonFloor df = donjon.getFloor(player.getStage());
+        if(df == null) return null;
+        DonjonRoom dr = df.getRoom(room);
+        if(dr == null) return null;
+        return dr.getType();
     }
 
     private void loadRooms(int stage){
