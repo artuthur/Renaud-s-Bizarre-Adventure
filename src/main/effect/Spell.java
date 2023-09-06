@@ -25,7 +25,7 @@ public enum Spell {
     GUILLOTINE("Guillotine", SpellType.ATTACK, 20),
     ASMODEUS("Asmodeus, Démone de la luxure", SpellType.ATTACK, 20),
     ETREINTE_VAMPIRIQUE("Étreinte vampirique", SpellType.ATTACK, 10),
-    ENLACEMENT_EROTIQUE("Enlacement érotique", SpellType.ATTACK, 15),
+    ENLACEMENT_EROTIQUE("Enlacement érotique", SpellType.ATTACK, 10),
     DEUX_BON_ARGUMENT("Deux 'BON' arguments", SpellType.ATTACK, 10),
     DRAINAGE_SANGUIN("Drainage sanguin", SpellType.ATTACK, 10),
     CHARGE_INERTE("Charge inerte", SpellType.ATTACK, 1),
