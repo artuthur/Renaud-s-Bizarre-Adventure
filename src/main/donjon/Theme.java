@@ -22,8 +22,4 @@ public enum Theme{
     public static int getSize(){
         return values().length;
     }
-
-    public String toString(){
-        return getClass().getSimpleName() + "[color:" + color + "]";
-    }
 }

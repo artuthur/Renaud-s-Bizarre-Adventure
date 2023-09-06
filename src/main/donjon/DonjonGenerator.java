@@ -1,13 +1,14 @@
 package main.donjon;
 
 import main.Color;
+import main.Game;
 import main.entity.Renaud;
 
 public class DonjonGenerator {
     public final static int FLOOR_COUNT = Theme.getSize();
     public final static int ROOM_WIDTH = 25;
     public final static int ROOM_HEIGHT = 9;
-    public final static int ROOM_BETWEEN_WAY = 5;
+    public final static int ROOM_WAY = 5;
     public final static char CHAR_UP_LEFT = '╯';
     public final static char CHAR_UP_RIGHT = '╰';
     public final static char CHAR_DOWN_LEFT = '╮';
@@ -23,7 +24,6 @@ public class DonjonGenerator {
     public DonjonGenerator(Donjon donjon, Renaud player){
         this.donjon = donjon;
         this.player = player;
-        loadCurrentStage();
     }
 
     public Donjon getDonjon(){
@@ -57,14 +57,14 @@ public class DonjonGenerator {
     private void generateStage(int stage){
         int roomsCount = donjon.getRoomsCount(stage);
 
-        int width = roomsCount * ROOM_WIDTH + (roomsCount - 1) * ROOM_BETWEEN_WAY;
+        int width = roomsCount * (ROOM_WIDTH + ROOM_WAY) - ROOM_WAY;
         int height = ROOM_HEIGHT;
 
         map = new String[height][width];
 
         for(int y = 0; y < map.length; y++){
             for(int x = 0; x < map[y].length; x++){
-                int valueX = x % (ROOM_WIDTH + ROOM_BETWEEN_WAY);
+                int valueX = x % (ROOM_WIDTH + ROOM_WAY);
                 RoomType currentType = null;
                 char c = ' ';
                 
@@ -78,7 +78,7 @@ public class DonjonGenerator {
                         if(valueX == 0) c = CHAR_UP_RIGHT;
                         if(valueX == ROOM_WIDTH - 1) c = CHAR_UP_LEFT;
                     }
-                    currentType = getRoomTypeByWidthValue(valueX, width);
+                    currentType = getRoomTypeByWidthValue(width, x);
                 }else if(valueX >= ROOM_WIDTH && y == ROOM_HEIGHT / 2){
                     c = CHAR_WAY;
                 }
@@ -93,11 +93,12 @@ public class DonjonGenerator {
     }
 
     private RoomType getRoomTypeByWidthValue(int width, int x){
-        int room = 0;
+        int roomsCount = (width + ROOM_WAY) / (ROOM_WIDTH + ROOM_WAY);
+        int room = (x * roomsCount) / width;
         
-        DonjonFloor df = donjon.getFloor(player.getStage());
-        if(df == null) return null;
-        DonjonRoom dr = df.getRoom(room);
+        DonjonFloor dj = getCurrentFloor();
+        if(dj == null) return null;
+        DonjonRoom dr = dj.getRoom(room);
         if(dr == null) return null;
         return dr.getType();
     }
@@ -113,17 +114,10 @@ public class DonjonGenerator {
 
     private void loadRoom(DonjonRoom dr, int room){
         RoomType type = dr.getType();
-        int x = ROOM_WIDTH / 2 + ROOM_WIDTH * room + ROOM_BETWEEN_WAY * room;
+        int x = ROOM_WIDTH / 2 + (ROOM_WIDTH + ROOM_WAY) * room;
         int y = ROOM_HEIGHT / 2;
-        char c = 'X';
-
-        switch(type){
-            case ADVICE : c = RoomType.ADVICE.getCara(); break;
-            case ENEMY : c = RoomType.ENEMY.getCara(); break;
-            case BOSS : c = RoomType.BOSS.getCara(); break;
-        }
         
-        map[y][x] = String.valueOf(c);
+        map[y][x] = Color.charToColor(type.getColor(), type.getCara());
     }
 
     public void drawDonjon(){
@@ -151,7 +145,7 @@ public class DonjonGenerator {
     private void drawPlayer(){
         StringBuilder sb = new StringBuilder();
         int room = player.getRoom();
-        int width = ROOM_WIDTH / 2 + ROOM_WIDTH * room + ROOM_BETWEEN_WAY * room;
+        int width = ROOM_WIDTH / 2 + ROOM_WIDTH * room + ROOM_WAY * room;
         for(int y = 0; y < 4; y++){
             for(int x = 0; x < width; x++){
                 sb.append(" ");
