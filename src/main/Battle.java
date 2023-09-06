@@ -32,6 +32,7 @@ public class Battle {
         this.mob = mob;
         this.foe = new Monster(mob);
         foe.stageScale(player.getStage());
+        foe.setCurrentHp(foe.getHp());
         this.renaudView = renaudView;
     }
     
@@ -77,7 +78,7 @@ public class Battle {
         sb.append(".\nVous perdez ");
         sb.append(damage);
         sb.append(" points de vie.");
-        applyDamage(player, damage);
+        applyDamage(player, damage, player.getStage());
         System.out.println(sb.toString());
         Game.pressToContinue();
     }
@@ -97,7 +98,7 @@ public class Battle {
             sb.append(damage);
             sb.append(" dégât à ");
             sb.append(foe.getMob().getName());
-            applyDamage(foe, damage);
+            applyDamage(foe, damage, 0);
             System.out.println(sb.toString());
             Game.pressToContinue();
         }
@@ -139,8 +140,8 @@ public class Battle {
         return damage;
     }
 
-    public void applyDamage(Entity defender, int damage) {
-        int newHp = defender.getCurrentHp() - damage;
+    public void applyDamage(Entity defender, int damage, int stage) {
+        int newHp = defender.getCurrentHp() - (int)(damage + damage*(0.2*stage));
         if (newHp < 0) newHp = 0;
         defender.setCurrentHp(newHp);
     }
@@ -193,8 +194,8 @@ public class Battle {
         sb.append(" et infligez ");
         sb.append(damage);
         sb.append(" dégât à ");
-        sb.append(this.mob.getName());
-        applyDamage(foe, damage);
+        sb.append(foe.getMob().getName());
+        applyDamage(foe, damage, 0);
         System.out.println(sb.toString());
         Game.pressToContinue();
         return true;

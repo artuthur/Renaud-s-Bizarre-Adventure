@@ -26,7 +26,7 @@ public class Monster extends Entity{
     }
 
     public void stageScale(int stage) {
-        setHp((int)(this.getHp()*(1+0.2*stage)));
+        setHp((int)(this.getHp() + this.getHp()*(0.2*stage)));
     }
     
     public String toString() {

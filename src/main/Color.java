@@ -26,7 +26,7 @@ public enum Color {
         this.code = code;
     }
 
-    private String getCode(){
+    public String getCode(){
         return code;
     }
 
