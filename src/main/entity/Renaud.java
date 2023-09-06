@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.Game;
-import main.donjon.Donjon;
 import main.effect.Bonus;
 import main.effect.BonusType;
+import main.effect.LevelChoice;
 
 public class Renaud extends Entity{
     public final static int BASE_HP = 100;
@@ -132,10 +132,21 @@ public class Renaud extends Entity{
             nextLevel();
         }
     }
+
+    public boolean applyBonus(Bonus bonus) {
+        if(bonus.getBonusType().equals(BonusType.BUFF)) {
+            bonus.calcBuffOrValue(this);
+            return true;
+        }
+        return this.addLearnedSpells(bonus) && bonusDrawList.remove(bonus);
+    }
     
     public void nextLevel() {
+        Game.clearScreen();
         level++;
         expNeeded *= 1.2;
+        System.out.println("Vous êtes passé niveau " + getLevel() + " !");
+        applyBonus(LevelChoice.pickBonus(this));
     }
 
     @Override
