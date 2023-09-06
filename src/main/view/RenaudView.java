@@ -1,6 +1,7 @@
-package main.entity;
+package main.view;
 
 import main.Game;
+import main.entity.Renaud;
 
 public class RenaudView {
     private static Renaud player;

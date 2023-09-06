@@ -1,5 +1,7 @@
-package main;
+package main.view;
 
+import main.Battle;
+import main.Game;
 import main.bestiary.Bestiary;
 import main.entity.Renaud;
 import main.file.FileFinder;
@@ -71,7 +73,7 @@ public class BattleView {
         System.out.println();
         System.out.println(sbName.toString());
         System.out.println(sbHp.toString());
-        
+
     }
 
     private static int getMaxCarac(File f){

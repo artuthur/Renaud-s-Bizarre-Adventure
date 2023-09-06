@@ -1,5 +1,6 @@
-package main;
+package main.view;
 
+import main.Game;
 import main.bestiary.Bestiary;
 import main.file.FileLoader;
 

@@ -1,10 +1,7 @@
 package main;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import main.bestiary.Bestiary;
@@ -15,7 +12,8 @@ import main.effect.Spell;
 import main.effect.UseType;
 import main.entity.Monster;
 import main.entity.Renaud;
-import main.entity.RenaudView;
+import main.view.BattleView;
+import main.view.RenaudView;
 import main.entity.Entity;
 
 public class Battle {
@@ -57,8 +55,8 @@ public class Battle {
     
     public void foeTurn() {
         Game.clearScreen();
+        renaudView.printBattleStats();
         BattleView.afficheSprites(this);
-        renaudView.printStats();
         Spell spellUse;
         if (this.mob.isBoss()) {
             if (Mathf.random(0, 1) <= 0.6) {
@@ -86,8 +84,8 @@ public class Battle {
 
     public void renaudTurn() {
         Game.clearScreen();
+        renaudView.printBattleStats();
         BattleView.afficheSprites(this);
-        renaudView.printStats();
         StringBuilder sb = new StringBuilder();
         int damage = 0;
         Bonus b = null;
@@ -149,8 +147,8 @@ public class Battle {
 
     public Bonus choiceSpell() {
         Game.clearScreen();
+        renaudView.printBattleStats();
         BattleView.afficheSprites(this);
-        renaudView.printStats();
         int i = 0;
         System.out.println("0. Retour");
         for (Bonus b : player.getLearnedSpells()) {
@@ -243,6 +241,7 @@ public class Battle {
 
     public void battle() {
         BattleView.afficheBattle();
+        renaudView.printBattleStats();
         BattleView.afficheSprites(this);
         speedtie();
         while (player.getCurrentHp() > 0 && foe.getCurrentHp() > 0) {
@@ -252,9 +251,11 @@ public class Battle {
         }
         if (foe.getCurrentHp() <= 0) {
             if (foe.isBoss()) {
-                player.giveExp(player.getExpNeeded() - player.getExpCurrent());
+                player.giveExp(player.getExpNeeded());
             }
-            player.giveExp(EXP_GAIN);
+            else {
+                player.giveExp(EXP_GAIN);
+            }
             player.nextRoom();
         }
     }
