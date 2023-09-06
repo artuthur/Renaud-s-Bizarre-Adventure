@@ -20,6 +20,10 @@ public class Entity {
         this(mob.getName(), mob.getHealth(), mob.getDefense());
     }
 
+    public String getName(){
+        return NAME;
+    }
+
     public int getHp() {
         return hp;
     }

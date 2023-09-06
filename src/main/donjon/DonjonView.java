@@ -28,7 +28,6 @@ public class DonjonView {
             donjonGenerator.drawDonjon();
             Game.pressToContinue();
             checkPlayerCase();
-            Game.pressToContinue();
         }while(!isFinish());
     }
 
@@ -49,6 +48,7 @@ public class DonjonView {
         }
         if(donjonRoom.getAdvice() != null){
             AdviceView.load(donjonRoom.getAdvice());
+            player.nextRoom();
         }
     }
 

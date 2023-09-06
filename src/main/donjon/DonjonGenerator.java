@@ -126,9 +126,14 @@ public class DonjonGenerator {
         StringBuilder sb = new StringBuilder();
         int room = player.getRoom();
         int width = ROOM_WIDTH / 2 + ROOM_WIDTH * room + ROOM_BETWEEN_WAY * room;
-        for(int y = 0; y < 3; y++){
+        for(int y = 0; y < 4; y++){
             for(int x = 0; x < width; x++){
                 sb.append(" ");
+                String name = player.getName();
+                if(x == width - name.length()/2 && y == 3){
+                    sb.append(name);
+                    continue;
+                }
             }
             if(y == 0) sb.append('ᐱ');
             if(y == 1) sb.append('|');
