@@ -37,16 +37,16 @@ public class Donjon {
         return null;
     }
 
-    public Theme getTheme(int stage){
-        DonjonFloor dj = getFloor(stage);
-        if(dj == null) return null;
-        return dj.getTheme();
-    }
-
     public DonjonRoom getRoom(int stage, int room){
         DonjonFloor floor = getFloor(stage);
         if(floor != null) return floor.getRoom(room);
         return null;
+    }
+
+    public Theme getTheme(int stage){
+        DonjonFloor dj = getFloor(stage);
+        if(dj == null) return null;
+        return dj.getTheme();
     }
 
     public void generateFloors(){

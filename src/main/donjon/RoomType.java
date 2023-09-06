@@ -3,9 +3,9 @@ package main.donjon;
 import main.Color;
 
 public enum RoomType {
-    ADVICE(Color.BLUE, 'A'),
-    ENEMY(Color.RED, 'E'),
-    BOSS(Color.YELLOW, 'B');
+    ADVICE(Color.FG_BLUE, 'A'),
+    ENEMY(Color.FG_RED, 'E'),
+    BOSS(Color.FG_YELLOW, 'B');
 
     private Color color;
     private char cara;
