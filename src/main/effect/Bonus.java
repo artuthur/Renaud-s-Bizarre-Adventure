@@ -23,7 +23,7 @@ public enum Bonus {
     MENU_GIANT("Menu giant", 3, BonusType.SPELL, SpellType.ATTACK, UseType.HEAL, 4, 160),
     COUP_DE_GUITARE("Coup de guitare", 4, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 1, 50),
     REQUIEM_MACABRE("Requiem macabre", 4, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 4, 100),
-    GRAND_CRU("Grand crû", 4, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 2, 300),
+    GRAND_CRU("Grand crû", 4, BonusType.SPELL, SpellType.ATTACK, UseType.HEAL, 2, 300),
 
     /* Sorts à valeur modulable (value est un pourcentage en int) */
     LA_SERENADE_DU_COEUR("La sérénade du coeur", 4, BonusType.SPELL_SCALING, SpellType.HEALTH, UseType.DAMAGE, 5, 50),
