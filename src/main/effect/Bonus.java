@@ -145,4 +145,10 @@ public enum Bonus {
             }
         return v;
     }
+
+    public String toString() {
+        return getClass().getSimpleName() + "[codeName:" + name() + ", name:" + name + ", rarity:" + rarity +
+            ", bonusType:" + type + ", scaling:" + spellType + ", useType:" + useType +
+            ", cooldown:" + cooldown + ", value:" + value + "]";
+    }
 }
