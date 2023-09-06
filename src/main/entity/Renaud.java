@@ -5,6 +5,7 @@ import java.util.List;
 
 import main.Game;
 import main.donjon.Donjon;
+import main.donjon.Theme;
 import main.effect.Bonus;
 import main.effect.BonusType;
 import main.effect.LevelChoice;
@@ -123,6 +124,10 @@ public class Renaud extends Entity{
         }
     }
 
+    public Theme getCurrentTheme(){
+        return currentDonjon.getTheme(stage);
+    }
+
     /**
      * Méthode surchargée pour la facilité des tests
      */
@@ -137,7 +142,7 @@ public class Renaud extends Entity{
 
     public void nextStage(){
         stage++;
-        DialogueView.nextStage(currentDonjon.getTheme(stage));
+        DialogueView.startStage(currentDonjon.getTheme(stage));
     }
 
     /**
