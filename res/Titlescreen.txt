@@ -20,6 +20,6 @@
 ┃                                                           ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
--> Commencer la partie ? (incoming)
+-> Commencer la partie ? (press A)
 
 -> Voir le bestiaire ? (press B)

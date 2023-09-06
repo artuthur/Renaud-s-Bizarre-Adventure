@@ -23,4 +23,8 @@ public class FileLoader {
         }
         return sb.toString();
     }
+
+    public static void print(String fileName){
+        System.out.println(load(fileName));
+    }
 }
