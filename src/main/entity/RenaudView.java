@@ -43,10 +43,4 @@ public class RenaudView {
     public String stageRoomString() {
         return "Stage:" + (player.getStage()+1) + "-" + (player.getRoom()+1);
     }
-
-    public static void main(String[] args) {
-        Game.clearScreen();
-        RenaudView rv = new RenaudView(new Renaud());
-        rv.printStats();
-    }
 }

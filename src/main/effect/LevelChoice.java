@@ -45,8 +45,4 @@ public class LevelChoice {
         }
         return choices[choice-1];
     }
-    public static void main(String[] args) {
-        Renaud player = new Renaud();
-        pickBonus(player);
-    }
 }

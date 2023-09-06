@@ -6,10 +6,12 @@ import main.donjon.Donjon;
 import main.donjon.DonjonGenerator;
 import main.donjon.DonjonRoom;
 import main.entity.Renaud;
+import main.entity.RenaudView;
 
 public class GameView {
     private DonjonGenerator donjonGenerator;
     private Renaud player;
+    private static RenaudView renaudView;
 
     public GameView(DonjonGenerator donjonGenerator, Renaud player){
         this.donjonGenerator = donjonGenerator;
@@ -29,11 +31,12 @@ public class GameView {
         Renaud player = new Renaud(donjon);
         DonjonGenerator donjonGenerator = new DonjonGenerator(donjon, player);
         GameView gameView = new GameView(donjonGenerator, player);
+        GameView.renaudView = new RenaudView(player);
 
         DialogueView.startGame();
         do{
             Game.clearScreen();
-            System.out.println("Etage actuel : " + (player.getStage() + 1));
+            renaudView.printStats();
             donjonGenerator.drawDonjon();
             Game.pressToContinue();
             gameView.checkPlayerCase();
@@ -64,7 +67,7 @@ public class GameView {
         DonjonRoom donjonRoom = donjonGenerator.getCurrentRoom();
         if(donjonRoom == null) return;
         if(donjonRoom.getMob() != null){
-            Battle bt = new Battle(player, donjonRoom.getMob());
+            Battle bt = new Battle(player, donjonRoom.getMob(), GameView.renaudView);
             bt.battle();
         }
         if(donjonRoom.getAdvice() != null){
