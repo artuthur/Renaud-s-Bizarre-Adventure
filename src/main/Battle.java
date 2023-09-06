@@ -8,32 +8,33 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import main.bestiary.Bestiary;
+import main.donjon.Donjon;
 import main.effect.Bonus;
 import main.effect.BonusType;
 import main.effect.Spell;
 import main.effect.UseType;
 import main.entity.Monster;
 import main.entity.Renaud;
+import main.entity.RenaudView;
 import main.entity.Entity;
 
 public class Battle {
     private final static double BASE_CHANCE = 0.5;
     private final static int EXP_GAIN = 50;
 
-    private Map<Bonus, Integer> spellInCD;
-
     private Renaud player;
     private Bestiary mob;
     private Monster foe;
+    private RenaudView renaudView;
 
     private boolean isRenaudTurn;
 
-    public Battle(Renaud player, Bestiary mob) {
+    public Battle(Renaud player, Bestiary mob, RenaudView renaudView) {
         this.player = player;
         this.mob = mob;
         this.foe = new Monster(mob);
         foe.stageScale(player.getStage());
-        this.spellInCD = new HashMap<Bonus, Integer>();
+        this.renaudView = renaudView;
     }
     
     public void speedtie() {
@@ -57,6 +58,7 @@ public class Battle {
     public void foeTurn() {
         Game.clearScreen();
         BattleView.afficheSprites(this);
+        renaudView.printStats();
         Spell spellUse;
         if (this.mob.isBoss()) {
             if (Mathf.random(0, 1) <= 0.6) {
@@ -85,6 +87,7 @@ public class Battle {
     public void renaudTurn() {
         Game.clearScreen();
         BattleView.afficheSprites(this);
+        renaudView.printStats();
         StringBuilder sb = new StringBuilder();
         int damage = 0;
         Bonus b = null;
@@ -127,7 +130,7 @@ public class Battle {
         }
         updateCooldown();
         if (b != null) {
-            spellInCD.put(b, Integer.valueOf(b.getCooldown()));
+            Donjon.spellInCD.put(b, Integer.valueOf(b.getCooldown()));
         }
 
     }
@@ -147,12 +150,13 @@ public class Battle {
     public Bonus choiceSpell() {
         Game.clearScreen();
         BattleView.afficheSprites(this);
+        renaudView.printStats();
         int i = 0;
         System.out.println("0. Retour");
         for (Bonus b : player.getLearnedSpells()) {
             System.out.print((i+1) + ". " + b.getName() + " (");
             if (spellIsInCD(b)) {
-                System.out.print(spellInCD.get(b) + " tours");
+                System.out.print(Donjon.spellInCD.get(b) + " tours");
             }
             else {
                 System.out.print("Disponible");
@@ -222,19 +226,19 @@ public class Battle {
 
     public void updateCooldown() {
         List<Bonus> finishedCD = new ArrayList<Bonus>();
-        for (Entry<Bonus, Integer> e : spellInCD.entrySet()) {
+        for (Entry<Bonus, Integer> e : Donjon.spellInCD.entrySet()) {
             Bonus b = (Bonus) e.getKey();
             Integer i = (Integer) e.getValue();
-            spellInCD.put(b, (i-1));
+            Donjon.spellInCD.put(b, (i-1));
             if ((i-1) == 0) finishedCD.add(b);
         }
         for (Bonus b : finishedCD) {
-            spellInCD.remove(b);
+            Donjon.spellInCD.remove(b);
         }
     }
 
     public boolean spellIsInCD(Bonus b) {
-        return spellInCD.containsKey(b);
+        return Donjon.spellInCD.containsKey(b);
     }
 
     public void battle() {

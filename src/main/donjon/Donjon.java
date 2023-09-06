@@ -1,15 +1,20 @@
 package main.donjon;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import main.Mathf;
+import main.effect.Bonus;
 
 public class Donjon {
     private DonjonFloor[] floors;
+    public static Map<Bonus, Integer> spellInCD;
 
     public Donjon(){
         generateFloors();
+        spellInCD = new HashMap<Bonus, Integer>();
     }
 
     public DonjonFloor[] getFloors(){
