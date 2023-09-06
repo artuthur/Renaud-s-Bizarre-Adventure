@@ -13,7 +13,7 @@ public enum Advice {
     CONSEIL_8("Les ennemies de la ville en feu sont extrêmement résistante aux attaques de base, utiliser vos sorts!"),
     CONSEIL_9("Les Chaossos ne prendront presque aucun dégât des attaques de base, attaqué l'avec vos sort!"),
     CONSEIL_10("Seulement un seul monstre dans l'étage de la luxure infernale possède de l'armure, attaquer les donc avec vos attaques de base!"),
-    CONSEIL_11("La Playgirl est la seule à avoir de l'armure dans son étage!"),
+    CONSEIL_11("La Succubus est la seule à avoir de l'armure dans son étage!"),
     CONSEIL_12("Les attaques du Golem sont ridiculement faibles, mais il possède une quantité astronomique de HP!"),
     CONSEIL_13("Malgré le fait que Gardemin représente l'ordre, il ne suit que très peu les règlent."),
     CONSEIL_14("Même si le chien de garde est dangereux, il est aussi très câlin!"),
