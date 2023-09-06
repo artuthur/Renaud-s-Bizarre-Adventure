@@ -53,7 +53,7 @@ public class BattleView {
         String phrasePvMob = BattleView.phrase_pv + pvMob;
         int setSpaceMob = (getMaxCarac(file) - ( phrasePvMob ).length())/2 ;
         sb.append(setSpace( setSpaceFirt) + phrasePvPlayer + setSpace(setSpaceFirt));
-        sb.append(setSpaceTemp(BattleView.TAB.length()*7));
+        sb.append(setSpaceBetween(BattleView.TAB.length()*7));
         sb.append(setSpace( setSpaceMob) + phrasePvMob + setSpace(setSpaceMob));
 
         System.out.println(sb.toString());
@@ -82,7 +82,7 @@ public class BattleView {
         return s;
     }
 
-    private static String setSpaceTemp(int n){
+    private static String setSpaceBetween(int n){
         String s = "";
         for (int i = 0; i < n; i++) {
             s += " ";
