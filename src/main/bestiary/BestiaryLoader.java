@@ -17,8 +17,7 @@ public class BestiaryLoader{
             System.out.println();
             System.out.println("Quelle thèmes voulez-vous voir ?");
             System.out.println();
-            for (int i = 0; i < THEMES.length; i++)
-            System.out.println("Theme " + (i + 1) + " : " + THEMES[i]);
+            printThemes();
             System.err.println();
             System.out.print("Veuiller entrer le chiffre corréspondant : ");
 
@@ -38,6 +37,12 @@ public class BestiaryLoader{
         return index >= 1 && index <= THEMES.length;
     }
 
+    public static void printThemes(){
+        for (int i = 0; i < THEMES.length; i++){
+            System.out.println("Theme " + (i + 1) + " : " + THEMES[i]);
+        }
+    }
+
     public static void printBestiary(Theme theme){
         for(Bestiary m : Bestiary.getMobs(theme)){
             if(m.isBoss()){
@@ -46,7 +51,6 @@ public class BestiaryLoader{
                 System.out.println(m.getName());
             }
         }
-        System.out.println();
-        Game.readStringNotNull();
+        Game.pressToContinue();
     }
 }

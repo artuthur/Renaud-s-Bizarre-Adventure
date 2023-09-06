@@ -1,5 +1,9 @@
 package main.donjon;
 
 public enum Theme{
-    INTERIEUR,EDUCATION,OPPOSITION,CULTURE,FINALE
+    INTERIEUR,EDUCATION,OPPOSITION,CULTURE,FINALE;
+
+    public static int getSize(){
+        return values().length;
+    }
 }
