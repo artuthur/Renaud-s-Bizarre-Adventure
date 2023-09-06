@@ -1,7 +1,5 @@
 package main.entity;
 
-import main.Game;
-
 public class RenaudView {
     private static Renaud player;
 
