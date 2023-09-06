@@ -1,14 +1,17 @@
-package main.donjon;
+package main.view;
 
 import main.Battle;
 import main.Game;
+import main.donjon.Donjon;
+import main.donjon.DonjonGenerator;
+import main.donjon.DonjonRoom;
 import main.entity.Renaud;
 
-public class DonjonView {
+public class GameView {
     private DonjonGenerator donjonGenerator;
     private Renaud player;
 
-    public DonjonView(DonjonGenerator donjonGenerator, Renaud player){
+    public GameView(DonjonGenerator donjonGenerator, Renaud player){
         this.donjonGenerator = donjonGenerator;
         this.player = player;
     }
@@ -21,22 +24,40 @@ public class DonjonView {
         return player;
     }
 
-    public void start(){
+    public static void start(){
+        Donjon donjon = new Donjon();
+        Renaud player = new Renaud(donjon);
+        DonjonGenerator donjonGenerator = new DonjonGenerator(donjon, player);
+        GameView gameView = new GameView(donjonGenerator, player);
+
+        DialogueView.startGame();
         do{
             Game.clearScreen();
             System.out.println("Etage actuel : " + (player.getStage() + 1));
             donjonGenerator.drawDonjon();
             Game.pressToContinue();
-            checkPlayerCase();
-        }while(!isFinish());
+            gameView.checkPlayerCase();
+        }while(!gameView.isFinish());
     }
 
     public boolean isFinish(){
+        if(player.isDead()){
+            playerDead();
+            return true;
+        }
         if(player.getStage() > donjonGenerator.getDonjon().getFloorsCount()){
-            System.out.println("Il n'y a plus d'étage !");
+            playerWin();
             return true;
         }
         return false;
+    }
+
+    public void playerDead(){
+        DialogueView.playerDead();
+    }
+
+    public void playerWin(){
+        DialogueView.playerWin();
     }
 
     public void checkPlayerCase(){
