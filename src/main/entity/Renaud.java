@@ -12,7 +12,7 @@ import main.view.DialogueView;
 
 public class Renaud extends Entity{
     public final static int BASE_HP = 100;
-    public final static int BASE_ATK = 20;
+    public final static int BASE_ATK = 15;
     public final static int BASE_DEF = 20;
     public final static int BASE_LEVEL = 1;
     public final static int BASE_EXP = 0;
