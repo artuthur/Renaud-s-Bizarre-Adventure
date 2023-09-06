@@ -25,6 +25,22 @@ public class RenaudView {
         System.out.println('╯');
     }
 
+    public void printBattleStats() {
+        String txt = '|' + stageRoomString() + '|' + lvlString() + '|' + expString() 
+            + '|' + atkString() + '|' + defString() + '|';
+        System.out.print('╭');
+        for (int i = 0; i < txt.length()-2; i++) {
+            System.out.print('\u2500');
+        }
+        System.out.println('╮');
+        System.out.println(txt);
+        System.out.print('╰');
+        for (int i = 0; i < txt.length()-2; i++) {
+            System.out.print('\u2500');
+        }
+        System.out.println('╯');
+    }
+
     public String lvlString() {
         return "Niveau:" + player.getLevel();
     }
