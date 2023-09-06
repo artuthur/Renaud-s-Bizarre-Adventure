@@ -71,6 +71,7 @@ public class BattleView {
         System.out.println();
         System.out.println(sbName.toString());
         System.out.println(sbHp.toString());
+        
     }
 
     private static int getMaxCarac(File f){

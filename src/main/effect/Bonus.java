@@ -10,19 +10,19 @@ public enum Bonus {
 
     /* Sorts à valeur fixe */
     LANCE_DE_BRIQUE("Lancé de brique", 0, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 1, 15),
-    POING_BOUCHE("Poing-bouche", 0, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 3, 25),
+    POING_BOUCHE("Poing-bouche", 0, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 3, 20),
     PTITE_BIERE("P'tite bière", 0, BonusType.SPELL, SpellType.HEALTH, UseType.HEAL, 2, 10),
     WRIGHT_KICK("Wright kick", 1, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 2, 20),
-    COUP_DE_BOULE("Coup de boule", 1, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 4, 50),
+    COUP_DE_BOULE("Coup de boule", 1, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 4, 27),
     BARQUETTE_DE_FRITTES("Barquette de frittes", 1, BonusType.SPELL, SpellType.HEALTH, UseType.HEAL, 2, 20),
-    COCKTAIL_MOLOTOV("Cocktail molotov", 2, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 3, 50),
-    BALAYETTE("Balayette", 2, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 5, 80),
+    COCKTAIL_MOLOTOV("Cocktail molotov", 2, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 3, 25),
+    BALAYETTE("Balayette", 2, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 5, 30),
     COCKTAIL_FRUITE("Cocktail fruité", 2, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 2, 70),
-    LANCE_DE_CHAISE("Lancé de chaise", 3, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 2, 75),
-    CONCERT_ASSOURDISSANT("Concert assourdissant", 3, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 3, 200),
+    LANCE_DE_CHAISE("Lancé de chaise", 3, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 2, 25),
+    CONCERT_ASSOURDISSANT("Concert assourdissant", 3, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 3, 40),
     MENU_GIANT("Menu giant", 3, BonusType.SPELL, SpellType.ATTACK, UseType.HEAL, 4, 160),
-    COUP_DE_GUITARE("Coup de guitare", 4, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 1, 100),
-    REQUIEM_MACABRE("Requiem macabre", 4, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 4, 500),
+    COUP_DE_GUITARE("Coup de guitare", 4, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 1, 50),
+    REQUIEM_MACABRE("Requiem macabre", 4, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 4, 100),
     GRAND_CRU("Grand crû", 4, BonusType.SPELL, SpellType.ATTACK, UseType.DAMAGE, 2, 300),
 
     /* Sorts à valeur modulable (value est un pourcentage en int) */
