@@ -1,6 +1,7 @@
 package main.bestiary;
 
 import main.Game;
+import main.MonsterView;
 import main.donjon.Theme;
 
 public class BestiaryLoader{
@@ -19,13 +20,15 @@ public class BestiaryLoader{
             System.out.println();
             for (int i = 0; i < THEMES.length; i++)
             System.out.println("Theme " + (i + 1) + " : " + THEMES[i]);
+            System.out.println();
+            System.out.println("-> Voir la galerie des personnages ? (press 6)");
             System.err.println();
             System.out.print("Veuiller entrer le chiffre corréspondant : ");
 
             choice = Game.readIntNotNull();
 
             System.out.println();
-
+            if(choice==6){MonsterView.load();System.out.println();Game.readStringNotNull();}
             if(choiceThemeIsValid(choice)){
                 printBestiary(THEMES[choice - 1]);
             }
