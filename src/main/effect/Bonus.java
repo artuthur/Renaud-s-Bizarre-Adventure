@@ -33,7 +33,7 @@ public enum Bonus {
     MEGIDOLAON("Megidolaon", 2, BonusType.SPELL_SCALING, SpellType.HEALTH, UseType.DAMAGE, 2, 25),
     VENT_DE_FARORE("Vent de Farore", 2, BonusType.SPELL_SCALING, SpellType.DEFENSE, UseType.DAMAGE, 2,35),
     FEU_DE_DIN("Feu de Din", 2, BonusType.SPELL_SCALING, SpellType.ATTACK, UseType.DAMAGE, 2, 50),
-    SAGESSE_DE_NAYRU("'Sagesse de Nayrus", 2, BonusType.SPELL_SCALING, SpellType.HEALTH, UseType.HEAL, 2, 25),
+    SAGESSE_DE_NAYRU("Sagesse de Nayrus", 2, BonusType.SPELL_SCALING, SpellType.HEALTH, UseType.HEAL, 2, 25),
     MEGIDO("Megido", 0, BonusType.SPELL_SCALING, SpellType.HEALTH, UseType.DAMAGE, 3, 10),
     FREEDOM("Freedom", 0, BonusType.SPELL_SCALING, SpellType.DEFENSE, UseType.DAMAGE, 3, 15),
     AGILAON("Agilaon", 0, BonusType.SPELL_SCALING, SpellType.ATTACK, UseType.DAMAGE, 3, 10),
