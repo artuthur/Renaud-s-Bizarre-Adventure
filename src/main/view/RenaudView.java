@@ -11,8 +11,8 @@ public class RenaudView {
     }
 
     public void printStats() {
-        String txt = '|' + stageRoomString() + '|' + lvlString() + '|' + expString() 
-            + '|' + hpString() + '|' + atkString() + '|' + defString() + '|';
+        String txt = '│' + stageRoomString() + '│' + lvlString() + '│' + expString() 
+            + '│' + hpString() + '│' + atkString() + '│' + defString() + '│';
         System.out.print('╭');
         int lengthColor = Color.stringToColor(Color.FG_RED, "").length() +
             Color.stringToColor(Color.FG_BLUE, "").length() + 
@@ -32,8 +32,8 @@ public class RenaudView {
     }
 
     public void printBattleStats() {
-        String txt = '|' + stageRoomString() + '|' + lvlString() + '|' + expString() 
-            + '|' + atkString() + '|' + defString() + '|';
+        String txt = '│' + stageRoomString() + '│' + lvlString() + '│' + expString() 
+            + '│' + atkString() + '│' + defString() + '│';
         System.out.print('╭');
         int lengthColor = Color.stringToColor(Color.FG_RED, "").length() +
             Color.stringToColor(Color.FG_BLUE, "").length() + 

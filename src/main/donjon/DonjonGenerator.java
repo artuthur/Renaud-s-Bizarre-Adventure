@@ -5,8 +5,8 @@ import main.entity.Renaud;
 
 public class DonjonGenerator {
     public final static int FLOOR_COUNT = Theme.getSize();
-    public final static int ROOM_WIDTH = 15;
-    public final static int ROOM_HEIGHT = 7;
+    public final static int ROOM_WIDTH = 25;
+    public final static int ROOM_HEIGHT = 9;
     public final static int ROOM_BETWEEN_WAY = 5;
     public final static char CHAR_UP_LEFT = '╯';
     public final static char CHAR_UP_RIGHT = '╰';
@@ -34,8 +34,18 @@ public class DonjonGenerator {
         return player;
     }
 
+    public DonjonFloor getCurrentFloor(){
+        return donjon.getFloor(player.getStage());
+    }
+
     public DonjonRoom getCurrentRoom(){
         return donjon.getRoom(player.getStage(), player.getRoom());
+    }
+
+    public Theme getCurrentTheme(){
+        DonjonRoom dr = getCurrentRoom();
+        if(dr == null) return null;
+        return dr.getTheme();
     }
 
     private void loadCurrentStage(){
@@ -68,7 +78,7 @@ public class DonjonGenerator {
                         if(valueX == 0) c = CHAR_UP_RIGHT;
                         if(valueX == ROOM_WIDTH - 1) c = CHAR_UP_LEFT;
                     }
-                    //currentType = RoomType.BOSS;
+                    currentType = getRoomTypeByWidthValue(valueX, width);
                 }else if(valueX >= ROOM_WIDTH && y == ROOM_HEIGHT / 2){
                     c = CHAR_WAY;
                 }
@@ -80,6 +90,15 @@ public class DonjonGenerator {
                 map[y][x] = s;
             }
         }
+    }
+
+    private RoomType getRoomTypeByWidthValue(int width, int x){
+        int room = width % x;        
+        int valueX = x % (ROOM_WIDTH + ROOM_BETWEEN_WAY);
+        //DonjonRoom dr = donjon.getRoom();
+        //if(dr == null) return null;
+        
+        return RoomType.BOSS;
     }
 
     private void loadRooms(int stage){

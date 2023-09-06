@@ -22,4 +22,4 @@
 - Trouver des sprites représentatif de chaque monstres.
 
 ### PDCA
-
+Amélioration : Inventer des monstres plus accesible au niveau de l'ASCII art.
