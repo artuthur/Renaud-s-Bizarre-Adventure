@@ -1,6 +1,7 @@
-package main.donjon;
+package main.view;
 
 import main.Game;
+import main.donjon.Advice;
 
 public class AdviceView {
     public static void load(Advice advice){

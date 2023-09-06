@@ -5,11 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import main.bestiary.BestiaryLoader;
-import main.donjon.Donjon;
-import main.donjon.DonjonGenerator;
-import main.donjon.DonjonView;
-import main.entity.Renaud;
 import main.file.FileLoader;
+import main.view.GameView;
 
 public class Game {
     public final static String FILENAME_TEST = "Titlescreen.txt";
@@ -17,10 +14,6 @@ public class Game {
     public final static String START_GAME = "a";
     public final static String START_BESTIARY = "b";
 
-    public final static Renaud PLAYER = new Renaud();
-    public final static Donjon DONJON = new Donjon();
-    public final static DonjonGenerator DONJON_GENERATOR = new DonjonGenerator(DONJON, PLAYER);
-    public final static DonjonView DONJON_VIEW = new DonjonView(DONJON_GENERATOR, PLAYER);
     public static boolean end = false;
 
     public static void main(String[] args) {
@@ -34,7 +27,7 @@ public class Game {
         do{
             String choice = readStringNotNull();
 
-            if(keyEquality(choice, START_GAME)){ DONJON_VIEW.start(); }
+            if(keyEquality(choice, START_GAME)){ GameView.start(); }
             if(keyEquality(choice, START_BESTIARY)) { BestiaryLoader.load(); }
         }while(!end);
     }
