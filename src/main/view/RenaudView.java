@@ -1,13 +1,12 @@
 package main.view;
 
-import main.Game;
 import main.entity.Renaud;
 
 public class RenaudView {
     private static Renaud player;
 
     public RenaudView(Renaud player) {
-        this.player = player;
+        RenaudView.player = player;
     }
 
     public void printStats() {
