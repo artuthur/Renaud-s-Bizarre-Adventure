@@ -18,7 +18,7 @@ import main.entity.Entity;
 
 public class Battle {
     private final static double BASE_CHANCE = 0.5;
-    private final static int EXP_GAIN = 40;
+    private final static int EXP_GAIN = 50;
 
     private Map<Bonus, Integer> spellInCD;
 
@@ -44,14 +44,9 @@ public class Battle {
         }
         else {
             this.isRenaudTurn = false;
-            System.out.println(this.mob.name() + " commence en premier.");
+            System.out.println(foe.getMob().getName() + " commence en premier.");
         }
-        try {
-            Game.readString();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        Game.pressToContinue();
     }
 
     public void changeTurn() {
@@ -81,13 +76,14 @@ public class Battle {
         sb.append(" points de vie.");
         applyDamage(player, damage);
         System.out.println(sb.toString());
+        Game.pressToContinue();
     }
 
     public void renaudTurn() {
         StringBuilder sb = new StringBuilder();
         int damage = 0;
         Bonus b = null;
-        System.out.println("C'est votre tour.\nQue souhaitez-vous faire ?\n1. Attaque de base.\n2. Sorts.\n: ");
+        System.out.print("C'est votre tour.\nQue souhaitez-vous faire ?\n1. Attaque de base.\n2. Sorts.\n: ");
         String choix = Game.readStringNotNull();
         if (choix.equals("1")) {
             damage = calculatePhysicalDamage(player.getAtk(), foe.getDef());
@@ -97,9 +93,14 @@ public class Battle {
             sb.append(this.mob.getName());
             applyDamage(foe, damage);
             System.out.println(sb.toString());
+            Game.pressToContinue();
         }
         else if (choix.equals("2")) {
             if (player.getLearnedSpells().isEmpty()) {
+                System.out.println("Vous n'avez pas de sorts.");
+                Game.pressToContinue();
+                Game.clearScreen();
+                BattleView.afficheSprites(this);
                 renaudTurn();
             }
             else {
@@ -123,6 +124,7 @@ public class Battle {
                             sb.append(this.mob.getName());
                             applyDamage(foe, damage);
                             System.out.println(sb.toString());
+                            Game.pressToContinue();
                         }
                         else {
                             int heal = 0;
@@ -139,16 +141,21 @@ public class Battle {
                             sb.append(" points de vie.");
                             player.setCurrentHp(player.getCurrentHp() + heal);
                             System.out.println(sb.toString());
+                            Game.pressToContinue();
                         }
                         spellWasCast = true;
                     }
                     else {
+                        Game.clearScreen();
+                        BattleView.afficheSprites(this);
                         renaudTurn();
                     }
                 } while (!spellWasCast);       
             }
         }
         else {
+            Game.clearScreen();
+            BattleView.afficheSprites(this);
             renaudTurn();
         }
         updateCooldown();
@@ -159,8 +166,6 @@ public class Battle {
     }
 
     public int calculatePhysicalDamage(int amount, int def) {
-        System.out.println(amount);
-        System.out.println(def);
         int damage = (int) (amount * 100.0/(100.0+def));
         if (damage <= 0 ) damage = 1;
         return damage;
@@ -235,25 +240,19 @@ public class Battle {
             if (isRenaudTurn) {
                 BattleView.afficheSprites(this);
                 renaudTurn();
-                Game.readStringNotNull();
             }
             else {
                 BattleView.afficheSprites(this);
                 foeTurn();
-                Game.readStringNotNull();
             }
             changeTurn();
         }
-        if (!isRenaudTurn) {
-            System.out.println("Vous avez gagné ggez!");
+        if (foe.getCurrentHp() <= 0) {
             if (foe.isBoss()) {
                 player.giveExp(player.getExpNeeded() - player.getExpCurrent());
             }
             player.giveExp(EXP_GAIN);
             player.nextRoom();
-        }
-        else {
-            System.out.println("Il est sad le héros un peu.");
         }
     }
 }

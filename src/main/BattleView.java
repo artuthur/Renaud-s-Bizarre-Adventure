@@ -117,6 +117,4 @@ public class BattleView {
         bt = new Battle(loriginel, Bestiary.GERALD_GARDEMIN);
         bt.battle();
     }
-
-
 }
