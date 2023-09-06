@@ -72,13 +72,14 @@ public class Battle {
         }
         StringBuilder sb = new StringBuilder();
         int damage = calculatePhysicalDamage(spellUse.getAmount(), player.getDef());
+        damage = scaleDamage(damage);
         sb.append(foe.getMob().getName());
         sb.append(" vous attaque avec ");
         sb.append(spellUse.getName());
         sb.append(".\nVous perdez ");
         sb.append(damage);
         sb.append(" points de vie.");
-        applyDamage(player, damage, player.getStage());
+        applyDamage(player, damage);
         System.out.println(sb.toString());
         Game.pressToContinue();
     }
@@ -98,7 +99,7 @@ public class Battle {
             sb.append(damage);
             sb.append(" dégât à ");
             sb.append(foe.getMob().getName());
-            applyDamage(foe, damage, 0);
+            applyDamage(foe, damage);
             System.out.println(sb.toString());
             Game.pressToContinue();
         }
@@ -140,10 +141,14 @@ public class Battle {
         return damage;
     }
 
-    public void applyDamage(Entity defender, int damage, int stage) {
-        int newHp = defender.getCurrentHp() - (int)(damage + damage*(0.2*stage));
+    public void applyDamage(Entity defender, int damage) {
+        int newHp = defender.getCurrentHp() - damage;
         if (newHp < 0) newHp = 0;
         defender.setCurrentHp(newHp);
+    }
+
+    public int scaleDamage(int damage) {
+        return (int)(damage + damage*(0.2*player.getStage()));
     }
 
     public Bonus choiceSpell() {
@@ -195,7 +200,7 @@ public class Battle {
         sb.append(damage);
         sb.append(" dégât à ");
         sb.append(foe.getMob().getName());
-        applyDamage(foe, damage, 0);
+        applyDamage(foe, damage);
         System.out.println(sb.toString());
         Game.pressToContinue();
         return true;
