@@ -137,7 +137,7 @@ public class Renaud extends Entity{
 
     public void nextStage(){
         stage++;
-        DialogueView.nextStage(stage);
+        DialogueView.nextStage(currentDonjon.getTheme(stage));
     }
 
     /**
