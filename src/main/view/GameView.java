@@ -6,7 +6,6 @@ import main.donjon.Donjon;
 import main.donjon.DonjonGenerator;
 import main.donjon.DonjonRoom;
 import main.entity.Renaud;
-import main.entity.RenaudView;
 
 public class GameView {
     private DonjonGenerator donjonGenerator;

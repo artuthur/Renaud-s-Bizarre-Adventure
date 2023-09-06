@@ -2,8 +2,6 @@ package main.view;
 
 import main.Battle;
 import main.Game;
-import main.bestiary.Bestiary;
-import main.entity.Renaud;
 import main.file.FileFinder;
 import main.file.FileLoader;
 

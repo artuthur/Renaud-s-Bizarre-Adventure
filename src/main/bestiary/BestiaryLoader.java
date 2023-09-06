@@ -1,7 +1,7 @@
 package main.bestiary;
 
 import main.Game;
-import main.MonsterView;
+import main.view.MonsterView;
 import main.donjon.Theme;
 
 public class BestiaryLoader{
