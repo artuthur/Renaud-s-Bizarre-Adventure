@@ -33,6 +33,7 @@ public class GameView {
         GameView.renaudView = new RenaudView(player);
 
         DialogueView.startGame();
+        DialogueView.startStage(player.getCurrentTheme());
         do{
             Game.clearScreen();
             renaudView.printStats();
@@ -66,6 +67,9 @@ public class GameView {
         DonjonRoom donjonRoom = donjonGenerator.getCurrentRoom();
         if(donjonRoom == null) return;
         if(donjonRoom.getMob() != null){
+            if(donjonRoom.getMob().isBoss()){
+                DialogueView.startBoss(donjonRoom.getMob());
+            }
             Battle bt = new Battle(player, donjonRoom.getMob(), GameView.renaudView);
             bt.battle();
         }

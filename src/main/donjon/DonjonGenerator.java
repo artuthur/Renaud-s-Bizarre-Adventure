@@ -1,5 +1,6 @@
 package main.donjon;
 
+import main.Color;
 import main.entity.Renaud;
 
 public class DonjonGenerator {
@@ -17,7 +18,7 @@ public class DonjonGenerator {
 
     private Donjon donjon;
     private Renaud player;
-    private char[][] map;
+    private String[][] map;
 
     public DonjonGenerator(Donjon donjon, Renaud player){
         this.donjon = donjon;
@@ -49,14 +50,14 @@ public class DonjonGenerator {
         int width = roomsCount * ROOM_WIDTH + (roomsCount - 1) * ROOM_BETWEEN_WAY;
         int height = ROOM_HEIGHT;
 
-        map = new char[height][width];
+        map = new String[height][width];
 
         for(int y = 0; y < map.length; y++){
             for(int x = 0; x < map[y].length; x++){
-                char c = ' ';
-
                 int valueX = x % (ROOM_WIDTH + ROOM_BETWEEN_WAY);
-
+                RoomType currentType = null;
+                char c = ' ';
+                
                 if(valueX >= 0 && valueX <= ROOM_WIDTH - 1){
                     if(valueX % (ROOM_WIDTH - 1) == 0) c = CHAR_VERTICAL;
                     if(y % (ROOM_HEIGHT - 1) == 0) c = CHAR_HORIZONTAL;
@@ -67,11 +68,16 @@ public class DonjonGenerator {
                         if(valueX == 0) c = CHAR_UP_RIGHT;
                         if(valueX == ROOM_WIDTH - 1) c = CHAR_UP_LEFT;
                     }
+                    //currentType = RoomType.BOSS;
                 }else if(valueX >= ROOM_WIDTH && y == ROOM_HEIGHT / 2){
                     c = CHAR_WAY;
                 }
 
-                map[y][x] = c;
+                String s = String.valueOf(c);
+                if(currentType != null){
+                    s = Color.charToColor(currentType.getColor(), c);
+                }
+                map[y][x] = s;
             }
         }
     }
@@ -97,7 +103,7 @@ public class DonjonGenerator {
             case BOSS : c = RoomType.BOSS.getCara(); break;
         }
         
-        map[y][x] = c;
+        map[y][x] = String.valueOf(c);
     }
 
     public void drawDonjon(){
@@ -114,7 +120,7 @@ public class DonjonGenerator {
         StringBuilder sb = new StringBuilder();
         for(int y = 0; y < map.length; y++){
             for(int x = 0; x < map[y].length; x++){
-                char c = map[y][x];
+                String c = map[y][x];
                 sb.append(c + "");
             }
             sb.append("\n");

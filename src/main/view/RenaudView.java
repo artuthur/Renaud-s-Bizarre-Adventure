@@ -10,8 +10,8 @@ public class RenaudView {
     }
 
     public void printStats() {
-        String txt = '|' + stageRoomString() + '|' + lvlString() + '|' + expString() 
-            + '|' + hpString() + '|' + atkString() + '|' + defString() + '|';
+        String txt = '│' + stageRoomString() + '│' + lvlString() + '│' + expString() 
+            + '│' + hpString() + '│' + atkString() + '│' + defString() + '│';
         System.out.print('╭');
         for (int i = 0; i < txt.length()-2; i++) {
             System.out.print('\u2500');
@@ -26,8 +26,8 @@ public class RenaudView {
     }
 
     public void printBattleStats() {
-        String txt = '|' + stageRoomString() + '|' + lvlString() + '|' + expString() 
-            + '|' + atkString() + '|' + defString() + '|';
+        String txt = '│' + stageRoomString() + '│' + lvlString() + '│' + expString() 
+            + '│' + atkString() + '│' + defString() + '│';
         System.out.print('╭');
         for (int i = 0; i < txt.length()-2; i++) {
             System.out.print('\u2500');
