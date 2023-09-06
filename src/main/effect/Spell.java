@@ -1,5 +1,10 @@
 package main.effect;
 
+import java.util.List;
+
+import main.Mathf;
+import main.donjon.Advice;
+
 public enum Spell {
     NON_LIEU("Non lieu", SpellType.ATTACK, 30),
     DECENTE_DE_GARDE("Décente de garde", SpellType.ATTACK, 50),
@@ -48,6 +53,14 @@ public enum Spell {
 
     public int getAmount(){
         return amount;
+    }
+
+    public static Spell random(){
+        return Mathf.random(values());
+    }
+
+    public static Spell random(List<Spell> list){
+        return Mathf.random(list);
     }
 
     public String toString(){

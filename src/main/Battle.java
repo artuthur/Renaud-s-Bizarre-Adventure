@@ -14,7 +14,6 @@ import main.entity.Renaud;
 import main.entity.Entity;
 
 public class Battle {
-
     private final static double BASE_CHANCE = 0.5;
     private final static double DAMAGE_REDUCE = 0.1;
 
@@ -79,7 +78,7 @@ public class Battle {
 
     public void renaudTurn() {
         Game.clearScreen();
-        System.out.println("\nPlayer : " + player.getCurrentHp() + " | Foe : " + foe.getCurrentHp());
+        System.out.println("\nPlayer : " + player.getCurrentHp() + " | " + foe.getMob().getName() + " : " + foe.getCurrentHp());
         StringBuilder sb = new StringBuilder();
         int damage = 0;
         Bonus b = null;

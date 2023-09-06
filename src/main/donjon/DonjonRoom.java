@@ -28,13 +28,13 @@ public class DonjonRoom {
         List<Bestiary> mobs = Bestiary.getMobs(theme);
         switch(type){
             case ADVICE:
-                advice = Advice.getRandom();
+                advice = Advice.random();
                 break;
             case ENEMY:
-                mob = Bestiary.getMobs(mobs, false);
+                mob = Bestiary.random(mobs, false);
                 break;
             case BOSS:
-                mob = Bestiary.getMobs(mobs, true);
+                mob = Bestiary.random(mobs, true);
                 break;
         }
     }

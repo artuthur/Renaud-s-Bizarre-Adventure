@@ -15,7 +15,7 @@ public enum Advice {
         return help;
     }
 
-    public static Advice getRandom(){
+    public static Advice random(){
         return Mathf.random(values());
     }
 

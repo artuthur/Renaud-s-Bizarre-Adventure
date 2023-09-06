@@ -3,6 +3,8 @@ package main.effect;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.Mathf;
+import main.donjon.Advice;
 import main.entity.Renaud;
 
 public enum Bonus {
@@ -97,6 +99,14 @@ public enum Bonus {
 
     public int getValue() {
         return value;
+    }
+
+    public static Bonus random(){
+        return Mathf.random(values());
+    }
+
+    public static Bonus random(List<Bonus> list){
+        return Mathf.random(list);
     }
 
     public List<Bonus> getBonusList() {

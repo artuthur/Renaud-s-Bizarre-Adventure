@@ -85,13 +85,11 @@ public enum Bestiary{
         return false;
     }
 
-    public static List<Bestiary> getMobs(Theme theme){
-        List<Bestiary> mobs = new ArrayList<>();
-        for(Bestiary m : values()) if(m.getTheme() == theme) mobs.add(m);
-        return mobs;
+    public static Bestiary random(){
+        return Mathf.random(values());
     }
 
-    public static Bestiary getMobs(List<Bestiary> list, boolean isBoss){
+    public static Bestiary random(List<Bestiary> list, boolean isBoss){
         List<Bestiary> mobs = new ArrayList<>();
         List<Bestiary> boss = new ArrayList<>();
         for(Bestiary m : list){
@@ -101,6 +99,12 @@ public enum Bestiary{
         if(isBoss && boss.size() != 0) return Mathf.random(boss);
         else if(mobs.size() != 0) return Mathf.random(mobs);
         return null;
+    }
+
+    public static List<Bestiary> getMobs(Theme theme){
+        List<Bestiary> mobs = new ArrayList<>();
+        for(Bestiary m : values()) if(m.getTheme() == theme) mobs.add(m);
+        return mobs;
     }
     
     public String toString(){

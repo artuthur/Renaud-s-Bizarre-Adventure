@@ -1,17 +1,23 @@
 package main.entity;
 
+import main.bestiary.Bestiary;
+
 public class Entity {
+    private final String NAME;
     private int hp;
     private int currentHp;
     private int def;
-    private final String NAME;
 
     
-    public Entity(int hp, int currentHp, int def, String name) {
+    public Entity(String name, int hp, int def) {
+        this.NAME = name;
         this.hp = hp;
-        this.currentHp = currentHp;
+        this.currentHp = hp;
         this.def = def;
-        NAME = name;
+    }
+
+    public Entity(Bestiary mob){
+        this(mob.getName(), mob.getHealth(), mob.getDefense());
     }
 
     public int getHp() {

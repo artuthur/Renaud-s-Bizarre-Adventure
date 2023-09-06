@@ -30,7 +30,7 @@ public class Renaud extends Entity{
     private int room;
 
     public Renaud() {
-        super(BASE_HP, BASE_HP, BASE_DEF, "Renaud");
+        super("Renaud", BASE_HP, BASE_DEF);
         this.bonusList = new ArrayList<Bonus>();
         this.bonusDrawList = getBonusList();
         this.learnedSpells = new ArrayList<Bonus>();
@@ -108,19 +108,17 @@ public class Renaud extends Entity{
         this.room = room;
     }
 
-    public void nextRoom(int a){
-        Donjon donjon = Game.DONJON_GENERATOR.getDonjon();
-        int roomMax = donjon.getRoomsCount(stage);
-        room += a;
+    public void nextRoom(){
+        int roomMax = Game.DONJON_GENERATOR.getDonjon().getRoomsCount(stage);
+        room++;
         while(room >= roomMax){
-            roomMax = donjon.getRoomsCount(stage);
             room -= roomMax;
-            nextLevel();
+            nextStage();
         }
     }
 
     public void nextStage(){
-        stage += 1;
+        stage++;
     }
 
     public int getLevel() {
