@@ -14,7 +14,7 @@ public enum Spell {
     DEGRADATION_MENTAL("Dégradation mentale", SpellType.ATTACK, 25),
     BURNOUT("Burnout", SpellType.ATTACK, 30),
     COUP_DE_REGLE_MAGIC("Coup de règle magique", SpellType.ATTACK, 20),
-    DEVOIR_MAISON("Devoir maison", SpellType.ATTACK, 30),
+    DEVOIR_MAISON("Devoir maison", SpellType.ATTACK, 20),
     ESSOUFFLEMENT("Éssoufflement", SpellType.ATTACK, 3),
     TOILE_ETHERIQUE("Toile étherique", SpellType.ATTACK, 15),
     BARRAGE("Barrage", SpellType.ATTACK, 20),
