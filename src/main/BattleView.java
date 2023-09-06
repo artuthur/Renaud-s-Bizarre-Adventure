@@ -105,8 +105,15 @@ public class BattleView {
     }
 
     public static void main(String[] args) {
-        Battle bt = new Battle(new Renaud(), Bestiary.random());
-        Battle.battle(bt.getMob());
+        Renaud loriginel = new Renaud();
+        Battle bt = new Battle(loriginel, Bestiary.CRS);
+        bt.battle();
+        bt = new Battle(loriginel, Bestiary.CRS);
+        bt.battle();
+        bt = new Battle(loriginel, Bestiary.CRS);
+        bt.battle();
+        System.out.println(bt.getPlayer().getExpCurrent());
+        System.out.println(bt.getPlayer().getLevel());
     }
 
 

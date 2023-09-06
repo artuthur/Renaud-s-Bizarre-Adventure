@@ -19,6 +19,7 @@ import main.entity.Entity;
 public class Battle {
     private final static double BASE_CHANCE = 0.5;
     private final static double DAMAGE_REDUCE = 0.1;
+    private final static int EXP_GAIN = 40;
 
     private Map<Bonus, Integer> spellInCD;
 
@@ -73,7 +74,7 @@ public class Battle {
         }
         StringBuilder sb = new StringBuilder();
         int damage = calculatePhysicalDamage(spellUse.getAmount(), player.getDef());
-        sb.append(this.mob.getName());
+        sb.append(foe.getMob().getName());
         sb.append(" vous attaque avec ");
         sb.append(spellUse.getName());
         sb.append(".\nVous perdez ");
@@ -224,33 +225,28 @@ public class Battle {
         return foe;
     }
 
-    public static void battle(Bestiary mob) {
+    public void battle() {
         BattleView.afficheBattle();
-        Battle bt = new Battle(new Renaud(), mob);
-        BattleView.afficheSprites(bt);
-        bt.speedtie();
-        bt.player.addBonusToRenaud(Bonus.LANCE_DE_BRIQUE);
-        bt.player.addBonusToRenaud(Bonus.PTITE_BIERE);
-        bt.player.addBonusToRenaud(Bonus.HARD_METAL);
-        while (bt.player.getCurrentHp() > 0 && bt.foe.getCurrentHp() > 0) {
-            if (bt.isRenaudTurn) {
-                //Game.clearScreen();
-                BattleView.afficheSprites(bt);
-                bt.renaudTurn();
+        BattleView.afficheSprites(this);
+        speedtie();
+        while (player.getCurrentHp() > 0 && foe.getCurrentHp() > 0) {
+            Game.clearScreen();
+            if (isRenaudTurn) {
+                BattleView.afficheSprites(this);
+                renaudTurn();
                 Game.readStringNotNull();
             }
             else {
-                //Game.clearScreen();
-                BattleView.afficheSprites(bt);
-                bt.foeTurn();
+                BattleView.afficheSprites(this);
+                foeTurn();
                 Game.readStringNotNull();
             }
-            bt.changeTurn();
+            changeTurn();
         }
-        if (!bt.isRenaudTurn) {
+        if (!isRenaudTurn) {
             System.out.println("Vous avez gagné ggez!");
-            bt.player.giveExp(40);
-            bt.player.setRoom(bt.player.getRoom()+1);
+            player.giveExp(EXP_GAIN);
+            player.nextRoom();
         }
         else {
             System.out.println("Il est sad le héros un peu.");
