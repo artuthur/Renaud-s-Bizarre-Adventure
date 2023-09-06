@@ -108,12 +108,14 @@ public class BattleView {
         Renaud loriginel = new Renaud();
         Battle bt = new Battle(loriginel, Bestiary.CRS);
         bt.battle();
-        bt = new Battle(loriginel, Bestiary.CRS);
+        bt = new Battle(loriginel, Bestiary.ARS);
         bt.battle();
-        bt = new Battle(loriginel, Bestiary.CRS);
+        bt = new Battle(loriginel, Bestiary.CHIEN_DE_GARDE);
         bt.battle();
-        System.out.println(bt.getPlayer().getExpCurrent());
-        System.out.println(bt.getPlayer().getLevel());
+        bt = new Battle(loriginel, Bestiary.BRAVE_M);
+        bt.battle();
+        bt = new Battle(loriginel, Bestiary.GERALD_GARDEMIN);
+        bt.battle();
     }
 
 

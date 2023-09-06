@@ -18,7 +18,6 @@ import main.entity.Entity;
 
 public class Battle {
     private final static double BASE_CHANCE = 0.5;
-    private final static double DAMAGE_REDUCE = 0.1;
     private final static int EXP_GAIN = 40;
 
     private Map<Bonus, Integer> spellInCD;
@@ -160,7 +159,9 @@ public class Battle {
     }
 
     public int calculatePhysicalDamage(int amount, int def) {
-        int damage = (int) (amount - (def * DAMAGE_REDUCE));
+        System.out.println(amount);
+        System.out.println(def);
+        int damage = (int) (amount * 100.0/(100.0+def));
         if (damage <= 0 ) damage = 1;
         return damage;
     }
@@ -245,6 +246,9 @@ public class Battle {
         }
         if (!isRenaudTurn) {
             System.out.println("Vous avez gagné ggez!");
+            if (foe.isBoss()) {
+                player.giveExp(player.getExpNeeded() - player.getExpCurrent());
+            }
             player.giveExp(EXP_GAIN);
             player.nextRoom();
         }
