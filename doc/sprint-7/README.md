@@ -10,12 +10,13 @@
 
 ### Ce que nous allons faire durant le prochain sprint
 - Equilibrage du jeu.
-- Tests unitaire Renaud
+- Tests unitaire Battle.
+- Tests unitaire Bonus. 
 
 ## Rétrospective
 
 ### Sur quoi avons nous butté ?
-- Tests unitaire de Renaud certaines méthodes appelaient d'autre méthodes qui n'étaient pas testable 
+- Tests unitaire de Renaud certaine méthodes appelaient d'autre méthodes qui n'étaient pas testable 
 
 ### PDCA
 

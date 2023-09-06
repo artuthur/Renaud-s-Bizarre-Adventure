@@ -19,4 +19,4 @@
 - l'affichage des sprites des personnages.
 
 ### PDCA
-
+Amélioration : Réfléchir a comment nous allons les utiliser/afficher avant de les choisir.

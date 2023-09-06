@@ -20,4 +20,4 @@
 - le debug du système de combat. 
 
 ### PDCA
-
+Amélioration : Ecrire la class de test pour le système de combat avant de d'écrire cette même class.

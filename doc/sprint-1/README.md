@@ -19,4 +19,4 @@
 Bug de mise en commun entre le bestiaire et l'écran d'accueil
 
 ### PDCA
-
+Amelioration : Ecrire un test de mise en commun avant l'écriture de nos autre classes.
