@@ -23,11 +23,7 @@ public class BattleView {
     public static void afficheBattle(){
         Game.clearScreen();
         System.out.println(FileLoader.load(FILENAME_BATTLE));
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            System.err.println(e.getMessage());
-        }
+        Game.pressToContinue();
         Game.clearScreen();
     }
     
