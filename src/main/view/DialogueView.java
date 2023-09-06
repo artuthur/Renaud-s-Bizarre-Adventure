@@ -31,7 +31,7 @@ public class DialogueView {
         Game.pressToContinue();
     }
 
-    public static void nextStage(Theme theme, int stage){
+    public static void nextStage(Theme theme){
         clearScreen();
         switch(theme){
             case INTERIEUR: print(START_CULTURE); break;
