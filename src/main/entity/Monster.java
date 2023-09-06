@@ -21,6 +21,10 @@ public class Monster extends Entity{
         return mob;
     }
 
+    public boolean isBoss() {
+        return mob.isBoss();
+    }
+
     public void stageScale(int stage) {
         setHp((int)(this.getHp()*(1+0.2*stage)));
     }
