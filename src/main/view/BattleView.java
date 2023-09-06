@@ -9,8 +9,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.Thread;
-
 
 public class BattleView {
     public final static String FILENAME_BATTLE = "battle.txt";
@@ -23,11 +21,7 @@ public class BattleView {
     public static void afficheBattle(){
         Game.clearScreen();
         System.out.println(FileLoader.load(FILENAME_BATTLE));
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            System.err.println(e.getMessage());
-        }
+        Game.pressToContinue();
         Game.clearScreen();
     }
     
