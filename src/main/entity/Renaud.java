@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.Game;
+import main.donjon.Donjon;
 import main.effect.Bonus;
 import main.effect.BonusType;
 import main.effect.LevelChoice;
+import main.view.DialogueView;
 
 public class Renaud extends Entity{
     public final static int BASE_HP = 100;
@@ -17,6 +19,8 @@ public class Renaud extends Entity{
     public final static int BASE_NEEDED_EXP = 100;
     public final static int BASE_STAGE = 0;
     public final static int BASE_ROOM = 0;
+
+    private Donjon currentDonjon;
 
     private List<Bonus> bonusList;
     private List<Bonus> bonusDrawList;
@@ -29,8 +33,9 @@ public class Renaud extends Entity{
     private int stage;
     private int room;
 
-    public Renaud() {
+    public Renaud(Donjon currentDonjon) {
         super("Renaud", BASE_HP, BASE_DEF);
+        this.currentDonjon = currentDonjon;
         this.bonusList = new ArrayList<Bonus>();
         this.bonusDrawList = Bonus.getBonusList();
         this.learnedSpells = new ArrayList<Bonus>();
@@ -40,6 +45,7 @@ public class Renaud extends Entity{
         this.expCurrent = BASE_EXP;
         this.stage = BASE_STAGE;
         this.room = BASE_ROOM;
+        addBonusToRenaud(Bonus.LANCE_DE_BRIQUE);
     }
 
     public List<Bonus> getBonusList() {
@@ -109,7 +115,7 @@ public class Renaud extends Entity{
     }
 
     public void nextRoom(){
-        int roomMax = Game.DONJON_GENERATOR.getDonjon().getRoomsCount(stage);
+        int roomMax = currentDonjon.getRoomsCount(stage);
         room++;
         while(room >= roomMax){
             room -= roomMax;
@@ -131,6 +137,7 @@ public class Renaud extends Entity{
 
     public void nextStage(){
         stage++;
+        DialogueView.nextStage(stage);
     }
 
     public int getLevel() {
@@ -170,6 +177,11 @@ public class Renaud extends Entity{
         expNeeded *= 1.2;
         System.out.println("Vous êtes passé niveau " + getLevel() + " !");
         applyBonus(LevelChoice.pickBonus(this));
+        this.setCurrentHp(this.getHp());
+    }
+
+    public boolean isDead(){
+        return this.getCurrentHp() <= 0;
     }
 
     /**

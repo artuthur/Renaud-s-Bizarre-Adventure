@@ -12,23 +12,25 @@ public enum Bestiary{
     ARS(Theme.INTERIEUR, "ARS", "ARS.txt", 20, 5, Spell.FLASH_BALL),
     BRAVE_M(Theme.INTERIEUR, "BRAVE M", "braveM_ascii.txt", 50, 40, Spell.BAVURE),
     CHIEN_DE_GARDE(Theme.INTERIEUR, "Chien de gardes", "ChienDeGarde.txt", 30, 0, Spell.MORSURE),
-    GERALD_GARDEMIN(Theme.INTERIEUR, "Gérald Gardemin", "GeraldGardemain.txt", 100, 30, Spell.NON_LIEU, Spell.DECENTE_DE_GARDE),
+    GERALD_GARDEMIN(Theme.INTERIEUR, "Gérald Gardemin", "GeraldGardemain.txt", 75, 20, Spell.NON_LIEU, Spell.DECENTE_DE_GARDE),
     PROFESSEUR_DE_MAGIE(Theme.EDUCATION, "Professeur de magie", "professeur_magie.txt", 40, 10, Spell.COUP_DE_REGLE_MAGIC),
     LIVRE_SCOLAIRE_MAGIC(Theme.EDUCATION, "Livre scolaire magic", "magic_book.txt", 20, 10, Spell.DEVOIR_MAISON),
-    PROFESSEUR_DEPS(Theme.EDUCATION, "Professeur d'EPS", "prof_eps.txt", 100, 20, Spell.ESSOUFFLEMENT),
+    PROFESSEUR_DEPS(Theme.EDUCATION, "Professeur d'EPS", "prof_eps.txt", 100, 5, Spell.ESSOUFFLEMENT),
     ARAIGNEE_DE_BIBLIOTHEQUE(Theme.EDUCATION, "Araignée de bibliothèque", "araignee_biblio.txt", 50, 30, Spell.TOILE_ETHERIQUE),
-    JEAN_MERLIN_BLANQUER(Theme.EDUCATION, "Jean Merlin Blanquer", "JeanMerlinBlancker.txt", 70, 20, Spell.DEGRADATION_MENTAL, Spell.BURNOUT),
+    JEAN_MERLIN_BLANQUER(Theme.EDUCATION, "Jean Merlin Blanquer", "JeanMerlinBlancker.txt", 70, 10, Spell.DEGRADATION_MENTAL, Spell.BURNOUT),
     ROBE_JAUNE(Theme.OPPOSITION, "Robe Jaune", "robe_jaune.txt", 20, 50, Spell.EXPLOSION_MARCANIQUE),
     CASSEUR(Theme.OPPOSITION, "Casseur", "casseur.txt", 30, 30, Spell.PILLAGE),
     CHAOSSOS(Theme.OPPOSITION, "Chaossos", "chaossos.txt", 10, 99, Spell.HARCELEMENT_CIBLER),
-    REVOLUTIONNAIR(Theme.OPPOSITION, "Révolutionnaire", "revolutionary.txt", 20, 60, Spell.GUILLOTINE),
-    JL_ANARCHON(Theme.OPPOSITION, "JL l'Anarchon", "jl_larnarchon.txt", 60, 80, Spell.FRAPPE_INSOUMISE, Spell.BARRAGE),
-    SUCCUBUS(Theme.CULTURE, "Succubus <3", "succubus.txt", 169, 0, Spell.ENLACEMENT_EROTIQUE),
-    PLAYGIRL(Theme.CULTURE, "PlayGirl", "playgirl.txt", 142, 15, Spell.DEUX_BON_ARGUMENT),
-    VAMPIRETTE(Theme.CULTURE, "Vampirette", "vampirette.txt", 166, 0, Spell.DRAINAGE_SANGUIN),
-    ESCLAVE_GOLEM(Theme.CULTURE, "Esclave Golem", "golem.txt", 666, 0, Spell.CHARGE_INERTE),
-    MARLENNE_LILITHIA(Theme.CULTURE, "Marlène Lilithia", "marlenne_lilithia.txt", 250, 0, Spell.ETREINTE_VAMPIRIQUE, Spell.ASMODEUS),
+    REVOLUTIONNAIRE(Theme.OPPOSITION, "Révolutionnaire", "revolutionary.txt", 20, 60, Spell.GUILLOTINE),
+    JL_ANARCHON(Theme.OPPOSITION, "JL l'Anarchon", "jl_larnarchon.txt", 40, 80, Spell.FRAPPE_INSOUMISE, Spell.BARRAGE),
+    SUCCUBUS(Theme.CULTURE, "Succubus <3", "succubus.txt", 69, 15, Spell.ENLACEMENT_EROTIQUE),
+    PLAYGIRL(Theme.CULTURE, "PlayGirl", "playgirl.txt", 100, 0, Spell.DEUX_BON_ARGUMENT),
+    VAMPIRETTE(Theme.CULTURE, "Vampirette", "vampirette.txt", 66, 0, Spell.DRAINAGE_SANGUIN),
+    ESCLAVE_GOLEM(Theme.CULTURE, "Esclave Golem", "golem.txt", 166, 0, Spell.CHARGE_INERTE),
+    MARLENNE_LILITHIA(Theme.CULTURE, "Marlène Lilithia", "marlenne_lilithia.txt", 175, 0, Spell.ETREINTE_VAMPIRIQUE, Spell.ASMODEUS),
     ARDIEJM(Theme.FINALE, "Archi roi démon immortel Emanuelle Jupiter Macrongue", "archi_roi_demon_immortel_emmanuel_jupiter_macrongue.txt", 1493, 49, Spell.MORNING_STAR, Spell.CONFINEMENT);
+
+    public final static Bestiary FINAL_BOSS = Bestiary.ARDIEJM;
 
     private Theme theme;
     private String name;
@@ -85,8 +87,16 @@ public enum Bestiary{
         return false;
     }
 
+    public static Bestiary getFinalBoss(){
+        return FINAL_BOSS;
+    }
+
     public static Bestiary random(){
         return Mathf.random(values());
+    }
+
+    public static Bestiary random(List<Bestiary> list){
+        return Mathf.random(list);
     }
 
     public static Bestiary random(List<Bestiary> list, boolean isBoss){
@@ -99,6 +109,12 @@ public enum Bestiary{
         if(isBoss && boss.size() != 0) return Mathf.random(boss);
         else if(mobs.size() != 0) return Mathf.random(mobs);
         return null;
+    }
+
+    public static Bestiary randomBossNotFinal(){
+        List<Bestiary> boss = new ArrayList<>();
+        for(Bestiary m : values()) if(m.isBoss() && m != FINAL_BOSS) boss.add(m);
+        return random(boss);
     }
 
     public static List<Bestiary> getMobs(Theme theme){

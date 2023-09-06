@@ -103,18 +103,4 @@ public class BattleView {
         }
         return s;
     }
-
-    public static void main(String[] args) {
-        Renaud loriginel = new Renaud();
-        Battle bt = new Battle(loriginel, Bestiary.CRS);
-        bt.battle();
-        bt = new Battle(loriginel, Bestiary.CRS);
-        bt.battle();
-        bt = new Battle(loriginel, Bestiary.CRS);
-        bt.battle();
-        System.out.println(bt.getPlayer().getExpCurrent());
-        System.out.println(bt.getPlayer().getLevel());
-    }
-
-
 }

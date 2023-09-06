@@ -18,8 +18,7 @@ import main.entity.Entity;
 
 public class Battle {
     private final static double BASE_CHANCE = 0.5;
-    private final static double DAMAGE_REDUCE = 0.1;
-    private final static int EXP_GAIN = 40;
+    private final static int EXP_GAIN = 50;
 
     private Map<Bonus, Integer> spellInCD;
 
@@ -33,6 +32,7 @@ public class Battle {
         this.player = player;
         this.mob = mob;
         this.foe = new Monster(mob);
+        foe.stageScale(player.getStage());
         this.spellInCD = new HashMap<Bonus, Integer>();
     }
     
@@ -45,14 +45,9 @@ public class Battle {
         }
         else {
             this.isRenaudTurn = false;
-            System.out.println(this.mob.name() + " commence en premier.");
+            System.out.println(foe.getMob().getName() + " commence en premier.");
         }
-        try {
-            Game.readString();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        Game.pressToContinue();
     }
 
     public void changeTurn() {
@@ -60,6 +55,8 @@ public class Battle {
     }
     
     public void foeTurn() {
+        Game.clearScreen();
+        BattleView.afficheSprites(this);
         Spell spellUse;
         if (this.mob.isBoss()) {
             if (Mathf.random(0, 1) <= 0.6) {
@@ -82,71 +79,47 @@ public class Battle {
         sb.append(" points de vie.");
         applyDamage(player, damage);
         System.out.println(sb.toString());
+        Game.pressToContinue();
     }
 
     public void renaudTurn() {
+        Game.clearScreen();
+        BattleView.afficheSprites(this);
         StringBuilder sb = new StringBuilder();
         int damage = 0;
         Bonus b = null;
-        System.out.println("C'est votre tour.\nQue souhaitez-vous faire ?\n1. Attaque de base.\n2. Sorts.\n: ");
+        System.out.print("C'est votre tour.\nQue souhaitez-vous faire ?\n1. Attaque de base.\n2. Sorts.\n: ");
         String choix = Game.readStringNotNull();
         if (choix.equals("1")) {
             damage = calculatePhysicalDamage(player.getAtk(), foe.getDef());
             sb.append("Vous utilisez une attaque normale et infligez ");
             sb.append(damage);
             sb.append(" dégât à ");
-            sb.append(this.mob.getName());
+            sb.append(foe.getMob().getName());
             applyDamage(foe, damage);
             System.out.println(sb.toString());
+            Game.pressToContinue();
         }
         else if (choix.equals("2")) {
             if (player.getLearnedSpells().isEmpty()) {
+                System.out.println("Vous n'avez pas de sorts.");
+                Game.pressToContinue();
                 renaudTurn();
             }
             else {
                 sb = new StringBuilder();
-                boolean spellWasCast = false;
-                do {
-                    b = choiceSpell();
-                    if (!spellIsInCD(b)) {
-                        if (b.getUseType() == UseType.DAMAGE) {
-                            if (b.getBonusType() == BonusType.SPELL) {
-                                damage = b.getValue();
-                            }
-                            else if (b.getBonusType() == BonusType.SPELL_SCALING) {
-                                damage = b.calcBuffOrValue(player);
-                            }
-                            sb.append("Vous utilisez ");
-                            sb.append(b.getName());
-                            sb.append(" et infligez ");
-                            sb.append(damage);
-                            sb.append(" dégât à ");
-                            sb.append(this.mob.getName());
-                            applyDamage(foe, damage);
-                            System.out.println(sb.toString());
-                        }
-                        else {
-                            int heal = 0;
-                            if (b.getBonusType() == BonusType.SPELL) {
-                                heal = b.getValue();
-                            }
-                            else if (b.getBonusType() == BonusType.SPELL_SCALING) {
-                                heal = b.calcBuffOrValue(player);
-                            }
-                            sb.append("Vous utilisez ");
-                            sb.append(b.getName());
-                            sb.append(" et récupérez ");
-                            sb.append(heal);
-                            sb.append(" points de vie.");
-                            player.setCurrentHp(player.getCurrentHp() + heal);
-                            System.out.println(sb.toString());
-                        }
-                        spellWasCast = true;
+                b = choiceSpell();
+                if (b != null) {
+                    if (b.getUseType() == UseType.DAMAGE) {
+                        applyDamageSpell(b);
                     }
                     else {
-                        renaudTurn();
+                        applyHealingSpell(b);
                     }
-                } while (!spellWasCast);       
+                }
+                else {
+                    renaudTurn();
+                } 
             }
         }
         else {
@@ -160,7 +133,7 @@ public class Battle {
     }
 
     public int calculatePhysicalDamage(int amount, int def) {
-        int damage = (int) (amount - (def * DAMAGE_REDUCE));
+        int damage = (int) (amount * 100.0/(100.0+def));
         if (damage <= 0 ) damage = 1;
         return damage;
     }
@@ -172,9 +145,12 @@ public class Battle {
     }
 
     public Bonus choiceSpell() {
-        int i = 1;
+        Game.clearScreen();
+        BattleView.afficheSprites(this);
+        int i = 0;
+        System.out.println("0. Retour");
         for (Bonus b : player.getLearnedSpells()) {
-            System.out.print(i + ". " + b.getName() + " (");
+            System.out.print((i+1) + ". " + b.getName() + " (");
             if (spellIsInCD(b)) {
                 System.out.print(spellInCD.get(b) + " tours");
             }
@@ -182,16 +158,66 @@ public class Battle {
                 System.out.print("Disponible");
             }
             System.out.println(")");
-            i++;
-            
+            i++; 
         }
-        int choix = Integer.parseInt(Game.readStringNotNull());
         try {
-            return player.getLearnedSpells().get(choix-1);
+            Bonus b = null;
+            int choix = Integer.parseInt(Game.readStringNotNull());
+            if (choix == 0) {
+                return b;
+            }
+            b = player.getLearnedSpells().get(choix-1);
+            if (spellIsInCD(b)) {
+                return null;
+            }
+            return b;
         }
         catch (Exception e) {
-            return choiceSpell();
+            return null;
         }
+    }
+
+    public boolean applyDamageSpell(Bonus b) {
+        int damage = 0;
+        StringBuilder sb = new StringBuilder();
+        if (b.getBonusType() == BonusType.SPELL) {
+            damage = b.getValue();
+        }
+        else if (b.getBonusType() == BonusType.SPELL_SCALING) {
+            damage = b.calcBuffOrValue(player);
+        }
+        sb.append("Vous utilisez ");
+        sb.append(b.getName());
+        sb.append(" et infligez ");
+        sb.append(damage);
+        sb.append(" dégât à ");
+        sb.append(this.mob.getName());
+        applyDamage(foe, damage);
+        System.out.println(sb.toString());
+        Game.pressToContinue();
+        return true;
+    }
+
+    public boolean applyHealingSpell(Bonus b) {
+        int heal = 0;
+        StringBuilder sb = new StringBuilder();
+        if (b.getBonusType() == BonusType.SPELL) {
+            heal = b.getValue();
+        }
+        else if (b.getBonusType() == BonusType.SPELL_SCALING) {
+            heal = b.calcBuffOrValue(player);
+        }
+        sb.append("Vous utilisez ");
+        sb.append(b.getName());
+        sb.append(" et récupérez ");
+        sb.append(heal);
+        sb.append(" points de vie.");
+        int newHp = player.getCurrentHp() + heal;
+        if (newHp > player.getHp()) newHp = player.getHp();
+        player.setCurrentHp(newHp);
+        System.out.println(sb.toString());
+        Game.pressToContinue();
+        return true;
     }
 
     public void updateCooldown() {
@@ -200,9 +226,7 @@ public class Battle {
             Bonus b = (Bonus) e.getKey();
             Integer i = (Integer) e.getValue();
             spellInCD.put(b, (i-1));
-            if ((i-1) == 0) {
-                finishedCD.add(b);
-            }
+            if ((i-1) == 0) finishedCD.add(b);
         }
         for (Bonus b : finishedCD) {
             spellInCD.remove(b);
@@ -211,6 +235,24 @@ public class Battle {
 
     public boolean spellIsInCD(Bonus b) {
         return spellInCD.containsKey(b);
+    }
+
+    public void battle() {
+        BattleView.afficheBattle();
+        BattleView.afficheSprites(this);
+        speedtie();
+        while (player.getCurrentHp() > 0 && foe.getCurrentHp() > 0) {
+            if (isRenaudTurn) renaudTurn();
+            else foeTurn();
+            changeTurn();
+        }
+        if (foe.getCurrentHp() <= 0) {
+            if (foe.isBoss()) {
+                player.giveExp(player.getExpNeeded() - player.getExpCurrent());
+            }
+            player.giveExp(EXP_GAIN);
+            player.nextRoom();
+        }
     }
 
     public Renaud getPlayer() {
@@ -223,33 +265,5 @@ public class Battle {
 
     public Monster getFoe() {
         return foe;
-    }
-
-    public void battle() {
-        BattleView.afficheBattle();
-        BattleView.afficheSprites(this);
-        speedtie();
-        while (player.getCurrentHp() > 0 && foe.getCurrentHp() > 0) {
-            Game.clearScreen();
-            if (isRenaudTurn) {
-                BattleView.afficheSprites(this);
-                renaudTurn();
-                Game.readStringNotNull();
-            }
-            else {
-                BattleView.afficheSprites(this);
-                foeTurn();
-                Game.readStringNotNull();
-            }
-            changeTurn();
-        }
-        if (!isRenaudTurn) {
-            System.out.println("Vous avez gagné ggez!");
-            player.giveExp(EXP_GAIN);
-            player.nextRoom();
-        }
-        else {
-            System.out.println("Il est sad le héros un peu.");
-        }
     }
 }

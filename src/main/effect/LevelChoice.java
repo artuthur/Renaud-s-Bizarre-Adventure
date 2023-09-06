@@ -17,26 +17,36 @@ public class LevelChoice {
     public static Bonus pickBonus(Renaud player) {
         Bonus[] choices = drawBonuses(player);
         int choice = 0;
+        String res = "";
         while(choice < 1 || choice > 3) {
             for (int i = 0; i < choices.length; i++) {
+                res += (i+1) + " : " + choices[i].getName() + ", ";
                 if(choices[i].getBonusType().equals(BonusType.BUFF)) {
-                    System.out.println((i+1) + " : " + choices[i].getName() + ", +" + 
-                        choices[i].getValue() + "% en " + choices[i].getSpellType() +
-                        " (Augmentation de statistique)");
-                } else if(choices[i].getBonusType().equals(BonusType.SPELL_SCALING)) {
-                    System.out.println((i+1) + " : " + choices[i].getName() + ", inflige " + 
-                        choices[i].getValue() + "% de " + choices[i].getSpellType() +
-                        ", Tours de recharge : " + choices[i].getCooldown() +
-                        " (Sort dépendant d'une statistique)");
+                    res += "ajoute +";
+                } else if(choices[i].getUseType().equals(UseType.DAMAGE)) {
+                    res+= "inflige ";
                 } else {
-                    System.out.println((i+1) + " : " + choices[i].getName() + ", inflige " + 
-                        choices[i].getValue() + " dégâts" + ", Tours de recharge : " + 
-                        choices[i].getCooldown() + " (Sort à dégât fixe)");             
+                    res += "soigne ";
+                }
+                if(choices[i].getBonusType().equals(BonusType.BUFF)) {
+                    res += choices[i].getValue() + "% en " + choices[i].getSpellType() +
+                        " (Augmentation de statistique) \n";
+                } else if(choices[i].getBonusType().equals(BonusType.SPELL_SCALING)) {
+                    res += choices[i].getValue() + "% de la stat "  + choices[i].getSpellType() +
+                        ", Tours de recharge : " + choices[i].getCooldown() +
+                        " (Sort dépendant d'une statistique) \n";
+                } else {
+                    res += choices[i].getValue() + " points de vie, Tours de recharge : " + 
+                        choices[i].getCooldown() + " (Sort à dégât fixe) \n";             
                 }
             }
-            System.out.println("\n Sélectionnez un bonus : ");
+            System.out.println(res + "\n Sélectionnez un bonus : ");
             choice = Game.readIntNotNull();
         }
         return choices[choice-1];
+    }
+    public static void main(String[] args) {
+        Renaud player = new Renaud();
+        pickBonus(player);
     }
 }
