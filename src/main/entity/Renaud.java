@@ -147,6 +147,7 @@ public class Renaud extends Entity{
         expNeeded *= 1.2;
         System.out.println("Vous êtes passé niveau " + getLevel() + " !");
         applyBonus(LevelChoice.pickBonus(this));
+        this.setCurrentHp(this.getHp());
     }
 
     @Override
