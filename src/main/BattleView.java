@@ -17,7 +17,7 @@ public class BattleView {
     private static final String RENAUD = "renaud.txt";
     private static final File FILERENAUD = FileFinder.find(RENAUD);
     private static final String TAB = "\t\t\t\t\t";
-    private static final String phrase_pv = "HP : ";
+    private static final String phrase_pv = " HP : ";
 
 
     public static void afficheBattle(){
@@ -51,9 +51,9 @@ public class BattleView {
 
         int pvPlayer = bt.getPlayer().getCurrentHp();
         int pvMob = bt.getFoe().getCurrentHp();
-        String phrasePvPlayer = BattleView.phrase_pv + pvPlayer;
+        String phrasePvPlayer = BattleView.phrase_pv + pvPlayer + " ";
         int setSpaceRenaudHp = (getMaxCarac(BattleView.FILERENAUD) - ( phrasePvPlayer ).length())/2 ;
-        String phrasePvMob = BattleView.phrase_pv + pvMob;
+        String phrasePvMob = BattleView.phrase_pv + pvMob + " ";
         int setSpaceMobHp = (getMaxCarac(file) - ( phrasePvMob ).length())/2 ;
 
         int setSpaceRenaudName = (getMaxCarac(BattleView.FILERENAUD) - "Renaud".length())/2 ;
@@ -105,9 +105,8 @@ public class BattleView {
     }
 
     public static void main(String[] args) {
-        Battle bt = new Battle(new Renaud(), Bestiary.CRS);
-        BattleView.afficheBattle();
-        BattleView.afficheSprites(bt);
+        Battle bt = new Battle(new Renaud(), Bestiary.random());
+        Battle.battle(bt.getMob());
     }
 
 

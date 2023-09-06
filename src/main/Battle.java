@@ -1,5 +1,6 @@
 package main;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +46,12 @@ public class Battle {
             this.isRenaudTurn = false;
             System.out.println(this.mob.name() + " commence en premier.");
         }
+        try {
+            Game.readString();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public void changeTurn() {
@@ -52,8 +59,6 @@ public class Battle {
     }
     
     public void foeTurn() {
-        Game.clearScreen();
-        System.out.println("\nPlayer : " + player.getCurrentHp() + " | " + foe.getMob().getName() + " : " + foe.getCurrentHp());
         Spell spellUse;
         if (this.mob.isBoss()) {
             if (Mathf.random(0, 1) <= 0.6) {
@@ -79,8 +84,6 @@ public class Battle {
     }
 
     public void renaudTurn() {
-        Game.clearScreen();
-        System.out.println("\nRenaud : " + player.getCurrentHp() + " | " + foe.getMob().getName() + " : " + foe.getCurrentHp());
         StringBuilder sb = new StringBuilder();
         int damage = 0;
         Bonus b = null;
@@ -221,18 +224,24 @@ public class Battle {
         return foe;
     }
 
-    public static void main(String[] args) {
-        Battle bt = new Battle(new Renaud(), Bestiary.CRS);
+    public static void battle(Bestiary mob) {
+        BattleView.afficheBattle();
+        Battle bt = new Battle(new Renaud(), mob);
+        BattleView.afficheSprites(bt);
         bt.speedtie();
         bt.player.addBonusToRenaud(Bonus.LANCE_DE_BRIQUE);
         bt.player.addBonusToRenaud(Bonus.PTITE_BIERE);
         bt.player.addBonusToRenaud(Bonus.HARD_METAL);
         while (bt.player.getCurrentHp() > 0 && bt.foe.getCurrentHp() > 0) {
             if (bt.isRenaudTurn) {
+                //Game.clearScreen();
+                BattleView.afficheSprites(bt);
                 bt.renaudTurn();
                 Game.readStringNotNull();
             }
             else {
+                //Game.clearScreen();
+                BattleView.afficheSprites(bt);
                 bt.foeTurn();
                 Game.readStringNotNull();
             }
