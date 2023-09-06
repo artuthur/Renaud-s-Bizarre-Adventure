@@ -1,6 +1,5 @@
 package main.donjon;
 
-import main.Game;
 import main.entity.Renaud;
 
 public class DonjonGenerator {

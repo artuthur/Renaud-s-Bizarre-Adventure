@@ -6,7 +6,8 @@ import main.donjon.Theme;
 
 public class BestiaryLoader{
     public final static Theme[] THEMES = Theme.values();
-    public final static int EXIT_BESTIARY = 0;
+    public final static int BESTIARY_EXIT = 0;
+    public final static int BESITARY_SPRITES = 9;
 
     public static void load() {
         int choice = 0;
@@ -14,8 +15,8 @@ public class BestiaryLoader{
         System.out.println("Bienvenue dans le bestiaire");
         do {
             Game.clearScreen();
+            System.out.println("-> Afficher tous les sprites des mobs ? (SPOIL) (press 9)");
             System.out.println("-> Retourner à l'écran titre ? (press 0)");
-            System.out.println("-> Afficher tous les sprites des mobs ? (press 6)");
             System.out.println();
             System.out.println("Quelle thèmes voulez-vous voir ?");
             System.out.println();
@@ -28,7 +29,7 @@ public class BestiaryLoader{
             choice = Game.readIntNotNull();
 
             System.out.println();
-            if(choice == 6){
+            if(choice == BESITARY_SPRITES){
                 MonsterView.load();
                 Game.pressToContinue();
             }
@@ -37,7 +38,7 @@ public class BestiaryLoader{
                 printBestiary(THEMES[choice - 1]);
             }
 
-        } while (choice != EXIT_BESTIARY);
+        } while (choice != BESTIARY_EXIT);
         Game.startTitleScreen();
     }
 

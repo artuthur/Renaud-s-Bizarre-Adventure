@@ -1,5 +1,6 @@
 package main.donjon;
 
+import main.Battle;
 import main.Game;
 import main.entity.Renaud;
 
@@ -25,9 +26,9 @@ public class DonjonView {
             Game.clearScreen();
             System.out.println("Etage actuel : " + (player.getStage() + 1));
             donjonGenerator.drawDonjon();
+            Game.pressToContinue();
             checkPlayerCase();
             Game.pressToContinue();
-            player.nextRoom();
         }while(!isFinish());
     }
 
@@ -43,10 +44,11 @@ public class DonjonView {
         DonjonRoom donjonRoom = donjonGenerator.getCurrentRoom();
         if(donjonRoom == null) return;
         if(donjonRoom.getMob() != null){
-            System.out.println("Mob : " + donjonRoom.getMob());
+            Battle bt = new Battle(player, donjonRoom.getMob());
+            bt.battle();
         }
         if(donjonRoom.getAdvice() != null){
-            System.out.println("Help : " + donjonRoom.getAdvice().getHelp());
+            AdviceView.load(donjonRoom.getAdvice());
         }
     }
 

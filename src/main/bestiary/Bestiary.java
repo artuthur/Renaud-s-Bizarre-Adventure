@@ -21,7 +21,7 @@ public enum Bestiary{
     ROBE_JAUNE(Theme.OPPOSITION, "Robe Jaune", "robe_jaune.txt", 20, 50, Spell.EXPLOSION_MARCANIQUE),
     CASSEUR(Theme.OPPOSITION, "Casseur", "casseur.txt", 30, 30, Spell.PILLAGE),
     CHAOSSOS(Theme.OPPOSITION, "Chaossos", "chaossos.txt", 10, 99, Spell.HARCELEMENT_CIBLER),
-    REVOLUTIONNAIR(Theme.OPPOSITION, "Révolutionnaire", "revolutionary.txt", 20, 60, Spell.GUILLOTINE),
+    REVOLUTIONNAIRE(Theme.OPPOSITION, "Révolutionnaire", "revolutionary.txt", 20, 60, Spell.GUILLOTINE),
     JL_ANARCHON(Theme.OPPOSITION, "JL l'Anarchon", "jl_larnarchon.txt", 60, 80, Spell.FRAPPE_INSOUMISE, Spell.BARRAGE),
     SUCCUBUS(Theme.CULTURE, "Succubus <3", "succubus.txt", 169, 0, Spell.ENLACEMENT_EROTIQUE),
     PLAYGIRL(Theme.CULTURE, "PlayGirl", "playgirl.txt", 142, 15, Spell.DEUX_BON_ARGUMENT),

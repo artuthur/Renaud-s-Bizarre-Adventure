@@ -85,6 +85,7 @@ public class Game {
         System.out.println();
         System.out.print(PRESS_TO_CONTINUE);
         Game.readStringNotNull();
+        System.out.println();
     }
 
     public static void clearScreen(){
