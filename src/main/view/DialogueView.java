@@ -3,6 +3,7 @@ package main.view;
 import java.io.File;
 
 import main.Game;
+import main.bestiary.Bestiary;
 import main.donjon.Theme;
 import main.file.FileFinder;
 import main.file.FileLoader;
@@ -31,7 +32,19 @@ public class DialogueView {
         Game.pressToContinue();
     }
 
-    public static void nextStage(Theme theme){
+    public static void startBoss(Bestiary mob){
+        clearScreen();
+        switch(mob.getTheme()){
+            case INTERIEUR: print(START_BOSS_INTERIEUR); break;
+            case EDUCATION: print(START_BOSS_EDUCATION); break;
+            case OPPOSITION: print(START_BOSS_OPPOSITION); break;
+            case CULTURE: print(START_BOSS_CULTURE); break;
+            case FINALE: print(START_BOSS_FINALE); break;
+        }
+        Game.pressToContinue();
+    }
+
+    public static void startStage(Theme theme){
         clearScreen();
         switch(theme){
             case INTERIEUR: print(START_CULTURE); break;
