@@ -34,9 +34,6 @@ public class DonjonGenerator {
     }
 
     public void loadCurrentStage(){
-        if(donjon == null) System.err.println("Le donjon est null");
-        if(player == null) System.err.println("Le joueur est null");
-
         generateStage(player.getStage());
         loadRooms(player.getStage());
     }
@@ -99,11 +96,14 @@ public class DonjonGenerator {
     }
 
     public void drawDonjon(){
-        //Game.clearScreen();
-        System.out.println(player.getStage());
-        loadCurrentStage();
-        drawRooms();
-        drawPlayer();
+        Game.clearScreen();
+        if(donjon == null) System.err.println("Le donjon est null");
+        else if(player == null) System.err.println("Le joueur est null");
+        else{
+            loadCurrentStage();
+            drawRooms();
+            drawPlayer();
+        }
     }
 
     public void drawRooms(){
