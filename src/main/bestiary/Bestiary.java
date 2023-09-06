@@ -23,10 +23,10 @@ public enum Bestiary{
     CHAOSSOS(Theme.OPPOSITION, "Chaossos", "chaossos.txt", 10, 99, Spell.HARCELEMENT_CIBLER),
     REVOLUTIONNAIRE(Theme.OPPOSITION, "Révolutionnaire", "revolutionary.txt", 20, 60, Spell.GUILLOTINE),
     JL_ANARCHON(Theme.OPPOSITION, "JL l'Anarchon", "jl_larnarchon.txt", 60, 80, Spell.FRAPPE_INSOUMISE, Spell.BARRAGE),
-    SUCCUBUS(Theme.CULTURE, "Succubus <3", "succubus.txt", 169, 0, Spell.ENLACEMENT_EROTIQUE),
-    PLAYGIRL(Theme.CULTURE, "PlayGirl", "playgirl.txt", 142, 15, Spell.DEUX_BON_ARGUMENT),
-    VAMPIRETTE(Theme.CULTURE, "Vampirette", "vampirette.txt", 166, 0, Spell.DRAINAGE_SANGUIN),
-    ESCLAVE_GOLEM(Theme.CULTURE, "Esclave Golem", "golem.txt", 666, 0, Spell.CHARGE_INERTE),
+    SUCCUBUS(Theme.CULTURE, "Succubus <3", "succubus.txt", 69, 15, Spell.ENLACEMENT_EROTIQUE),
+    PLAYGIRL(Theme.CULTURE, "PlayGirl", "playgirl.txt", 100, 0, Spell.DEUX_BON_ARGUMENT),
+    VAMPIRETTE(Theme.CULTURE, "Vampirette", "vampirette.txt", 66, 0, Spell.DRAINAGE_SANGUIN),
+    ESCLAVE_GOLEM(Theme.CULTURE, "Esclave Golem", "golem.txt", 166, 0, Spell.CHARGE_INERTE),
     MARLENNE_LILITHIA(Theme.CULTURE, "Marlène Lilithia", "marlenne_lilithia.txt", 250, 0, Spell.ETREINTE_VAMPIRIQUE, Spell.ASMODEUS),
     ARDIEJM(Theme.FINALE, "Archi roi démon immortel Emanuelle Jupiter Macrongue", "archi_roi_demon_immortel_emmanuel_jupiter_macrongue.txt", 1493, 49, Spell.MORNING_STAR, Spell.CONFINEMENT);
 
