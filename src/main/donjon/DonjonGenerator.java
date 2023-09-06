@@ -154,9 +154,9 @@ public class DonjonGenerator {
         for(int y = 0; y < 4; y++){
             for(int x = 0; x < width; x++){
                 sb.append(" ");
-                String name = player.getName();
-                if(x == width - name.length()/2 && y == 3){
-                    sb.append(name);
+                String playerMiniMap = Renaud.PLAYER_MINI_MAP;
+                if(x == width - playerMiniMap.length()/2 - 1 && y == 3){
+                    sb.append(playerMiniMap);
                     continue;
                 }
             }

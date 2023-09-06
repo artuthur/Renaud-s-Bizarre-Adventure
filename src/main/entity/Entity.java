@@ -3,25 +3,19 @@ package main.entity;
 import main.bestiary.Bestiary;
 
 public class Entity {
-    private final String NAME;
     private int hp;
     private int currentHp;
     private int def;
 
     
-    public Entity(String name, int hp, int def) {
-        this.NAME = name;
+    public Entity(int hp, int def) {
         this.hp = hp;
         this.currentHp = hp;
         this.def = def;
     }
 
     public Entity(Bestiary mob){
-        this(mob.getName(), mob.getHealth(), mob.getDefense());
-    }
-
-    public String getName(){
-        return NAME;
+        this(mob.getHealth(), mob.getDefense());
     }
 
     public int getHp() {
@@ -45,6 +39,6 @@ public class Entity {
     }
 
     public String toString() {
-        return getClass().getSimpleName() + "[name:" + NAME + ", hp:" + hp + ", currentHp:" + currentHp + ", def:" + def + "]";
+        return getClass().getSimpleName() + "[hp:" + hp + ", currentHp:" + currentHp + ", def:" + def + "]";
     }
 }

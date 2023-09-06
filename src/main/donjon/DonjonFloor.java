@@ -1,11 +1,13 @@
 package main.donjon;
 
 import main.Mathf;
+import main.exception.NullRoomPointerException;
 
 public class DonjonFloor {
+    public final static String ROOM_EXCEPTION = "Exception : La salle de l'étage demandée n'existe pas : ";
     public final static int ROOMS_MAX = 5;
     public final static int ROOMS_MIN = 3;
-    public final static int ADVICE_CHANCE = 100/3; /* percentage */
+    public final static int ADVICE_CHANCE = 100/2; /* percentage */
 
     private Theme theme;
     private DonjonRoom[] rooms;
@@ -28,9 +30,17 @@ public class DonjonFloor {
     }
 
     public DonjonRoom getRoom(int room){
-        if(room >= 0 && room < rooms.length)
-            return rooms[room];
+        try {
+            return getRoomException(room);
+        } catch (NullRoomPointerException e) {
+            System.out.println(e.getMessage());
+        }
         return null;
+    }
+
+    public DonjonRoom getRoomException(int room) throws NullRoomPointerException{
+        if(room < 0 || room >= rooms.length) throw new NullRoomPointerException(ROOM_EXCEPTION  + room);
+        return rooms[room];
     }
 
     private void generateRooms(){

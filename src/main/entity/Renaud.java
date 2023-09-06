@@ -11,7 +11,9 @@ import main.effect.BonusType;
 import main.effect.LevelChoice;
 import main.view.DialogueView;
 
-public class Renaud extends Entity{
+public class Renaud extends Entity implements IEntity{
+    public final static String PLAYER_NAME = "Renaud";
+    public final static String PLAYER_MINI_MAP = "ici";
     public final static int BASE_HP = 100;
     public final static int BASE_ATK = 15;
     public final static int BASE_DEF = 20;
@@ -35,7 +37,7 @@ public class Renaud extends Entity{
     private int room;
 
     public Renaud(Donjon currentDonjon) {
-        super("Renaud", BASE_HP, BASE_DEF);
+        super(BASE_HP, BASE_DEF);
         this.currentDonjon = currentDonjon;
         this.bonusList = new ArrayList<Bonus>();
         this.bonusDrawList = Bonus.getBonusList();
@@ -47,6 +49,11 @@ public class Renaud extends Entity{
         this.stage = BASE_STAGE;
         this.room = BASE_ROOM;
         addBonusToRenaud(Bonus.LANCE_DE_BRIQUE);
+    }
+
+    @Override
+    public String getName(){
+        return PLAYER_NAME;
     }
 
     public List<Bonus> getBonusList() {

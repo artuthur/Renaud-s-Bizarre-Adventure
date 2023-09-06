@@ -7,10 +7,14 @@ import java.util.Map;
 
 import main.Mathf;
 import main.effect.Bonus;
+import main.exception.NullFloorPointerException;
+import main.exception.NullRoomPointerException;
 
 public class Donjon {
-    private DonjonFloor[] floors;
+    public final static String FLOOR_EXCEPTION = "Exception : L'étage demandé n'existe pas : ";
     public static Map<Bonus, Integer> spellInCD;
+    
+    private DonjonFloor[] floors;
 
     public Donjon(){
         generateFloors();
@@ -32,15 +36,32 @@ public class Donjon {
     }
 
     public DonjonFloor getFloor(int stage){
-        if(stage >= 0 && stage < floors.length)
-            return floors[stage];
+        try {
+            return getFloorException(stage);
+        } catch (NullFloorPointerException e) {
+            System.out.println(e.getMessage());
+        }
         return null;
     }
 
+    public DonjonFloor getFloorException(int stage) throws NullFloorPointerException{
+        if(stage < 0 || stage >= floors.length) throw new NullFloorPointerException(FLOOR_EXCEPTION + stage);
+        return floors[stage];
+    }
+
     public DonjonRoom getRoom(int stage, int room){
-        DonjonFloor floor = getFloor(stage);
-        if(floor != null) return floor.getRoom(room);
+        try{
+            return getRoomException(stage, room);
+        }catch(NullFloorPointerException | NullRoomPointerException e){
+            System.out.println(e.getMessage());
+        }
         return null;
+    }
+
+    public DonjonRoom getRoomException(int stage, int room) throws NullFloorPointerException, NullRoomPointerException{
+        DonjonFloor floor = getFloor(stage);
+        if(floor == null) throw new NullFloorPointerException(FLOOR_EXCEPTION + stage);
+        return floor.getRoomException(room);
     }
 
     public Theme getTheme(int stage){

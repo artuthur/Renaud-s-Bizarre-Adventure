@@ -3,7 +3,7 @@ package main.entity;
 import main.bestiary.Bestiary;
 import main.effect.Spell;
 
-public class Monster extends Entity{
+public class Monster extends Entity implements IEntity{
     private Bestiary mob;
     private Spell spell;
 
@@ -11,6 +11,11 @@ public class Monster extends Entity{
         super(mob);
         this.mob = mob;
         this.spell = mob.getFirstSpell();
+    }
+
+    @Override
+    public String getName(){
+        return mob.getName();
     }
 
     public Spell getSpell() {

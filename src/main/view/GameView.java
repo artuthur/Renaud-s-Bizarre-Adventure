@@ -31,9 +31,10 @@ public class GameView {
         DonjonGenerator donjonGenerator = new DonjonGenerator(donjon, player);
         GameView gameView = new GameView(donjonGenerator, player);
         GameView.renaudView = new RenaudView(player);
-
+        
         DialogueView.startGame();
         DialogueView.startStage(player.getCurrentTheme());
+        
         do{
             Game.clearScreen();
             renaudView.printStats();
