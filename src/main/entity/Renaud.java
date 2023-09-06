@@ -32,7 +32,7 @@ public class Renaud extends Entity{
     public Renaud() {
         super("Renaud", BASE_HP, BASE_DEF);
         this.bonusList = new ArrayList<Bonus>();
-        this.bonusDrawList = getBonusList();
+        this.bonusDrawList = Bonus.getBonusList();
         this.learnedSpells = new ArrayList<Bonus>();
         this.atk = BASE_ATK;
         this.level = BASE_LEVEL;

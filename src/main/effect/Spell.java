@@ -3,7 +3,6 @@ package main.effect;
 import java.util.List;
 
 import main.Mathf;
-import main.donjon.Advice;
 
 public enum Spell {
     NON_LIEU("Non lieu", SpellType.ATTACK, 30),

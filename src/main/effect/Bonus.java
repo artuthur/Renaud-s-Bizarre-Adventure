@@ -106,10 +106,16 @@ public enum Bonus {
     }
 
     public static Bonus random(List<Bonus> list){
-        return Mathf.random(list);
+        ArrayList<Bonus> res = new ArrayList<Bonus>();
+        for (Bonus b : list) {
+            for (int i = 0; i < (5-b.getRarity()); i++) {
+                res.add(b);
+            }
+        }
+        return Mathf.random(res);
     }
 
-    public List<Bonus> getBonusList() {
+    public static List<Bonus> getBonusList() {
         ArrayList<Bonus> res = new ArrayList<Bonus>();
         for(Bonus b : values()) {
             res.add(b);
