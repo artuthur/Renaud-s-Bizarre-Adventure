@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.Mathf;
-import main.donjon.Advice;
 import main.entity.Renaud;
 
 public enum Bonus {
@@ -128,20 +127,20 @@ public enum Bonus {
         if (spellType.equals(SpellType.ATTACK)) {
             v = (int) (value*(renaud.getAtk()*0.01));
             if (type.equals(BonusType.BUFF)) {
-                renaud.setAtk(v);
+                renaud.setAtk(renaud.getAtk()+v);
             }
             return v;
         }
         if (spellType.equals(SpellType.DEFENSE)) {
             v = (int) (value*(renaud.getDef()*0.01));
             if (type.equals(BonusType.BUFF)) {
-                renaud.setDef(v);
+                renaud.setDef(renaud.getDef()+v);
             }
             return v;
         }
         v = (int) (value*(renaud.getHp()*0.01));
             if (type.equals(BonusType.BUFF)) {
-                renaud.setHp(v);
+                renaud.setHp(renaud.getHp()+v);
             }
         return v;
     }

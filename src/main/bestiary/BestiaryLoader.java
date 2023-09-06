@@ -1,6 +1,7 @@
 package main.bestiary;
 
 import main.Game;
+import main.MonsterView;
 import main.donjon.Theme;
 
 public class BestiaryLoader{
@@ -14,16 +15,23 @@ public class BestiaryLoader{
         do {
             Game.clearScreen();
             System.out.println("-> Retourner à l'écran titre ? (press 0)");
+            System.out.println("-> Afficher tous les sprites des mobs ? (press 6)");
             System.out.println();
             System.out.println("Quelle thèmes voulez-vous voir ?");
             System.out.println();
+
             printThemes();
-            System.err.println();
+            
+            System.out.println();
             System.out.print("Veuiller entrer le chiffre corréspondant : ");
 
             choice = Game.readIntNotNull();
 
             System.out.println();
+            if(choice == 6){
+                MonsterView.load();
+                Game.pressToContinue();
+            }
 
             if(choiceThemeIsValid(choice)){
                 printBestiary(THEMES[choice - 1]);

@@ -1,121 +1,121 @@
-*Texte a afficher au début*
+*Texte à afficher au début*
 
-Le méchant archi roi démon imortel, Jupiter, a propagai un virus enferment le monde chez eux grace a son sort 'Confinement'.
-Son Objectif? Reigner une éterniter sur le monde.
-Mais un homme résista à Jupiter, un toujour debout, toujour vivant face a ce connard de virus.
-Prêt a braver tous les étage de la tour de l'Elysium pour atteindre l'archi roi démon imortel
-Son nom? Renaud.
+Le méchant archi roi démon immortel, Jupiter, a propagé un virus forçant le monde à rester le monde entier chez eux à cause de son sort "Confinement'".
+Son objectif ? Régner éternellement sur le monde.
+Mais un homme résista à Jupiter, toujours debout, toujours vivant face à ce connard de virus.
+Prêt à braver tous les étages de la tour de l'Elysium pour atteindre l'archi roi démon imortel
+Son nom ? Renaud.
 
 
 *Texte a afficher au début de l'étage INTERIEUR*
 
-L'étage dans le quelle vous arriver ressemble a un long cachot semblant s'élargire sur des Kilomètre.
-L'ordre et la loi semble régire cette étage.
-Vous pouver ententdre au loin une garnison de garde avancer vers votre direction.
+L'étage dans le quelle vous arrivez ressembler à un long cachot semblant s'élargir sur des kilomètres.
+L'ordre et la loi semblent régire cet étage.
+Vous pouvez entendre au loin une garnison de garde avancer vers votre direction.
 
 
 *Texte a afficher au début de l'étage EDUCATION*
 
-Une odeur d'encens envahi vos narine alors que vous pénétrer dans l'immense bibliothèque. 
-Les livre voles a travers les étagère faisant la taille d'imeuble vous font dire que les ouvrage de ce lieu d'érudit cache de la magie.
-Vous voyer a travers le dédale que'est cette bibliotèque de multiple mage en cercle en train de récité des incantation,
-vous feriez mieux de vous méfier des sort qu'il prépare.
+Une odeur d'encens envahit vos narines alors que vous pénétrez dans l'immense bibliothèque. 
+Les livres volés à travers les étagères, faisant la taille d'un immeuble, vous font dire que les ouvrages de ce lieu d'érudit cachent de la magie.
+Vous voyez à travers le dédale de multiples mages en cercle en train de réciter des incantations;
+vous feriez mieux de vous méfier des sorts qu'ils préparent.
 
 *Texte a afficher au début de l'étage OPPOSITION*
 
-Une chaleur intensse vous agressent alors que vous pénétré cette étage.
-L'endroit semble ètre une ville malgré le fait que vous ètes toujour en intérieur.
-Les rue sont fermer à coup de barricade, rendant l'avancer ici compliqué.
-Les batiments autour de vous sont en feu et il sembleré que les personne ayant mis le feu vous on vue.
+Une chaleur intense vous agresse alors que vous pénétrez cet étage.
+L'endroit semble être une ville malgré le fait que vous êtes toujours en intérieur.
+Les rues sont fermées à coup de barricade, rendant l'avancer compliqué.
+Les bâtiments autour de vous sont en feu et il semblerait que les personnes ayant mis le feu vous ont vue.
 
 *Texte a afficher au début de l'étage CULTURE*
 
-Une ambiance lugubre et malsaine s'échape de l'étage tendit que les enfer souvre devant vous.
-L'endroit et remplis de monstre créer a partir de la luxure et de la décadense des humain.
-L'aire de l'endroit a comme une odeur d'aphrodisiaque.
-Vous devez rester concentrer sur votre mission et ne pas céder au tentation des créature peuplant cette enfer au aire de maison close.
+Une ambiance lugubre et malsaine s'échappe de l'étage tandis que les enfers s'ouvrent devant vous.
+L'endroit est rempli de monstre créé à partir de la luxure et de la décadence des Humains.
+L'air de l'endroit a comme une odeur d'aphrodisiaque.
+Vous devez rester concentré sur votre mission et ne pas céder aux tentations des créatures peuplant cet enfer aux aires de maison close.
 
 *Texte a afficher au début de l'étage FINALE*
 
-L'aire d'ici et pesant. Vous sentez une aura maléfique que vous n'avez jamais ressentis.
-Les salle de cette étage paraisse venire d'un chateau avec des mur orner de d'or et de diamant.
-Des pile de pièce d'or gisent sur le sol tandit que des silhouette familière vous attendent et ne compt pas vous laisser passer.
+L'air d'ici est pesant. Vous sentez une aura maléfique que vous n'avez jamais ressentie.
+Les salles de cet étage paraissent venir d'un château avec des murs ornés d'or et de diamant.
+Des piles de pièce d'or gisent sur le sol tandis que des silhouettes familières vous attendent et ne comptent pas vous laisser passer.
 
 
 
 
 *Texte a afficher avant le boss INTERIEUR*
 
-Devant vous ce dresse un homme chétiffe mais pourtant incarnant l'ordre malgré le fait qu'il ne semble pas suivre la loi.
-Il semble ètre le chef des garde de la tours et ne semble pas vouloir vous laissez continuer.
+Devant vous se dresse un homme chétif, ne semblant pas suivre la loi mais incarnant l'ordre malgré tout.
+Il semble être le chef des gardes de la tour et ne semble pas vouloir vous laisser continuer.
 
 *Texte a afficher a la fin du boss INTERIEUR*
 
-Gardemin, vaincus, commence a ce lamenter sur sont sort, disant qu'il n'a jamais rien fait de mal et que, au yeux de la justice était innocent.
-En ayant marre de ses mensonge vous continuer votre route.
+Gardemin, vaincu, commence à se lamenter sur son sort, disant qu'il n'a jamais rien fait de mal et que, aux yeux de la justice, il était innocent.
+Vous en avez marre de ses mensonges et vous continuez votre route.
 
 
 
 *Texte a afficher avant le boss EDUCATION*
 
-Enfin arriver a la fin du labyrinthe de livre et de parchemin, un homme possèdant une puissance magic immense ce tient devant vous.
-Ils semble ètre entrain de laver le cerveau d'élève lors que vous arriver.
-Ce maitre des rune ancienne semble désapprouver le fait que vous continuez a monter la tour.
+Enfin arrivé à la fin du labyrinthe de livre et de parchemin, un homme possédant une puissance magique immense se tient devant vous.
+Il semble être en train de laver le cerveau d'élèves lorsque vous arrivez.
+Ce maître des runes anciennes semble désapprouver votre avancée dans la tour.
 
 Texte a afficher a la fin du boss EDUCATION*
 
-La magie du mage, devenue instable; s'emballa et lui explosa au visage.
-Ne laissant dérieur qu'un homme chauve qui commence a ce fair lyncher pas les élève a qui il a tenter de laver le cerveau.
+La magie du mage, devenue instable, s'emballa et lui explosa au visage.
+Ne laissant derrière elle, qu'un homme chauve, lynché par la revanche de ses élèves.
 
 
 
 *Texte a afficher avant le boss OPPOSITION*
 
-Apré avoir réussi a traverser le chao de cette étage, vous vous retrouver devant une immensse estrade ou ce tien devant un pupitre un homme.
-Il semble que tous les ètre de cette étage boivent ses parole comme si elle était divinatoir.
-Cett homme est si énervèe envers tous, qu'il vous attaque des que vous entrer dans sont champs de vision.
+Après avoir réussi à traverser le chaos de cet étage, vous vous retrouvez devant une immense estrade où se tient, devant un pupitre, un homme.
+Il semble que tous les êtres de cet étage boivent ses paroles comme si elles étaient divines.
+Cet homme est si énervé, qu'il vous attaque dès que vous entrez dans son champ de vision.
 
 *Texte a afficher a la fin du boss OPPOSITION*
-La boulle de nerf, une fois vaincus a plate couture, commenca a s'énerver encore plus et appelant les entiter de l'étage a fair barrage pour bloquer votre ascencion dans la tous.
-Malheureusement pour lui, plus personne ne l'écoute et vous passer en l'ignorant.
+
+Le Boulle de nerf, une fois battue à plate couture, commença à s'énerver davantage et appelle les entités de l'étage à faire barrage pour bloquer votre ascension dans la tour.
+Malheureusement pour lui, plus personne ne l'écoute et vous passez aisément.
 
 
 
 
 *Texte a afficher avant le boss CULTURE*
 
-Sans avoir céder au tentation de l'étage, vous arriver dans la dernière salle ou ce tien devant vous une démonne.
-Elle est plus petit que tous les monstre d'ici et plus repoussante, mais elle est bien plus puissanteque les monstre de l'étage.
-Elle semble aussi bien plus perveretie que quiconque dans tous la tour.
-Des que vous entrez dans sont champs de vision elle fait monter des flame de les coté pour empécher toute fuit et semble vouloir votre dévorer votre âme.
+Sans avoir cédé aux tentations de l'étage, vous arrivez dans la dernière salle où se tient une démone.
+Elle est plus petite et plus repoussante que tous les monstres d'ici, mais elle est bien plus puissante.
+Elle semble aussi bien plus pervertie.
+Dès que vous entrez dans son champ de vision, elle fait monter les flammes des enfers de chaque côté pour empêcher toute fuite et semble vouloir dévorer votre âme.
 
 *Texte a afficher a la fin du boss CULTURE*
 
-La démone, une fois vaincus, commenca a pleurer et a ce demander comment un homme pouvais battre une démone comme elle.
-Elle commenca a vous insulter de tous les mots et a jurer de dénoncer vos présumais méfait au monde entier.
-En ignonrant ces sotise digne d'un enfant pouris gater vous continuer votre avancer
+La démone, une fois vaincue, commença à pleurer et à se demander comment un simple mortel pouvait la battre d'une telle façon.
+Elle injurie et menace de dénoncer vos présumés méfaits au monde entier.
+En ignorant ses sottises d'enfant, vous continuez votre avancer.
 
 
 
 *Texte a afficher avant le boss FINALE*
 
-Enfin arriver a la fin de votre aventure, un aura meurtrière, malveillant , avide d'argent et de gloir ce fait ressentire.
-Vous apercevez, assis sur un thrône d'or et de ruby, l'entiter qui a enfermer le monde, le chef de la tours de l'Elysium.
-L'Archi Roi Démon Immortel, Emanuelle Jupiter Macrongue.
-Il semblent prêt a vous fair vivre les pire tourmente pour avoir oser vous opposer a lui.
+Enfin arrivé à la fin de votre aventure, une aura meurtrière, malveillante, avide d'argent et de gloire se fait ressentir.
+Vous apercevez, assis sur un trône d'or et de ruby, l'entitée qui a enfermé le monde, le chef de la tour de l'Elysium.
+L'archi Roi Démon Immortel, Emanuelle Jupiter Macrongue.
+Il semble prêt à vous faire vivre les pires tourments pour avoir oser vous opposer à lui.
 
 
 
 *Texte a afficher a la fin du jeu*
 
-Apré avoir asséné le dernier coup a l'archi roi démon, vous sentez l'air ce purifier.
-L'Archi Roi Démon s'exlame d'une voix fébrile et mourante, qu'un vulgair humain comme vous n'aurez jamais du gagnais face a lui.
-Directement apré avoir fini sa phrase il commence a ce désintégrer dans un dernier cris de douleur.
-A travers l'une des fenètre de la tour, vous apercever les habitant sortir de chez eux, le sort 'Confinement' a été lever.
-Mais vous sentez la tour trempbler, elle commence a s'éffondrer.
-Une fois sortie tous le peuple ce réunie autour de son sauveur et vous fait la seul chose logique dans ce cas la.
-Commencer le meilleur concert au monde.
-
+Après avoir asséné le dernier coup à l'archi roi démon, vous sentez l'air se purifier.
+L'archi Roi Démon s'exclame d'une voix fébrile et mourante, qu'un vulgaire humain comme vous n'aurez jamais dû gagner face à lui.
+Directement après avoir fini sa phrase, il commence à se désintégrer dans des derniers cris de douleur.
+À travers l'une des fenêtres de la tour, vous apercevez les habitants sortir de chez eux, le sort "Confinement'" était levé.
+Mais vous sentez la tour trembler, elle commence à s'effondrer.
+Une fois sorti, tout le peuple se réunit autour de son sauveur et vous, en tant que barde, faites la seule chose logique dans ce cas-là.
+Vous commencez le meilleur concert au monde.
 
 
 

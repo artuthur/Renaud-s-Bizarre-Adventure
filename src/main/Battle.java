@@ -1,5 +1,6 @@
 package main;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ import main.entity.Entity;
 public class Battle {
     private final static double BASE_CHANCE = 0.5;
     private final static double DAMAGE_REDUCE = 0.1;
+    private final static int EXP_GAIN = 40;
 
     private Map<Bonus, Integer> spellInCD;
 
@@ -45,6 +47,12 @@ public class Battle {
             this.isRenaudTurn = false;
             System.out.println(this.mob.name() + " commence en premier.");
         }
+        try {
+            Game.readString();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public void changeTurn() {
@@ -52,8 +60,6 @@ public class Battle {
     }
     
     public void foeTurn() {
-        Game.clearScreen();
-        System.out.println("\nPlayer : " + player.getCurrentHp() + " | " + foe.getMob().getName() + " : " + foe.getCurrentHp());
         Spell spellUse;
         if (this.mob.isBoss()) {
             if (Mathf.random(0, 1) <= 0.6) {
@@ -68,7 +74,7 @@ public class Battle {
         }
         StringBuilder sb = new StringBuilder();
         int damage = calculatePhysicalDamage(spellUse.getAmount(), player.getDef());
-        sb.append(this.mob.getName());
+        sb.append(foe.getMob().getName());
         sb.append(" vous attaque avec ");
         sb.append(spellUse.getName());
         sb.append(".\nVous perdez ");
@@ -79,8 +85,6 @@ public class Battle {
     }
 
     public void renaudTurn() {
-        Game.clearScreen();
-        System.out.println("\nRenaud : " + player.getCurrentHp() + " | " + foe.getMob().getName() + " : " + foe.getCurrentHp());
         StringBuilder sb = new StringBuilder();
         int damage = 0;
         Bonus b = null;
@@ -221,27 +225,28 @@ public class Battle {
         return foe;
     }
 
-    public static void main(String[] args) {
-        Battle bt = new Battle(new Renaud(), Bestiary.CRS);
-        bt.speedtie();
-        bt.player.addBonusToRenaud(Bonus.LANCE_DE_BRIQUE);
-        bt.player.addBonusToRenaud(Bonus.PTITE_BIERE);
-        bt.player.addBonusToRenaud(Bonus.HARD_METAL);
-        while (bt.player.getCurrentHp() > 0 && bt.foe.getCurrentHp() > 0) {
-            if (bt.isRenaudTurn) {
-                bt.renaudTurn();
+    public void battle() {
+        BattleView.afficheBattle();
+        BattleView.afficheSprites(this);
+        speedtie();
+        while (player.getCurrentHp() > 0 && foe.getCurrentHp() > 0) {
+            Game.clearScreen();
+            if (isRenaudTurn) {
+                BattleView.afficheSprites(this);
+                renaudTurn();
                 Game.readStringNotNull();
             }
             else {
-                bt.foeTurn();
+                BattleView.afficheSprites(this);
+                foeTurn();
                 Game.readStringNotNull();
             }
-            bt.changeTurn();
+            changeTurn();
         }
-        if (!bt.isRenaudTurn) {
+        if (!isRenaudTurn) {
             System.out.println("Vous avez gagné ggez!");
-            bt.player.giveExp(40);
-            bt.player.setRoom(bt.player.getRoom()+1);
+            player.giveExp(EXP_GAIN);
+            player.nextRoom();
         }
         else {
             System.out.println("Il est sad le héros un peu.");

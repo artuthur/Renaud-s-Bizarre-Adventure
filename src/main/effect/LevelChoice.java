@@ -18,18 +18,25 @@ public class LevelChoice {
         Bonus[] choices = drawBonuses(player);
         int choice = 0;
         while(choice < 1 || choice > 3) {
-            Game.clearScreen();
             for (int i = 0; i < choices.length; i++) {
-                System.out.println((i+1) + " : " + choices[i]);
+                if(choices[i].getBonusType().equals(BonusType.BUFF)) {
+                    System.out.println((i+1) + " : " + choices[i].getName() + ", +" + 
+                        choices[i].getValue() + "% en " + choices[i].getSpellType() +
+                        " (Augmentation de statistique)");
+                } else if(choices[i].getBonusType().equals(BonusType.SPELL_SCALING)) {
+                    System.out.println((i+1) + " : " + choices[i].getName() + ", inflige " + 
+                        choices[i].getValue() + "% de " + choices[i].getSpellType() +
+                        ", Tours de recharge : " + choices[i].getCooldown() +
+                        " (Sort dépendant d'une statistique)");
+                } else {
+                    System.out.println((i+1) + " : " + choices[i].getName() + ", inflige " + 
+                        choices[i].getValue() + " dégâts" + ", Tours de recharge : " + 
+                        choices[i].getCooldown() + " (Sort à dégât fixe)");             
+                }
             }
             System.out.println("\n Sélectionnez un bonus : ");
             choice = Game.readIntNotNull();
         }
         return choices[choice-1];
-    }
-
-    public static void main(String[] args) {
-        Renaud player = new Renaud();
-        LevelChoice.pickBonus(player);
     }
 }
