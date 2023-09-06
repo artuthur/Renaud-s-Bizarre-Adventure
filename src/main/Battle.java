@@ -32,6 +32,7 @@ public class Battle {
         this.player = player;
         this.mob = mob;
         this.foe = new Monster(mob);
+        foe.stageScale(player.getStage());
         this.spellInCD = new HashMap<Bonus, Integer>();
     }
     
@@ -107,21 +108,18 @@ public class Battle {
             }
             else {
                 sb = new StringBuilder();
-                boolean spellWasCast = false;
-                while (!spellWasCast) { 
-                    b = choiceSpell();
-                    if (b != null && !spellIsInCD(b)) {
-                        if (b.getUseType() == UseType.DAMAGE) {
-                            spellWasCast = applyDamageSpell(b);
-                        }
-                        else {
-                            spellWasCast = applyHealingSpell(b);
-                        }
+                b = choiceSpell();
+                if (b != null) {
+                    if (b.getUseType() == UseType.DAMAGE) {
+                        applyDamageSpell(b);
                     }
                     else {
-                        renaudTurn();
+                        applyHealingSpell(b);
                     }
-                }    
+                }
+                else {
+                    renaudTurn();
+                } 
             }
         }
         else {
@@ -149,10 +147,10 @@ public class Battle {
     public Bonus choiceSpell() {
         Game.clearScreen();
         BattleView.afficheSprites(this);
-        int i = 1;
+        int i = 0;
         System.out.println("0. Retour");
         for (Bonus b : player.getLearnedSpells()) {
-            System.out.print(i + ". " + b.getName() + " (");
+            System.out.print((i+1) + ". " + b.getName() + " (");
             if (spellIsInCD(b)) {
                 System.out.print(spellInCD.get(b) + " tours");
             }
@@ -163,11 +161,16 @@ public class Battle {
             i++; 
         }
         try {
+            Bonus b = null;
             int choix = Integer.parseInt(Game.readStringNotNull());
             if (choix == 0) {
+                return b;
+            }
+            b = player.getLearnedSpells().get(choix-1);
+            if (spellIsInCD(b)) {
                 return null;
             }
-            return player.getLearnedSpells().get(choix-1);
+            return b;
         }
         catch (Exception e) {
             return null;
@@ -209,7 +212,9 @@ public class Battle {
         sb.append(" et récupérez ");
         sb.append(heal);
         sb.append(" points de vie.");
-        player.setCurrentHp(player.getCurrentHp() + heal);
+        int newHp = player.getCurrentHp() + heal;
+        if (newHp > player.getHp()) newHp = player.getHp();
+        player.setCurrentHp(newHp);
         System.out.println(sb.toString());
         Game.pressToContinue();
         return true;
@@ -221,9 +226,7 @@ public class Battle {
             Bonus b = (Bonus) e.getKey();
             Integer i = (Integer) e.getValue();
             spellInCD.put(b, (i-1));
-            if ((i-1) == 0) {
-                finishedCD.add(b);
-            }
+            if ((i-1) == 0) finishedCD.add(b);
         }
         for (Bonus b : finishedCD) {
             spellInCD.remove(b);
@@ -239,12 +242,8 @@ public class Battle {
         BattleView.afficheSprites(this);
         speedtie();
         while (player.getCurrentHp() > 0 && foe.getCurrentHp() > 0) {
-            if (isRenaudTurn) {
-                renaudTurn();
-            }
-            else {
-                foeTurn();
-            }
+            if (isRenaudTurn) renaudTurn();
+            else foeTurn();
             changeTurn();
         }
         if (foe.getCurrentHp() <= 0) {
