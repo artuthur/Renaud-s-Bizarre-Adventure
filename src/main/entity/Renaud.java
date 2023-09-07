@@ -14,9 +14,9 @@ import main.view.DialogueView;
 public class Renaud extends Entity implements IEntity{
     public final static String PLAYER_NAME = "Renaud";
     public final static String PLAYER_MINI_MAP = "ici";
-    public final static int BASE_HP = 100;
+    public final static int BASE_HP = 125;
     public final static int BASE_ATK = 15;
-    public final static int BASE_DEF = 20;
+    public final static int BASE_DEF = 30;
     public final static int BASE_LEVEL = 1;
     public final static int BASE_EXP = 0;
     public final static int BASE_NEEDED_EXP = 100;
