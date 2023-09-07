@@ -135,7 +135,7 @@ public class Battle {
     }
 
     public int calculatePhysicalDamage(int amount, int def) {
-        int damage = (int) (amount * 100.0/(100.0+def));
+        int damage = (int) (amount * (100.0/(100.0+def)));
         if (damage <= 0 ) damage = 1;
         return damage;
     }
