@@ -21,7 +21,7 @@ public abstract class AdviceView {
     public final static int PADDING_DOWN = 2;
     public final static int PADDING_LEFT = 2;
     public final static int PADDING_RIGHT = 2;
-    public final static int WIDTH = 200;
+    public final static int WIDTH = 100;
 
     public static void load(Advice advice){
         Game.clearScreen();
@@ -46,7 +46,7 @@ public abstract class AdviceView {
             sb.append(CHAR_VERTICAL);
             addSpace(sb, PADDING_LEFT);
             for(int x = 0; x < WIDTH; x++){
-                if(y == - PADDING_UP - 1 && x == WIDTH / 2 - ADVICE_TEXT.length() / 2){
+                if(y == - PADDING_UP - 1 && (x == WIDTH / 2 - ADVICE_TEXT.length() / 2 || WIDTH / 2 - ADVICE_TEXT.length() - 2 < 0)){
                     sb.append(ADVICE_TEXT);
                     x += ADVICE_TEXT.length();
                 }

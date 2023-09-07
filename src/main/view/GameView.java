@@ -10,7 +10,7 @@ import main.entity.Renaud;
 public class GameView {
     public final static char CHAR_UP_LEFT = '\u256F';
     public final static char CHAR_UP_RIGHT = '\u2570';
-    public final static char CHAR_DOWN_LEFT = '\u256D';
+    public final static char CHAR_DOWN_LEFT = '\u256E';
     public final static char CHAR_DOWN_RIGHT = '\u256D';
     public final static char CHAR_VERTICAL = '\u2502';
     public final static char CHAR_HORIZONTAL = '\u2500';

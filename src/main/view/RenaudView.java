@@ -4,6 +4,13 @@ import main.Color;
 import main.entity.Renaud;
 
 public abstract class RenaudView {
+    public final static char CHAR_UP_LEFT = GameView.CHAR_UP_LEFT;
+    public final static char CHAR_UP_RIGHT = GameView.CHAR_UP_RIGHT;
+    public final static char CHAR_DOWN_LEFT = GameView.CHAR_DOWN_LEFT;
+    public final static char CHAR_DOWN_RIGHT = GameView.CHAR_DOWN_RIGHT;
+    public final static char CHAR_VERTICAL = GameView.CHAR_VERTICAL;
+    public final static char CHAR_HORIZONTAL = GameView.CHAR_HORIZONTAL;
+
     public static Renaud player;
 
     public static void printPlayerStats() {
@@ -41,9 +48,9 @@ public abstract class RenaudView {
 
     public static void print(String txt, int width){
         StringBuilder sb = new StringBuilder();
-        addUpLine(sb, width); sb.append("\n");
-        addMiddleLine(sb, txt); sb.append("\n");
-        addDownLine(sb, width); sb.append("\n");
+        addUpLine(sb, width); addNewLine(sb);
+        addMiddleLine(sb, txt); addNewLine(sb);;
+        addDownLine(sb, width); addNewLine(sb);
         System.out.println(sb);
     }
 
@@ -56,15 +63,15 @@ public abstract class RenaudView {
     }
 
     private static void addUpLine(StringBuilder sb, int width){
-        sb.append('╰');
-        for (int i = 0; i < width; i++) sb.append('\u2500');
-        sb.append('╯');
+        sb.append(CHAR_DOWN_RIGHT);
+        for (int i = 0; i < width; i++) sb.append(CHAR_HORIZONTAL);
+        sb.append(CHAR_DOWN_LEFT);
     }
 
     private static void addDownLine(StringBuilder sb, int width){
-        sb.append('╰');
-        for (int i = 0; i < width; i++) sb.append('\u2500');
-        sb.append('╯');
+        sb.append(CHAR_UP_RIGHT);
+        for (int i = 0; i < width; i++) sb.append(CHAR_HORIZONTAL);
+        sb.append(CHAR_UP_LEFT);
     }
 
     private static String lvlString() {
