@@ -29,8 +29,8 @@ public enum Spell {
     DEUX_BON_ARGUMENT("Deux 'BON' arguments", SpellType.ATTACK, 10),
     DRAINAGE_SANGUIN("Drainage sanguin", SpellType.ATTACK, 10),
     CHARGE_INERTE("Charge inerte", SpellType.ATTACK, 1),
-    MORNING_STAR("Morning Star", SpellType.ATTACK, 33),
-    CONFINEMENT("Confinement", SpellType.ATTACK, 48);
+    MORNING_STAR("Morning Star", SpellType.ATTACK, 25),
+    CONFINEMENT("Confinement", SpellType.ATTACK, 40);
 
     private String name;
     private SpellType type;
