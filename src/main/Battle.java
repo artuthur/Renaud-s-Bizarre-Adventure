@@ -89,7 +89,8 @@ public class Battle {
         StringBuilder sb = new StringBuilder();
         int damage = 0;
         Bonus b = null;
-        System.out.print("C'est votre tour.\nQue souhaitez-vous faire ?\n1. Attaque de base.\n2. Sorts.\n: ");
+        System.out.println("C'est votre tour.\nQue souhaitez-vous faire ?\n\n1. Attaque de base.\n2. Sorts.\n");
+        System.out.print("Sélectionnez une action : ");
         String choix = Game.readStringNotNull();
         if (choix.equals("1")) {
             damage = calculatePhysicalDamage(player.getAtk(), foe.getDef());
