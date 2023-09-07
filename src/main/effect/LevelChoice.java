@@ -19,6 +19,8 @@ public class LevelChoice {
         int choice = 0;
         String res = "";
         while(choice < 1 || choice > 3) {
+            Game.clearScreen();
+            res = "";
             for (int i = 0; i < choices.length; i++) {
                 res += (i+1) + " : " + choices[i].getName() + ", ";
                 if(choices[i].getBonusType().equals(BonusType.BUFF)) {
