@@ -62,13 +62,13 @@ public abstract class DialogueView {
     
     public static void playerDead(){
         clearScreen();
-        print(DEAD_SCREEN);
+        FileLoader.print(DEAD_SCREEN);
         Game.pressToContinue();
     }
     
     public static void playerWin(){
         clearScreen();
-        print(WIN_SCREEN);
+        FileLoader.print(WIN_SCREEN);
         Game.pressToContinue();
     }
 

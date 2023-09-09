@@ -6,6 +6,7 @@ import main.donjon.Donjon;
 import main.donjon.DonjonFloor;
 import main.donjon.DonjonGenerator;
 import main.donjon.DonjonRoom;
+import main.donjon.Theme;
 import main.entity.Renaud;
 
 public class GameView {
@@ -60,7 +61,8 @@ public class GameView {
         DonjonFloor df = donjonGenerator.getDonjon().getFloor(player.getStage());
         if(df != null && player.getRoom() >= df.getRoomsCount()){
             player.nextStage();
-            DialogueView.startStage(donjonGenerator.getCurrentTheme());
+            Theme theme = donjonGenerator.getCurrentTheme();
+            if(theme != null) DialogueView.startStage(theme);
         }
     }
 
