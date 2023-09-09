@@ -25,7 +25,7 @@ public class FileLoader {
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
-        return sb.toString();
+        return sb.toString().substring(0, sb.length() - 1);
     }
 
     public static void print(String fileName){

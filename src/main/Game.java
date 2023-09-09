@@ -5,9 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import main.bestiary.BestiaryLoader;
-import main.donjon.Advice;
 import main.file.FileLoader;
-import main.view.AdviceView;
 import main.view.GameView;
 
 public class Game {
@@ -25,6 +23,7 @@ public class Game {
     public static void startTitleScreen(){
         clearScreen();
         FileLoader.print(FILENAME_TEST);
+        System.out.println();
         
         do{
             String choice = readStringNotNull();

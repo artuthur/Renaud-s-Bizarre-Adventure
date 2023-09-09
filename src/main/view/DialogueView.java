@@ -34,25 +34,29 @@ public abstract class DialogueView {
 
     public static void startBoss(Bestiary mob){
         clearScreen();
+        String fileName = null;
         switch(mob.getTheme()){
-            case INTERIEUR: print(START_BOSS_INTERIEUR); break;
-            case EDUCATION: print(START_BOSS_EDUCATION); break;
-            case OPPOSITION: print(START_BOSS_OPPOSITION); break;
-            case CULTURE: print(START_BOSS_CULTURE); break;
-            case FINALE: print(START_BOSS_FINALE); break;
+            case INTERIEUR: fileName = START_BOSS_INTERIEUR; break;
+            case EDUCATION: fileName = START_BOSS_EDUCATION; break;
+            case OPPOSITION: fileName = START_BOSS_OPPOSITION; break;
+            case CULTURE: fileName = START_BOSS_CULTURE; break;
+            case FINALE: fileName = START_BOSS_FINALE; break;
         }
+        print(fileName);
         Game.pressToContinue();
     }
 
     public static void startStage(Theme theme){
         clearScreen();
+        String fileName = null;
         switch(theme){
-            case INTERIEUR: print(START_CULTURE); break;
-            case EDUCATION: print(START_EDUCATION); break;
-            case OPPOSITION: print(START_OPPOSITION); break;
-            case CULTURE: print(START_CULTURE); break;
-            case FINALE: print(START_FINALE); break;
+            case INTERIEUR: fileName = START_CULTURE; break;
+            case EDUCATION: fileName = START_EDUCATION; break;
+            case OPPOSITION: fileName = START_OPPOSITION; break;
+            case CULTURE: fileName = START_CULTURE; break;
+            case FINALE: fileName = START_FINALE; break;
         }
+        print(fileName);
         Game.pressToContinue();
     }
     
@@ -60,18 +64,16 @@ public abstract class DialogueView {
         clearScreen();
         print(DEAD_SCREEN);
         Game.pressToContinue();
-        Game.startTitleScreen();
     }
     
     public static void playerWin(){
         clearScreen();
         print(WIN_SCREEN);
         Game.pressToContinue();
-        Game.startTitleScreen();
     }
 
     public static void print(String fileName){
-        FileLoader.print(PATH, fileName);
+        TextView.printHistory(PATH, fileName);
     }
 
     public static void clearScreen(){

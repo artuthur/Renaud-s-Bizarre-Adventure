@@ -43,19 +43,24 @@ public class DonjonGenerator {
     }
 
     public Theme getCurrentTheme(){
-        DonjonRoom dr = getCurrentRoom();
-        if(dr == null) return null;
-        return dr.getTheme();
+        return donjon.getTheme(player.getStage());
+    }
+
+    public boolean exists(int stage, int room){
+        DonjonFloor dj = donjon.getFloor(stage);
+        if(dj == null) return false;
+        DonjonRoom dr = dj.getRoom(room);
+        if(dr == null) return false;
+        return true;
     }
 
     private void loadCurrentStage(){
-        int currentStage = player.getStage();
-        generateStage(currentStage);
-        loadRooms(currentStage);
+        generateStage();
+        loadRooms();
     }
 
-    private void generateStage(int stage){
-        int roomsCount = donjon.getRoomsCount(stage);
+    private void generateStage(){
+        int roomsCount = donjon.getRoomsCount(player.getStage());
 
         int width = roomsCount * (ROOM_WIDTH + ROOM_WAY) - ROOM_WAY;
         int height = ROOM_HEIGHT;
@@ -103,8 +108,8 @@ public class DonjonGenerator {
         return dr.getType();
     }
 
-    private void loadRooms(int stage){
-        DonjonFloor floor = donjon.getFloor(stage);
+    private void loadRooms(){
+        DonjonFloor floor = getCurrentFloor();
         if(floor == null) return;
         DonjonRoom[] rooms = floor.getRooms();
         for(int i = 0; i < rooms.length; i++){

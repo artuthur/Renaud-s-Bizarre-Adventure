@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.Game;
-import main.donjon.Donjon;
-import main.donjon.Theme;
 import main.effect.Bonus;
 import main.effect.BonusType;
 import main.effect.LevelChoice;
-import main.view.DialogueView;
 
 public class Renaud extends Entity implements IEntity{
     public final static String PLAYER_NAME = "Renaud";
@@ -23,8 +20,6 @@ public class Renaud extends Entity implements IEntity{
     public final static int BASE_STAGE = 0;
     public final static int BASE_ROOM = 0;
 
-    private Donjon currentDonjon;
-
     private List<Bonus> bonusList;
     private List<Bonus> bonusDrawList;
     private List<Bonus> learnedSpells;
@@ -36,9 +31,8 @@ public class Renaud extends Entity implements IEntity{
     private int stage;
     private int room;
 
-    public Renaud(Donjon currentDonjon) {
+    public Renaud() {
         super(BASE_HP, BASE_DEF);
-        this.currentDonjon = currentDonjon;
         this.bonusList = new ArrayList<Bonus>();
         this.bonusDrawList = Bonus.getBonusList();
         this.learnedSpells = new ArrayList<Bonus>();
@@ -52,13 +46,21 @@ public class Renaud extends Entity implements IEntity{
     }
 
     @Override
-    public String getName(){
-        return PLAYER_NAME;
-    }
+    public String getName(){ return PLAYER_NAME; }
+    public List<Bonus> getBonusList() { return bonusList; }
+    public List<Bonus> getBonusDrawList() { return bonusDrawList; }
+    public List<Bonus> getLearnedSpells() { return learnedSpells; }
+    public int getAtk() { return atk; }
+    public int getExpNeeded() { return expNeeded; }
+    public int getExpCurrent() { return expCurrent; }
+    public int getStage() { return stage; }
+    public int getRoom() { return room; }
+    
+    public void setAtk(int atk) { this.atk = atk; }
+    public void setExpNeeded(int expNeeded) { this.expNeeded = expNeeded; }
+    public void setExpCurrent(int expCurrent) { this.expCurrent = expCurrent; }
 
-    public List<Bonus> getBonusList() {
-        return bonusList;
-    }
+    public boolean addLearnedSpells(Bonus spell) { return learnedSpells.add(spell); }
 
     public void addBonusToRenaud(Bonus bonus) {
         bonusList.add(bonus);
@@ -69,70 +71,13 @@ public class Renaud extends Entity implements IEntity{
         bonus.calcBuffOrValue(this);
     }
 
-    public List<Bonus> getBonusDrawList() {
-        return bonusDrawList;
-    }
-
-    public List<Bonus> getLearnedSpells() {
-        return learnedSpells;
-    }
-
-    public boolean addLearnedSpells(Bonus spell) {
-        return learnedSpells.add(spell);
-    }
-
-    public int getAtk() {
-        return atk;
-    }
-
-    public void setAtk(int atk) {
-        this.atk = atk;
-    }
-
-
-    public int getExpNeeded() {
-        return expNeeded;
-    }
-
-    public void setExpNeeded(int expNeeded) {
-        this.expNeeded = expNeeded;
-    }
-
-    public int getExpCurrent() {
-        return expCurrent;
-    }
-
-    public void setExpCurrent(int expCurrent) {
-        this.expCurrent = expCurrent;
-    }
-
-    public int getStage() {
-        return stage;
-    }
-
-    public void setStage(int stage) {
-        this.stage = stage;
-    }
-
-    public int getRoom() {
-        return room;
-    }
-
-    public void setRoom(int room) {
-        this.room = room;
-    }
-
     public void nextRoom(){
-        int roomMax = currentDonjon.getRoomsCount(stage);
         room++;
-        while(room >= roomMax){
-            room -= roomMax;
-            nextStage();
-        }
     }
 
-    public Theme getCurrentTheme(){
-        return currentDonjon.getTheme(stage);
+    public void nextStage(){
+        room = 0;
+        stage++;
     }
 
     /**
@@ -145,11 +90,6 @@ public class Renaud extends Entity implements IEntity{
             room -= roomMax;
             nextStageTest();
         }
-    }
-
-    public void nextStage(){
-        stage++;
-        DialogueView.startStage(currentDonjon.getTheme(stage));
     }
 
     /**

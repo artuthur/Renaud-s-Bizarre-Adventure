@@ -3,6 +3,7 @@ package main.view;
 import main.Battle;
 import main.Game;
 import main.donjon.Donjon;
+import main.donjon.DonjonFloor;
 import main.donjon.DonjonGenerator;
 import main.donjon.DonjonRoom;
 import main.entity.Renaud;
@@ -34,21 +35,36 @@ public class GameView {
 
     public static void start(){
         Donjon donjon = new Donjon();
-        Renaud player = new Renaud(donjon);
+        Renaud player = new Renaud();
         DonjonGenerator donjonGenerator = new DonjonGenerator(donjon, player);
         GameView gameView = new GameView(donjonGenerator, player);
         RenaudView.player = player;
+
+        // for (int i = 0; i < 4; i++) player.nextStage();
+        player.setAtk(100000);
         
         DialogueView.startGame();
-        DialogueView.startStage(player.getCurrentTheme());
+        DialogueView.startStage(donjonGenerator.getCurrentTheme());
         
         do{
             Game.clearScreen();
             RenaudView.printPlayerStats();
             donjonGenerator.drawDonjon();
-            Game.pressToContinue();
+            pressToContinue();
             gameView.checkPlayerCase();
+            gameView.nextRoom(player);
         }while(!gameView.isFinish());
+        
+        Game.startTitleScreen();
+    }
+
+    public void nextRoom(Renaud player){
+        player.nextRoom();
+        DonjonFloor df = donjonGenerator.getDonjon().getFloor(player.getStage());
+        if(df != null && player.getRoom() >= df.getRoomsCount()){
+            player.nextStage();
+            DialogueView.startStage(donjonGenerator.getCurrentTheme());
+        }
     }
 
     public boolean isFinish(){
@@ -56,7 +72,7 @@ public class GameView {
             playerDead();
             return true;
         }
-        if(player.getStage() > donjonGenerator.getDonjon().getFloorsCount()){
+        if(player.getStage() >= donjonGenerator.getDonjon().getFloorsCount()){
             playerWin();
             return true;
         }
@@ -82,9 +98,13 @@ public class GameView {
             bt.battle();
         }
         if(donjonRoom.getAdvice() != null){
-            AdviceView.load(donjonRoom.getAdvice());
-            player.nextRoom();
+            TextView.printAdvice(donjonRoom.getAdvice());
+            pressToContinue();
         }
+    }
+
+    public static void pressToContinue(){
+        Game.pressToContinue();
     }
 
     public String toString(){

@@ -22,8 +22,7 @@ public class RenaudTest {
     
     @BeforeEach
     void initialisation(){
-        this.dj = new Donjon();
-        this.r = new Renaud(dj);
+        this.r = new Renaud();
         this.bonusList = this.r.getBonusList();
         this.bonusDrawList = this.r.getBonusDrawList();
         this.learnedSpells = this.r.getLearnedSpells();
@@ -140,24 +139,6 @@ public class RenaudTest {
         assertEquals(this.r.getExpCurrent(), 120);
         this.r.setExpCurrent(10);
         assertEquals(this.r.getExpCurrent(), 10);
-    }
-
-    @Test
-    void testGetStageAndSetStage(){
-        assertEquals(this.r.getStage(), 0);
-        this.r.setStage(5);
-        assertEquals(this.r.getStage(), 5);
-        this.r.setStage(2);
-        assertEquals(this.r.getStage(), 2);
-    }
-
-    @Test
-    void testGetRoomAndSetRoom(){
-        assertEquals(this.r.getRoom(), 0);
-        this.r.setRoom(5);
-        assertEquals(this.r.getRoom(), 5);
-        this.r.setRoom(2);
-        assertEquals(this.r.getRoom(), 2);
     }
 
     @Test

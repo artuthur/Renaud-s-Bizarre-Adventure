@@ -256,12 +256,11 @@ public class Battle {
         }
         if (foe.getCurrentHp() <= 0) {
             if (foe.isBoss()) {
-                player.giveExp(player.getExpNeeded());
+                player.nextLevel();
             }
             else {
                 player.giveExp(EXP_GAIN);
             }
-            player.nextRoom();
         }
     }
 

@@ -7,7 +7,7 @@ public class DonjonFloor {
     public final static String ROOM_EXCEPTION = "Exception : La salle de l'étage demandée n'existe pas : ";
     public final static int ROOMS_MAX = 5;
     public final static int ROOMS_MIN = 3;
-    public final static int ADVICE_CHANCE = 100/2; /* percentage */
+    public final static int ADVICE_CHANCE = 100/1; /* percentage */
 
     private Theme theme;
     private DonjonRoom[] rooms;

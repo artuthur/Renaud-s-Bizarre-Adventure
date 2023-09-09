@@ -2,6 +2,7 @@ package main.effect;
 
 import main.Game;
 import main.entity.Renaud;
+import main.view.RenaudView;
 
 public class LevelChoice {
     public final static int NB_CHOICES = 3;
@@ -17,16 +18,17 @@ public class LevelChoice {
     public static Bonus pickBonus(Renaud player) {
         Bonus[] choices = drawBonuses(player);
         int choice = 0;
-        String res = "";
+        String res;
         while(choice < 1 || choice > 3) {
             Game.clearScreen();
+            RenaudView.printPlayerStats();
             res = "";
             for (int i = 0; i < choices.length; i++) {
                 res += (i+1) + " : " + choices[i].getName() + ", ";
                 if(choices[i].getBonusType().equals(BonusType.BUFF)) {
                     res += "ajoute +";
                 } else if(choices[i].getUseType().equals(UseType.DAMAGE)) {
-                    res+= "inflige ";
+                    res += "inflige ";
                 } else {
                     res += "soigne ";
                 }
@@ -42,7 +44,7 @@ public class LevelChoice {
                         choices[i].getCooldown() + " (Sort à dégât fixe) \n";             
                 }
             }
-            System.out.println(res + "\n Sélectionnez un bonus : ");
+            System.out.print(res + "\n Sélectionnez un bonus : ");
             choice = Game.readIntNotNull();
         }
         return choices[choice-1];
