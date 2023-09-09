@@ -39,9 +39,6 @@ public class GameView {
         DonjonGenerator donjonGenerator = new DonjonGenerator(donjon, player);
         GameView gameView = new GameView(donjonGenerator, player);
         RenaudView.player = player;
-
-        // for (int i = 0; i < 4; i++) player.nextStage();
-        player.setAtk(100000);
         
         DialogueView.startGame();
         DialogueView.startStage(donjonGenerator.getCurrentTheme());
